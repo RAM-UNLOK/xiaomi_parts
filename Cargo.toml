@@ -7,13 +7,23 @@ edition = "2024"
 crate-type = ["cdylib", "rlib"]
 
 [dependencies]
-android-ndk = { version = "0.7", features = ["android_support_34"] } # For compose-bridge FFI
-tokio = { version = "1", features = ["rt-multi-thread", "macros", "sync", "time"] }
-futures = "0.3"
-once_cell = "1"
+# Latest stable NDK with full Android 17 (API 34) support
+android-ndk = { version = "0.8", features = ["android_support_34"] } # For compose-bridge FFI + API 34
+
+# Tokio 1.x with all required features for async runtime on NDK
+tokio = { version = "1.45", features = [
+    "rt-multi-thread",     # Multi-threaded runtime
+    "macros",             # Async/await macros
+    "sync",               # Sync primitives (Arc, Mutex)
+    "time",               # Time utilities for jitter control
+] }
+
+futures = "0.3"          # Async combinators and channels
+once_cell = "1"          # Lazy initialization without panic
+log = "0.4"              # Logging for debug output
 
 [target.'cfg(target_os = "android")'.dependencies]
-ndk-sys = "0.5"
+ndk-sys = "0.6"         # Latest NDK sys bindings (API 34+)
 
 [features]
 default = []
