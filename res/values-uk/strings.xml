@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Machine-translated baseline with official AOSP terminology where available. -->
 <resources>
-    <string name="app_name">Запчастини Xiaomi</string>
+    <string name="app_name">Частини Xiaomi</string>
     <string name="xiaomi_parts_title">Частини Xiaomi</string>
     <string name="xiaomi_parts_summary">Дисплей, продуктивність, сенсорне керування та діагностика</string>
     <string name="xiaomi_parts_category_diagnostics">Діагностика</string>
@@ -141,6 +141,19 @@
     <string name="thermal_gaming_competitive">Ігри (змагальні)</string>
     <string name="thermal_yuanshen">Юаньшень</string>
     <string name="thermal_charge">Зарядка</string>
+    <string name="touch_sampling_title">Сенсорна вибірка</string>
+    <string name="touch_sampling_summary">Швидкість реакції на дотик і затримка</string>
+    <string name="touch_sampling_240_title">240 Гц (за замовчуванням)</string>
+    <string name="touch_sampling_240_desc">До 360 Гц • Щоденне використання</string>
+    <string name="touch_sampling_480_title">480 Гц</string>
+    <string name="touch_sampling_480_desc">До 560 Гц • Ігри</string>
+    <string name="touch_sampling_1000_title">1000 Гц</string>
+    <string name="touch_sampling_1000_desc">Ultra • Миттєве реагування</string>
+    <string name="touch_sampling_toast">Дотикова вибірка встановлена ​​на %1$s</string>
+    <string name="touch_sampling_failed">Не вдалося оновити частоту дискретизації дотику</string>
+    <string name="touch_sampling_confirm_title">Підтвердити вибір</string>
+    <string name="touch_sampling_confirm_message">Ви хочете застосувати %1$s?</string>
+    <string name="touch_sampling_confirm_apply">Застосувати</string>
     <string name="fingerprint_calibration_title">Калібрування відбитків пальців</string>
     <string name="fingerprint_calibration_summary">Перекалібруйте датчик відбитків пальців</string>
     <string name="fingerprint_calibration_not_found">Калібрування відбитків пальців недоступне</string>

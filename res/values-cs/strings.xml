@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Machine-translated baseline with official AOSP terminology where available. -->
 <resources>
-    <string name="app_name">dílů Xiaomi</string>
+    <string name="app_name">Xiaomi díly</string>
     <string name="xiaomi_parts_title">Xiaomi díly</string>
     <string name="xiaomi_parts_summary">Displej, výkon, dotyk a diagnostika</string>
     <string name="xiaomi_parts_category_diagnostics">Diagnostika</string>
@@ -141,6 +141,19 @@
     <string name="thermal_gaming_competitive">Herní (soutěžní)</string>
     <string name="thermal_yuanshen">Yuanshen</string>
     <string name="thermal_charge">Nabíjení</string>
+    <string name="touch_sampling_title">Dotykové vzorkování</string>
+    <string name="touch_sampling_summary">Rychlost odezvy na dotyk a latence</string>
+    <string name="touch_sampling_240_title">240 Hz (výchozí)</string>
+    <string name="touch_sampling_240_desc">Až 360 Hz • Každodenní použití</string>
+    <string name="touch_sampling_480_title">480 Hz</string>
+    <string name="touch_sampling_480_desc">Až 560 Hz • Hraní</string>
+    <string name="touch_sampling_1000_title">1000 Hz</string>
+    <string name="touch_sampling_1000_desc">Ultra • Okamžitá odezva</string>
+    <string name="touch_sampling_toast">Vzorkování dotykem nastaveno na %1$s</string>
+    <string name="touch_sampling_failed">Aktualizace vzorkovací frekvence dotyku se nezdařila</string>
+    <string name="touch_sampling_confirm_title">Potvrďte výběr</string>
+    <string name="touch_sampling_confirm_message">Chcete použít %1$s?</string>
+    <string name="touch_sampling_confirm_apply">Použít</string>
     <string name="fingerprint_calibration_title">Kalibrace otisku prstu</string>
     <string name="fingerprint_calibration_summary">Znovu zkalibrujte snímač otisků prstů</string>
     <string name="fingerprint_calibration_not_found">Kalibrace otisku prstu není k dispozici</string>
