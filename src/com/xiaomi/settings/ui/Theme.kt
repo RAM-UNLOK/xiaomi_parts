@@ -14,7 +14,6 @@ import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.SpringType
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.animateIntAsState
-intAsState
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.isSystemInDarkTheme

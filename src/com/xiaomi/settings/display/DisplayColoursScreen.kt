@@ -39,7 +39,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -168,23 +167,6 @@ private fun ColourPreviewHero(
             )
         }
 
-        modes.firstOrNull { it.id == selectedId }?.let { activeMode ->
-            Surface(
-                modifier = Modifier
-                    .align(Alignment.BottomStart)
-                    .padding(16.dp),
-                shape = MaterialTheme.shapes.extraLarge,
-                color = MaterialTheme.colorScheme.primaryContainer,
-                contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
-            ) {
-                Text(
-                    text = stringResource(activeMode.label),
-                    style = MaterialTheme.typography.labelLarge,
-                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
-                )
-            }
-        }
-
         // Show/hide the active mode label with smooth visibility transition for proper back gesture support
         AnimatedVisibility(
             visible = selectedId != -1,
@@ -209,6 +191,33 @@ private fun ColourPreviewHero(
                 }
             }
         }
+    }
+}
+
+/** Helper composable to show the active color mode label with animation */
+@Composable
+private fun ActiveModeLabel(
+    modes: List<ColorMode>,
+    selectedId: Int,
+) {
+    val activeMode = modes.firstOrNull { it.id == selectedId }
+    AnimatedVisibility(visible = selectedId != -1) {
+        activeMode?.let { mode ->
+            Surface(
+                modifier = Modifier.align(Alignment.BottomStart).padding(16.dp),
+                shape = MaterialTheme.shapes.extraLarge,
+                color = MaterialTheme.colorScheme.primaryContainer,
+                contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+            ) {
+                Text(
+                    text = stringResource(mode.label),
+                    style = MaterialTheme.typography.labelLarge,
+                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
+                )
+            }
+        }
+    }
+}
     }
 }
 

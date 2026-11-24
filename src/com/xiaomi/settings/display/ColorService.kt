@@ -100,11 +100,8 @@ class ColorService : Service() {
             false, settingObserver, UserHandle.USER_CURRENT,
         )
         // ACTION_SCREEN_ON and ACTION_SCREEN_OFF are system-protected broadcasts
-        // sent exclusively by the OS. RECEIVER_NOT_EXPORTED must NOT be used:
-        // it is incorrect for system broadcasts and causes a StrictMode warning
-        // on AOSP 16. The OS delivers these to all registered receivers
-        // regardless of the export flag.
-        @Suppress("UnspecifiedRegisterReceiverFlag")
+        // sent exclusively by the OS. The OS delivers these to all registered
+        // receivers regardless of export flag, so RECEIVER_NOT_EXPORTED cannot be used.
         registerReceiver(
             screenStateReceiver,
             IntentFilter().apply {

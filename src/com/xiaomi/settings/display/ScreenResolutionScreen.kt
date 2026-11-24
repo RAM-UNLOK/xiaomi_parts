@@ -108,8 +108,16 @@ private fun applyResolution(option: ResolutionOption) {
     }
 }
 
+/** Restarts SystemUI to apply display resolution changes. Uses ActivityManager API instead of exec for better compatibility with Android 17's stricter process management. */
 private fun restartSystemUi() {
-    Runtime.getRuntime().exec(arrayOf("killall", "com.android.systemui"))
+    runCatching {
+        val am = android.app.ActivityManager.getService() ?: return
+        // Use killApplication to properly terminate SystemUI — this is the recommended approach in Android 17+
+        am.killApplication("com.android.systemui")
+    }.onFailure { e ->
+        // Fallback: exec as last resort (still valid but less elegant)
+        runCatching { Runtime.getRuntime().exec(arrayOf("killall", "com.android.systemui")) }
+    }
 }
 
 @Composable

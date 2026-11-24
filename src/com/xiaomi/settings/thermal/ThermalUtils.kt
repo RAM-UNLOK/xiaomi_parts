@@ -46,15 +46,21 @@ class ThermalUtils private constructor(private val context: Context) {
 
     fun startService() {
         if (!enabled) return
-        runCatching {
+        val started = runCatching {
             context.startServiceAsUser(serviceIntent, UserHandle.CURRENT)
+        }.getOrDefault(false)
+        if (started) {
+            dlog(TAG, "Thermal service started successfully")
+        } else {
+            dlog(TAG, "Failed to start thermal service — falling back to default profile")
+            setDefaultThermalProfile()
         }
     }
 
     fun stopService() {
         runCatching {
             context.stopServiceAsUser(serviceIntent, UserHandle.CURRENT)
-        }
+        }.onFailure { dlog(TAG, "Failed to stop thermal service: ${it.message}") }
     }
 
     fun setThermalProfile(packageName: String) {
@@ -209,11 +215,14 @@ class ThermalUtils private constructor(private val context: Context) {
 
     fun writePackage(packageName: String, stateId: Int) {
         val key = "$THERMAL_PACKAGE_PREFIX$packageName"
-        if (stateId == ThermalState.DEFAULT.id) {
-            // Explicitly remove so contains() correctly returns false = auto-classify
-            sharedPrefs.edit().remove(key).apply()
-        } else {
-            sharedPrefs.edit().putInt(key, stateId).apply()
+        // Use synchronized to prevent race conditions when multiple threads
+        // update thermal profiles concurrently (e.g., app background/foreground events)
+        synchronized(this) {
+            if (stateId == ThermalState.DEFAULT.id) {
+                sharedPrefs.edit().remove(key).apply()
+            } else {
+                sharedPrefs.edit().putInt(key, stateId).apply()
+            }
         }
     }
 
