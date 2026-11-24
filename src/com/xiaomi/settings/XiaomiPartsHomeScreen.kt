@@ -77,12 +77,6 @@ fun XiaomiPartsHomeScreen(
                         summary = stringResource(R.string.thermal_summary),
                         onClick = onNavigateToThermal,
                     )
-                    PartsPreference(
-                        icon = ImageVector.vectorResource(R.drawable.ic_touch_boost),
-                        title = stringResource(R.string.touch_boost_title),
-                        summary = stringResource(R.string.touch_boost_summary),
-                        onClick = onNavigateToTouch,
-                    )
                 }
             }
 
@@ -109,23 +103,8 @@ fun XiaomiPartsHomeScreen(
                     )
                 }
             }
-
-            item(key = "system") {
-                PartsPreferenceGroup(title = stringResource(R.string.system_category)) {
-                    PartsPreference(
-                        icon = Icons.Filled.BatteryChargingFull,
-                        title = stringResource(R.string.battery_status_title),
-                        summary = stringResource(R.string.battery_status_summary),
-                        onClick = onNavigateToBattery,
-                    )
-                    PartsPreference(
-                        icon = Icons.Filled.Memory,
-                        title = stringResource(R.string.memory_title),
-                        summary = stringResource(R.string.memory_summary),
-                        onClick = onNavigateToMemory,
-                    )
-                }
-            }
+        }
+    }
 
             item(key = "diagnostics") {
                 PartsPreferenceGroup(

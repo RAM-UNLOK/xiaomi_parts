@@ -71,7 +71,6 @@ private fun PartsNavHost() {
                 onNavigateToCpu         = { nav.navigate("cpuControl") },
                 onNavigateToMemory      = { nav.navigate("memory") },
                 onNavigateToThermal     = { nav.navigate("thermal") },
-                onNavigateToTouch       = { nav.navigate("touchBoost") },
             )
         }
         composable("displayColours")    { DisplayColoursScreen { nav.popBackStack() } }
