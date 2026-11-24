@@ -31,7 +31,6 @@ fun XiaomiPartsHomeScreen(
     onNavigateToDisplay: () -> Unit,
     onNavigateToResolution: () -> Unit,
     onNavigateToBattery: () -> Unit,
-    onNavigateToMemory: () -> Unit,
     onNavigateToThermal: () -> Unit,
     onNavigateToTouch: () -> Unit,
 ) {
@@ -86,12 +85,6 @@ fun XiaomiPartsHomeScreen(
                         title = stringResource(R.string.battery_status_title),
                         summary = stringResource(R.string.battery_status_summary),
                         onClick = onNavigateToBattery,
-                    )
-                    PartsPreference(
-                        icon = Icons.Filled.Memory,
-                        title = stringResource(R.string.memory_title),
-                        summary = stringResource(R.string.memory_summary),
-                        onClick = onNavigateToMemory,
                     )
                 }
             }
