@@ -67,7 +67,6 @@ private fun PartsNavHost() {
                 onNavigateToDisplay     = { nav.navigate("displayColours") },
                 onNavigateToResolution  = { nav.navigate("screenResolution") },
                 onNavigateToBattery     = { nav.navigate("batteryStatus") },
-                onNavigateToMemory      = { nav.navigate("memory") },
                 onNavigateToThermal     = { nav.navigate("thermal") },
                 onNavigateToTouch       = { nav.navigate("touchBoost") },
             )
@@ -75,7 +74,6 @@ private fun PartsNavHost() {
         composable("displayColours")    { DisplayColoursScreen { nav.popBackStack() } }
         composable("screenResolution")  { ScreenResolutionScreen { nav.popBackStack() } }
         composable("batteryStatus")     { BatteryStatusScreen { nav.popBackStack() } }
-
         composable("thermal")           { ThermalManagementScreen { nav.popBackStack() } }
         composable("touchBoost")        { TouchSamplingScreen { nav.popBackStack() } }
     }

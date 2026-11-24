@@ -53,39 +53,6 @@
     <string name="battery_plug_dock">Dock</string>
     <string name="battery_plug_none">Battery</string>
 
-    <!-- ── Performance monitor ────────────────────────────── -->
-    <string name="performance_title">Performance monitor</string>
-    <string name="performance_summary">CPU load and live metrics</string>
-    <string name="monitor_cpu_section">CPU</string>
-    <string name="monitor_gpu_section">GPU</string>
-    <string name="monitor_temp_section">Temperatures</string>
-    <string name="monitor_all_zones">All thermal zones</string>
-    <string name="monitor_cpu_load">CPU load</string>
-    <string name="monitor_load_average">Load average (1 · 5 · 15)</string>
-    <string name="monitor_uptime">Uptime</string>
-    <string name="monitor_freq_range">Range %1$s – %2$s</string>
-    <string name="monitor_governor">Governor: %1$s</string>
-    <string name="monitor_gpu_freq">GPU frequency</string>
-    <string name="monitor_gpu_load">GPU load: %1$d%%</string>
-    <string name="monitor_unavailable">Monitoring data is not available on this device.</string>
-
-    <!-- ── Memory manager ─────────────────────────────────── -->
-    <string name="memory_title">Memory manager</string>
-    <string name="memory_summary">RAM, swap and running processes</string>
-    <string name="memory_used">Used</string>
-    <string name="memory_free_summary">%1$s free</string>
-    <string name="memory_total">Total</string>
-    <string name="memory_available">Available</string>
-    <string name="memory_cached">Cached</string>
-    <string name="memory_swap">Swap free</string>
-    <string name="memory_processes">Processes</string>
-    <string name="memory_no_processes">No process information available.</string>
-    <string name="memory_unavailable">Memory information is not available on this device.</string>
-    <string name="memory_low_warning">Low memory — consider closing background apps</string>
-    <string name="memory_stop">Stop process</string>
-    <string name="memory_process_stopped">Process stopped</string>
-    <string name="memory_process_summary">PSS %1$s · RSS %2$s · CPU %3$s%%</string>
-
     <!-- ── Display Colours ────────────────────────────────── -->
     <string name="display_colours_title">Display colours</string>
     <string name="display_colours_summary">Colour mode and temperature</string>
@@ -126,23 +93,10 @@
     <string name="thermal_title">Thermal management</string>
     <string name="thermal_summary">Per-app performance and temperature</string>
     <string name="thermal_enable_title">Thermal profiles</string>
-    <string name="thermal_enable_summary">Apply thermal profiles per app and while charging</string>
-    <string name="thermal_safety_label">Safety override</string>
-    <string name="thermal_disable_throttling_title">Disable thermal throttling</string>
-    <string name="thermal_disable_throttling_summary">Use the vendor no-limits profile until this option is turned off</string>
-    <string name="thermal_disable_warning_title">Disable thermal protection?</string>
-    <string name="thermal_disable_warning_body">The device can overheat, become unstable, damage the battery or shut down. Kernel emergency protections may remain active. Use this only for short tests and never leave the device unattended.</string>
-    <string name="thermal_disable_confirm">Disable anyway</string>
-    <string name="thermal_global_label">Global profile</string>
-    <string name="thermal_global_profile_title">Active profile</string>
+    <string name="thermal_enable_summary">Apply thermal profiles per app</string>
     <string name="thermal_per_app_label">Per-app profiles</string>
-    <string name="thermal_select_profile">Select profile</string>
     <string name="thermal_apply">Apply</string>
     <string name="thermal_no_apps">No apps configured yet</string>
-    <string name="thermal_failed_toast">Thermal operation failed</string>
-    <string name="thermal_charging_toast_connected">Charging profile active</string>
-    <string name="thermal_charging_toast_disconnected">Per-app profiles resumed</string>
-    <string name="thermal_charging_banner_body">Per-app profiles are paused while charging</string>
     <string name="thermal_reset_title">Reset all profiles</string>
     <string name="thermal_reset_summary">Restore all per-app profiles to their defaults</string>
     <string name="thermal_reset_confirm">Reset</string>
@@ -161,7 +115,6 @@
     <string name="thermal_gaming_heavy">Gaming (heavy)</string>
     <string name="thermal_gaming_competitive">Gaming (competitive)</string>
     <string name="thermal_yuanshen">Yuanshen</string>
-    <string name="thermal_charge">Charging</string>
 
     <!-- ── Touch Sampling ────────────────────────────────────── -->
     <string name="touch_sampling_title">Touch sampling</string>
