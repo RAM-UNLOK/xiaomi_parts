@@ -214,21 +214,7 @@ fun ThermalManagementScreen(onBack: () -> Unit) {
 
             item(key = "auto_touch_boost") {
                 PartsPreferenceGroup(title = stringResource(R.string.performance_category)) {
-                    PartsSwitchPreference(
-                        title = stringResource(R.string.auto_touch_boost_title),
-                        checked = AutoTouchBoostService.isEnabled(context),
-                        enabled = controlsEnabled,
-                        onCheckedChange = { checked ->
-                            runCatching {
-                                AutoTouchBoostService.setEnabled(context, checked)
-                            }.onFailure { /* log error */ }
-                        },
-                    )
-                }
-            }
-
-            item(key = "touch_sampling") {
-                PartsPreferenceGroup(title = stringResource(R.string.performance_category)) {
+                    // Multi-sampling mode selector - integrated with auto boost
                     val mode by remember { MultiSamplingTouchBoost.getMode(context) }
                     val label by remember(mode) { 
                         MultiSamplingTouchBoost.getLabel(context, mode)
@@ -240,6 +226,17 @@ fun ThermalManagementScreen(onBack: () -> Unit) {
                         icon = Icons.Filled.Memory,
                         enabled = controlsEnabled,
                         onClick = { showSamplingModeDialog() },
+                    )
+
+                    PartsSwitchPreference(
+                        title = stringResource(R.string.auto_touch_boost_title),
+                        checked = AutoTouchBoostService.isEnabled(context),
+                        enabled = controlsEnabled,
+                        onCheckedChange = { checked ->
+                            runCatching {
+                                AutoTouchBoostService.setEnabled(context, checked)
+                            }.onFailure { /* log error */ }
+                        },
                     )
                 }
             }
