@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">Jocuri (competitiv)</string>
     <string name="thermal_yuanshen">Yuanshen</string>
     <string name="thermal_charge">Încărcare</string>
-    <string name="touch_boost_title">Amplificare la atingere</string>
-    <string name="touch_boost_summary">Răspuns la atingere mai rapid</string>
-    <string name="touch_boost_description">Mărește rata de interogare a controlerului tactil, reducând latența de la atingere la răspuns. Poate crește ușor consumul de energie în timpul utilizării active.</string>
-    <string name="touch_boost_failed">Touch Boost nu s-a aplicat</string>
     <string name="fingerprint_calibration_title">Calibrarea amprentei</string>
     <string name="fingerprint_calibration_summary">Recalibrați senzorul de amprentă</string>
     <string name="fingerprint_calibration_not_found">Calibrarea amprentei nu este disponibilă</string>

@@ -161,10 +161,6 @@
     <string name="thermal_gaming_competitive">Michezo ya kubahatisha (ya ushindani)</string>
     <string name="thermal_yuanshen">Yuanshen</string>
     <string name="thermal_charge">Inachaji</string>
-    <string name="touch_boost_title">Kuongeza mguso</string>
-    <string name="touch_boost_summary">Jibu la mguso wa haraka</string>
-    <string name="touch_boost_description">Huongeza kasi ya upigaji kura ya kidhibiti cha mguso, na hivyo kupunguza muda wa kugonga-kwa-majibu. Inaweza kuongeza nguvu kidogo wakati wa matumizi amilifu.</string>
-    <string name="touch_boost_failed">Kiboreshaji cha mguso kimeshindwa kutumika</string>
     <string name="fingerprint_calibration_title">Urekebishaji wa alama za vidole</string>
     <string name="fingerprint_calibration_summary">Rekebisha kitambuzi cha alama ya vidole</string>
     <string name="fingerprint_calibration_not_found">Urekebishaji wa alama za vidole haupatikani</string>

@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">თამაში (კონკურენტული)</string>
     <string name="thermal_yuanshen">იუანშენი</string>
     <string name="thermal_charge">დამუხტვა</string>
-    <string name="touch_boost_title">შეხების გაძლიერება</string>
-    <string name="touch_boost_summary">უფრო სწრაფი შეხებით პასუხი</string>
-    <string name="touch_boost_description">ზრდის სენსორული კონტროლერის გამოკითხვის სიხშირეს, ამცირებს შეხება-პასუხის შეყოვნებას. აქტიური გამოყენებისას შეიძლება ოდნავ გაზარდოს ენერგიის მოხმარება.</string>
-    <string name="touch_boost_failed">შეხების გაძლიერება ვერ მოხერხდა</string>
     <string name="fingerprint_calibration_title">თითის ანაბეჭდის კალიბრაცია</string>
     <string name="fingerprint_calibration_summary">გადაკალიბრეთ თითის ანაბეჭდის სენსორი</string>
     <string name="fingerprint_calibration_not_found">თითის ანაბეჭდის კალიბრაცია მიუწვდომელია</string>

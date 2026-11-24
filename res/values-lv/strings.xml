@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">Spēles (konkurences)</string>
     <string name="thermal_yuanshen">Yuanshen</string>
     <string name="thermal_charge">Charging</string>
-    <string name="touch_boost_title">Touch boost</string>
-    <string name="touch_boost_summary">Ātrāka skāriena reakcija</string>
-    <string name="touch_boost_description">Palielina skārienvadības pults aptaujas ātrumu, samazinot pieskaršanās, lai atbildētu latentumu. Aktīvās lietošanas laikā var nedaudz palielināt enerģijas patēriņu.</string>
-    <string name="touch_boost_failed">Pieskāriena pastiprināšanu neizdevās lietot</string>
     <string name="fingerprint_calibration_title">Pirkstu nospiedumu kalibrēšana</string>
     <string name="fingerprint_calibration_summary">Pārkalibrējiet pirkstu nospiedumu sensoru</string>
     <string name="fingerprint_calibration_not_found">Pirkstu nospiedumu kalibrēšana nav pieejama</string>

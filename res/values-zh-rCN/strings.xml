@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">游戏（竞技）</string>
     <string name="thermal_yuanshen">元神</string>
     <string name="thermal_charge">充电</string>
-    <string name="touch_boost_title">触摸增强</string>
-    <string name="touch_boost_summary">更快的触摸响应</string>
-    <string name="touch_boost_description">提高触摸控制器轮询率，减少点击响应延迟。在活跃使用期间可能会稍微增加功耗。</string>
-    <string name="touch_boost_failed">触摸增强未能应用</string>
     <string name="fingerprint_calibration_title">指纹校准</string>
     <string name="fingerprint_calibration_summary">重新校准指纹传感器</string>
     <string name="fingerprint_calibration_not_found">指纹校准不可用</string>

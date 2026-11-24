@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">بازی (رقابتی)</string>
     <string name="thermal_yuanshen">یوانشن</string>
     <string name="thermal_charge">شارژ</string>
-    <string name="touch_boost_title">تقویت لمسی</string>
-    <string name="touch_boost_summary">پاسخ لمسی سریعتر</string>
-    <string name="touch_boost_description">نرخ نظرسنجی کنترلر لمسی را افزایش می‌دهد و تأخیر ضربه به پاسخ را کاهش می‌دهد. ممکن است در حین استفاده فعال، مصرف برق را اندکی افزایش دهد.</string>
-    <string name="touch_boost_failed">تقویت لمسی اعمال نشد</string>
     <string name="fingerprint_calibration_title">کالیبراسیون اثر انگشت</string>
     <string name="fingerprint_calibration_summary">سنسور اثر انگشت را دوباره کالیبره کنید</string>
     <string name="fingerprint_calibration_not_found">کالیبراسیون اثر انگشت در دسترس نیست</string>

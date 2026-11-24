@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">Speletjies (mededingend)</string>
     <string name="thermal_yuanshen">Yuanshen</string>
     <string name="thermal_charge">Laai</string>
-    <string name="touch_boost_title">Raakversterking</string>
-    <string name="touch_boost_summary">Vinniger raakreaksie</string>
-    <string name="touch_boost_description">Verhoog die aanraakbeheerder-peilingstempo, wat tik-tot-reaksie-vertraging verminder. Mag kragverbruik effens verhoog tydens aktiewe gebruik.</string>
-    <string name="touch_boost_failed">Raakversterking kon nie toegepas word nie</string>
     <string name="fingerprint_calibration_title">Vingerafdrukkalibrasie</string>
     <string name="fingerprint_calibration_summary">Herkalibreer die vingerafdruksensor</string>
     <string name="fingerprint_calibration_not_found">Vingerafdrukkalibrasie nie beskikbaar nie</string>

@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">Jocs (competitiu)</string>
     <string name="thermal_yuanshen">Yuanshen</string>
     <string name="thermal_charge">Carregant</string>
-    <string name="touch_boost_title">Augment tàctil</string>
-    <string name="touch_boost_summary">Resposta tàctil més ràpida</string>
-    <string name="touch_boost_description">Augmenta la taxa de sondeig del controlador tàctil, reduint la latència de toc per respondre. Pot augmentar lleugerament el consum d\'energia durant l\'ús actiu.</string>
-    <string name="touch_boost_failed">L\'impuls tàctil no s\'ha pogut aplicar</string>
     <string name="fingerprint_calibration_title">Calibració de l\'empremta digital</string>
     <string name="fingerprint_calibration_summary">Torneu a calibrar el sensor d\'empremtes digitals</string>
     <string name="fingerprint_calibration_not_found">La calibració de l\'empremta digital no està disponible</string>

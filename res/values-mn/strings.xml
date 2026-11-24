@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">Тоглоом (өрсөлдөөнтэй)</string>
     <string name="thermal_yuanshen">Юаньшэн</string>
     <string name="thermal_charge">Цэнэглэж байна</string>
-    <string name="touch_boost_title">Мэдрэгчийг нэмэгдүүлэх</string>
-    <string name="touch_boost_summary">Илүү хурдан мэдрэгчтэй хариу үйлдэл</string>
-    <string name="touch_boost_description">мэдрэгчтэй хянагчийн санал хураалтын хурдыг нэмэгдүүлж, товшихоос хариу өгөх хоцролтыг бууруулдаг. Идэвхтэй ашиглах үед эрчим хүчний зарцуулалтыг бага зэрэг нэмэгдүүлж болно.</string>
-    <string name="touch_boost_failed">Мэдрэгчийг нэмэгдүүлэхийг ашиглаж чадсангүй</string>
     <string name="fingerprint_calibration_title">Хурууны хээ тохируулга</string>
     <string name="fingerprint_calibration_summary">Хурууны хээ мэдрэгчийг дахин тохируулна уу</string>
     <string name="fingerprint_calibration_not_found">Хурууны хээ тохируулга хийх боломжгүй</string>

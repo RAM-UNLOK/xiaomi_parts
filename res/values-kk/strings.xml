@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">Ойын (бәсекеге қабілетті)</string>
     <string name="thermal_yuanshen">Юаньшен</string>
     <string name="thermal_charge">Зарядталуда</string>
-    <string name="touch_boost_title">Сенсорды күшейту</string>
-    <string name="touch_boost_summary">Түртуге жылдамырақ жауап</string>
-    <string name="touch_boost_description">түртуден жауап беру кідірісін азайта отырып, сенсорлық контроллердің сұрау жылдамдығын арттырады. Белсенді пайдалану кезінде қуатты аздап арттыруы мүмкін.</string>
-    <string name="touch_boost_failed">Сенсорды күшейту қолданылмады</string>
     <string name="fingerprint_calibration_title">Саусақ ізін калибрлеу</string>
     <string name="fingerprint_calibration_summary">Саусақ ізі сенсорын қайта калибрлеу</string>
     <string name="fingerprint_calibration_not_found">Саусақ ізін калибрлеу қол жетімді емес</string>

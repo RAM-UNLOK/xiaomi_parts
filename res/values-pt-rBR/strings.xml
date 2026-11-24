@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">Jogos (competitivo)</string>
     <string name="thermal_yuanshen">Yuanshen</string>
     <string name="thermal_charge">Carregando</string>
-    <string name="touch_boost_title">Aumento de toque</string>
-    <string name="touch_boost_summary">Resposta de toque mais rápida</string>
-    <string name="touch_boost_description">Aumenta a taxa de pesquisa do controlador de toque, reduzindo a latência do toque para resposta. Pode aumentar ligeiramente o consumo de energia durante o uso ativo.</string>
-    <string name="touch_boost_failed">O reforço de toque não foi aplicado</string>
     <string name="fingerprint_calibration_title">Calibração de impressão digital</string>
     <string name="fingerprint_calibration_summary">Recalibrar o sensor de impressão digital</string>
     <string name="fingerprint_calibration_not_found">Calibração de impressão digital não disponível</string>

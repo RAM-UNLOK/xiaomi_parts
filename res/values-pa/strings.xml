@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">ਗੇਮਿੰਗ (ਪ੍ਰਤੀਯੋਗੀ)</string>
     <string name="thermal_yuanshen">ਯੂਆਨਸ਼ੇਨ</string>
     <string name="thermal_charge">ਚਾਰਜਿੰਗ</string>
-    <string name="touch_boost_title">ਟੱਚ ਬੂਸਟ</string>
-    <string name="touch_boost_summary">ਤੇਜ਼ ਟੱਚ ਜਵਾਬ</string>
-    <string name="touch_boost_description">ਟੈਪ-ਟੂ-ਜਵਾਬ ਲੇਟੈਂਸੀ ਨੂੰ ਘਟਾਉਂਦੇ ਹੋਏ, ਟੱਚ ਕੰਟਰੋਲਰ ਪੋਲਿੰਗ ਦਰ ਨੂੰ ਵਧਾਉਂਦਾ ਹੈ। ਕਿਰਿਆਸ਼ੀਲ ਵਰਤੋਂ ਦੌਰਾਨ ਪਾਵਰ ਡਰਾਅ ਨੂੰ ਥੋੜ੍ਹਾ ਵਧਾ ਸਕਦਾ ਹੈ।</string>
-    <string name="touch_boost_failed">ਟੱਚ ਬੂਸਟ ਲਾਗੂ ਕਰਨ ਵਿੱਚ ਅਸਫਲ</string>
     <string name="fingerprint_calibration_title">ਫਿੰਗਰਪ੍ਰਿੰਟ ਕੈਲੀਬ੍ਰੇਸ਼ਨ</string>
     <string name="fingerprint_calibration_summary">ਫਿੰਗਰਪ੍ਰਿੰਟ ਸੈਂਸਰ ਨੂੰ ਰੀਕੈਲੀਬਰੇਟ ਕਰੋ</string>
     <string name="fingerprint_calibration_not_found">ਫਿੰਗਰਪ੍ਰਿੰਟ ਕੈਲੀਬ੍ਰੇਸ਼ਨ ਉਪਲਬਧ ਨਹੀਂ ਹੈ</string>

@@ -79,8 +79,8 @@ fun XiaomiPartsHomeScreen(
                     )
                     PartsPreference(
                         icon = ImageVector.vectorResource(R.drawable.ic_touch_boost),
-                        title = stringResource(R.string.touch_boost_title),
-                        summary = stringResource(R.string.touch_boost_summary),
+                        title = stringResource(R.string.touch_sampling_title),
+                        summary = stringResource(R.string.touch_sampling_summary),
                         onClick = onNavigateToTouch,
                     )
                 }

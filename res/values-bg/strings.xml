@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">Игри (състезателни)</string>
     <string name="thermal_yuanshen">Юеншен</string>
     <string name="thermal_charge">Зареждане</string>
-    <string name="touch_boost_title">Усилване на докосване</string>
-    <string name="touch_boost_summary">По-бърза реакция при докосване</string>
-    <string name="touch_boost_description">Повишава скоростта на запитване на сензорния контролер, намалявайки закъснението при докосване до отговор. Може леко да увеличи консумацията на енергия по време на активна употреба.</string>
-    <string name="touch_boost_failed">Усилване на докосване не успя да се приложи</string>
     <string name="fingerprint_calibration_title">Калибриране на пръстови отпечатъци</string>
     <string name="fingerprint_calibration_summary">Калибрирайте отново сензора за пръстови отпечатъци</string>
     <string name="fingerprint_calibration_not_found">Калибрирането на пръстови отпечатъци не е налично</string>

@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">Igranje (takmičarski)</string>
     <string name="thermal_yuanshen">Yuanshen</string>
     <string name="thermal_charge">Punjenje</string>
-    <string name="touch_boost_title">Pojačavanje dodira</string>
-    <string name="touch_boost_summary">Brži odgovor na dodir</string>
-    <string name="touch_boost_description">Povećava stopu prozivanja dodirnog kontrolera, smanjujući kašnjenje dodira do odgovora. Može malo povećati potrošnju energije tokom aktivne upotrebe.</string>
-    <string name="touch_boost_failed">Primjena pojačanja dodirom nije uspjela</string>
     <string name="fingerprint_calibration_title">Kalibracija otiska prsta</string>
     <string name="fingerprint_calibration_summary">Ponovo kalibrirajte senzor otiska prsta</string>
     <string name="fingerprint_calibration_not_found">Kalibracija otiska prsta nije dostupna</string>

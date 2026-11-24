@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">கேமிங் (போட்டி)</string>
     <string name="thermal_yuanshen">யுவான்ஷென்</string>
     <string name="thermal_charge">சார்ஜிங்</string>
-    <string name="touch_boost_title">டச் பூஸ்ட்</string>
-    <string name="touch_boost_summary">வேகமான தொடுதல் பதில்</string>
-    <string name="touch_boost_description">டச் கன்ட்ரோலர் வாக்குப்பதிவு விகிதத்தை உயர்த்தி, பதிலளிப்பதற்கான தாமதத்தை குறைக்கிறது. செயலில் பயன்படுத்தும் போது மின் இழுவை சற்று அதிகரிக்கலாம்.</string>
-    <string name="touch_boost_failed">டச் பூஸ்ட் பயன்படுத்த முடியவில்லை</string>
     <string name="fingerprint_calibration_title">கைரேகை அளவுத்திருத்தம்</string>
     <string name="fingerprint_calibration_summary">கைரேகை உணரியை மறுசீரமைக்கவும்</string>
     <string name="fingerprint_calibration_not_found">கைரேகை அளவுத்திருத்தம் கிடைக்கவில்லை</string>

@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">Jokoa (lehiaketa)</string>
     <string name="thermal_yuanshen">Yuanshen</string>
     <string name="thermal_charge">Kargatzen</string>
-    <string name="touch_boost_title">Ukipenaren bultzada</string>
-    <string name="touch_boost_summary">Ukipen-erantzun azkarragoa</string>
-    <string name="touch_boost_description">Ukipen-kontrolagailuaren galdeketa-tasa igotzen du, sakatze-erantzunaren latentzia murriztuz. Erabilera aktiboan potentziaren kontsumoa apur bat handitu daiteke.</string>
-    <string name="touch_boost_failed">Ezin izan da aplikatu ukipenaren bultzada</string>
     <string name="fingerprint_calibration_title">Hatz-marken kalibrazioa</string>
     <string name="fingerprint_calibration_summary">Berriro kalibratu hatz-marken sentsorea</string>
     <string name="fingerprint_calibration_not_found">Hatz-marken kalibrazioa ez dago erabilgarri</string>

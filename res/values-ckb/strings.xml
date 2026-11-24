@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">یاریکردن (ڕکابەری)</string>
     <string name="thermal_yuanshen">یوانشێن</string>
     <string name="thermal_charge">شەحنکردنەوە</string>
-    <string name="touch_boost_title">تاچ بووست</string>
-    <string name="touch_boost_summary">خێراتر وەڵامدانەوەی دەست لێدان</string>
-    <string name="touch_boost_description">ڕێژەی ڕاپرسی کۆنترۆڵکەری تاچ بەرز دەکاتەوە، کەمکردنەوەی کاتە شاراوەکانی پەنجەدان بۆ وەڵام. لەوانەیە لە کاتی بەکارهێنانی چالاکدا کەمێک کارەبا زیاد بکات.</string>
-    <string name="touch_boost_failed">تاچ بووست شکستی هێنا لە جێبەجێکردن</string>
     <string name="fingerprint_calibration_title">قەبارەدانانی پەنجەمۆر</string>
     <string name="fingerprint_calibration_summary">دووبارە قەبارەدانان بۆ هەستەوەری پەنجەمۆر</string>
     <string name="fingerprint_calibration_not_found">قەبارەدانانی پەنجەمۆر بەردەست نییە</string>

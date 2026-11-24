@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">Oyun (rekabetçi)</string>
     <string name="thermal_yuanshen">Yuanshen</string>
     <string name="thermal_charge">Şarj oluyor</string>
-    <string name="touch_boost_title">Dokunma güçlendirme</string>
-    <string name="touch_boost_summary">Daha hızlı dokunma tepkisi</string>
-    <string name="touch_boost_description">Dokunarak yanıt verme gecikmesini azaltarak dokunmatik kontrol cihazının yoklama oranını artırır. Aktif kullanım sırasında güç tüketimini biraz artırabilir.</string>
-    <string name="touch_boost_failed">Dokunma güçlendirme uygulanamadı</string>
     <string name="fingerprint_calibration_title">Parmak izi kalibrasyonu</string>
     <string name="fingerprint_calibration_summary">Parmak izi sensörünü yeniden kalibre edin</string>
     <string name="fingerprint_calibration_not_found">Parmak izi kalibrasyonu kullanılamıyor</string>

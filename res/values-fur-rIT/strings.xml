@@ -161,10 +161,6 @@
     <string name="thermal_gaming_competitive">Zûcs (competitîfs)</string>
     <string name="thermal_yuanshen">Yuanshen</string>
     <string name="thermal_charge">Cjaricament</string>
-    <string name="touch_boost_title">Aument dal tocj</string>
-    <string name="touch_boost_summary">Rispueste al tocj plui veloç</string>
-    <string name="touch_boost_description">Aumente il tas di sondaç dal controladôr di tocj, ridusint la latence dal tocjâ a rispueste. Al pues aumentâ un tic la produzion di energjie vie pal ûs atîf.</string>
-    <string name="touch_boost_failed">Nol è rivât a aplicâ il sburt dal tocj</string>
     <string name="fingerprint_calibration_title">Taradure des impronts digitâls</string>
     <string name="fingerprint_calibration_summary">Tornâ a calibrâ il sensôr des impronts digitâls</string>
     <string name="fingerprint_calibration_not_found">La taradure des impronts digitâls no disponibile</string>

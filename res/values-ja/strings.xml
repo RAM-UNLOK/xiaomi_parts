@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">ゲーム (競技)</string>
     <string name="thermal_yuanshen">ユアンシェン</string>
     <string name="thermal_charge">充電中</string>
-    <string name="touch_boost_title">タッチブースト</string>
-    <string name="touch_boost_summary">より速いタッチ応答</string>
-    <string name="touch_boost_description">タッチ コントローラーのポーリング レートを上げ、タップから応答までの待ち時間を短縮します。アクティブな使用中に消費電力がわずかに増加する可能性があります。</string>
-    <string name="touch_boost_failed">タッチ ブーストの適用に失敗しました</string>
     <string name="fingerprint_calibration_title">指紋の調整</string>
     <string name="fingerprint_calibration_summary">指紋センサーを再調整する</string>
     <string name="fingerprint_calibration_not_found">指紋校正は利用できません</string>

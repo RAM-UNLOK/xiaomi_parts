@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">Žaidimai (konkurencinis)</string>
     <string name="thermal_yuanshen">Yuanshen</string>
     <string name="thermal_charge">Įkrovimas</string>
-    <string name="touch_boost_title">Palieskite padidinimą</string>
-    <string name="touch_boost_summary">Greitesnis prisilietimo atsakas</string>
-    <string name="touch_boost_description">Padidina jutiklinio valdiklio apklausos dažnį, sumažindama atsakymo palietimo delsą. Aktyvaus naudojimo metu gali šiek tiek padidėti energijos suvartojimas.</string>
-    <string name="touch_boost_failed">Nepavyko pritaikyti palietimo</string>
     <string name="fingerprint_calibration_title">Pirštų atspaudų kalibravimas</string>
     <string name="fingerprint_calibration_summary">Iš naujo sukalibruokite pirštų atspaudų jutiklį</string>
     <string name="fingerprint_calibration_not_found">Pirštų atspaudų kalibravimas nepasiekiamas</string>

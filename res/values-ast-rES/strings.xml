@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">Gaming (competitive)</string>
     <string name="thermal_yuanshen">Yuanshen</string>
     <string name="thermal_charge">Charging</string>
-    <string name="touch_boost_title">Touch boost</string>
-    <string name="touch_boost_summary">Faster touch response</string>
-    <string name="touch_boost_description">Raises the touch controller polling rate, reducing tap-to-response latency. May slightly increase power draw during active use.</string>
-    <string name="touch_boost_failed">Touch boost failed to apply</string>
     <string name="fingerprint_calibration_title">Fingerprint calibration</string>
     <string name="fingerprint_calibration_summary">Recalibrate the fingerprint sensor</string>
     <string name="fingerprint_calibration_not_found">Fingerprint calibration not available</string>

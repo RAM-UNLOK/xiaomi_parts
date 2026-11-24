@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">Παιχνίδια (ανταγωνιστικό)</string>
     <string name="thermal_yuanshen">Γιουάνσεν</string>
     <string name="thermal_charge">Φόρτιση</string>
-    <string name="touch_boost_title">Ενίσχυση αφής</string>
-    <string name="touch_boost_summary">Ταχύτερη απόκριση αφής</string>
-    <string name="touch_boost_description">Αυξάνει τον ρυθμό ψηφοφορίας του ελεγκτή αφής, μειώνοντας τον λανθάνοντα χρόνο απόκρισης. Μπορεί να αυξήσει ελαφρώς την κατανάλωση ισχύος κατά την ενεργή χρήση.</string>
-    <string name="touch_boost_failed">Η ενίσχυση αφής απέτυχε</string>
     <string name="fingerprint_calibration_title">Βαθμονόμηση δακτυλικών αποτυπωμάτων</string>
     <string name="fingerprint_calibration_summary">Επαναβαθμονομήστε τον αισθητήρα δακτυλικών αποτυπωμάτων</string>
     <string name="fingerprint_calibration_not_found">Η βαθμονόμηση δακτυλικών αποτυπωμάτων δεν είναι διαθέσιμη</string>

@@ -161,10 +161,6 @@
     <string name="thermal_gaming_competitive">Гульня (спаборніцкая)</string>
     <string name="thermal_yuanshen">Юаньшэнь</string>
     <string name="thermal_charge">Зарадка</string>
-    <string name="touch_boost_title">Сэнсарнае ўзмацненне</string>
-    <string name="touch_boost_summary">Больш хуткая рэакцыя на дотык</string>
-    <string name="touch_boost_description">Павялічвае хуткасць апытання сэнсарнага кантролера, памяншаючы затрымку ад націску да адказу. Можа крыху павялічыць энергаспажыванне падчас актыўнага выкарыстання.</string>
-    <string name="touch_boost_failed">Не атрымалася прымяніць узмацненне дотыку</string>
     <string name="fingerprint_calibration_title">Каліброўка адбіткаў пальцаў</string>
     <string name="fingerprint_calibration_summary">Адкалібруйце датчык адбіткаў пальцаў</string>
     <string name="fingerprint_calibration_not_found">Каліброўка адбіткаў пальцаў недаступная</string>

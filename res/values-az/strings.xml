@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">Oyun (rəqabətli)</string>
     <string name="thermal_yuanshen">Yuanşen</string>
     <string name="thermal_charge">Doldurulur</string>
-    <string name="touch_boost_title">Toxunma gücləndirilməsi</string>
-    <string name="touch_boost_summary">Daha sürətli toxunma reaksiyası</string>
-    <string name="touch_boost_description">Toxunma nəzarətçisinin səsvermə dərəcəsini yüksəldir, cavab üçün toxunma gecikməsini azaldır. Aktiv istifadə zamanı gücü bir qədər artıra bilər.</string>
-    <string name="touch_boost_failed">Toxunma gücləndirilməsi tətbiq oluna bilmədi</string>
     <string name="fingerprint_calibration_title">Barmaq izinin kalibrlənməsi</string>
     <string name="fingerprint_calibration_summary">Barmaq izi sensorunu yenidən kalibrləyin</string>
     <string name="fingerprint_calibration_not_found">Barmaq izinin kalibrlənməsi mövcud deyil</string>

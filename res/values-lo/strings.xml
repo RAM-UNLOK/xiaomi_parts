@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">ເກມ (ແຂ່ງຂັນ)</string>
     <string name="thermal_yuanshen">Yuanshen</string>
     <string name="thermal_charge">ກຳລັງສາກ</string>
-    <string name="touch_boost_title">ແຕະ boost</string>
-    <string name="touch_boost_summary">ການຕອບສະໜອງການສໍາພັດໄວຂຶ້ນ</string>
-    <string name="touch_boost_description">ເພີ່ມອັດຕາການສຳຫຼວດຕົວຄວບຄຸມການສຳຜັດ, ຫຼຸດຜ່ອນການຕອບສະໜອງການແຕະເພື່ອຕອບສະໜອງ. ອາດຈະເພີ່ມການດຶງພະລັງງານເລັກນ້ອຍໃນລະຫວ່າງການໃຊ້ງານ.</string>
-    <string name="touch_boost_failed">ການຊຸກຍູ້ການສຳຜັດບໍ່ສຳເລັດ</string>
     <string name="fingerprint_calibration_title">ການປັບຕົວສະແກນລາຍນິ້ວມື</string>
     <string name="fingerprint_calibration_summary">ປັບເຊັນເຊີລາຍນິ້ວມືຄືນໃໝ່</string>
     <string name="fingerprint_calibration_not_found">ການປັບດ້ວຍລາຍນິ້ວມືບໍ່ສາມາດໃຊ້ໄດ້</string>

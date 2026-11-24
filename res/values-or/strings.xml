@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">ଖେଳ (ପ୍ରତିଯୋଗୀ)</string>
     <string name="thermal_yuanshen">ୟୁଆନସେନ୍ |</string>
     <string name="thermal_charge">ଚାର୍ଜିଂ |</string>
-    <string name="touch_boost_title">ସ୍ପର୍ଶ ବୃଦ୍ଧି |</string>
-    <string name="touch_boost_summary">ଶୀଘ୍ର ସ୍ପର୍ଶ ପ୍ରତିକ୍ରିୟା |</string>
-    <string name="touch_boost_description">ଟଚ୍-ଟୁ-ପ୍ରତିକ୍ରିୟା ବିଳମ୍ବକୁ ହ୍ରାସ କରି ସ୍ପର୍ଶ ନିୟନ୍ତ୍ରକ ମତଦାନ ହାର ବୃଦ୍ଧି କରେ | ସକ୍ରିୟ ବ୍ୟବହାର ସମୟରେ ଶକ୍ତି ଡ୍ରକୁ ସାମାନ୍ୟ ବ increase ାଇପାରେ |</string>
-    <string name="touch_boost_failed">ଟଚ୍ ବୃଦ୍ଧି ପ୍ରୟୋଗ କରିବାରେ ବିଫଳ ହେଲା |</string>
     <string name="fingerprint_calibration_title">ଫିଙ୍ଗର ପ୍ରିଣ୍ଟ କାଲିବ୍ରେସନ୍ |</string>
     <string name="fingerprint_calibration_summary">ଫିଙ୍ଗର ପ୍ରିଣ୍ଟ ସେନସର ପୁନ al ବିଚାର କରନ୍ତୁ |</string>
     <string name="fingerprint_calibration_not_found">ଫିଙ୍ଗର ପ୍ରିଣ୍ଟ କାଲିବ୍ରେସନ୍ ଉପଲବ୍ଧ ନାହିଁ |</string>

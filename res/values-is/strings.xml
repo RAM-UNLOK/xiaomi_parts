@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">Leikir (samkeppnishæf)</string>
     <string name="thermal_yuanshen">Yuanshen</string>
     <string name="thermal_charge">Hleðsla</string>
-    <string name="touch_boost_title">Snertiaukning</string>
-    <string name="touch_boost_summary">Hraðari snertiviðbrögð</string>
-    <string name="touch_boost_description">Hækkar könnunarhraða snertistjórnandans, dregur úr töfum á svari. Getur örlítið aukið orkunotkun við virka notkun.</string>
-    <string name="touch_boost_failed">Ekki tókst að beita snertihækkun</string>
     <string name="fingerprint_calibration_title">Fingrafarakvörðun</string>
     <string name="fingerprint_calibration_summary">Endurkvarðaðu fingrafaraskynjarann</string>
     <string name="fingerprint_calibration_not_found">Kvörðun fingrafara ekki í boði</string>

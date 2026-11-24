@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">Paglalaro (mapagkumpitensya)</string>
     <string name="thermal_yuanshen">Yuanshen</string>
     <string name="thermal_charge">Nagcha-charge</string>
-    <string name="touch_boost_title">Touch boost</string>
-    <string name="touch_boost_summary">Mas mabilis na pagtugon sa pagpindot</string>
-    <string name="touch_boost_description">Tinataasan ang touch controller polling rate, binabawasan ang tap-to-response latency. Maaaring bahagyang tumaas ang power draw habang aktibong ginagamit.</string>
-    <string name="touch_boost_failed">Hindi nailapat ang touch boost</string>
     <string name="fingerprint_calibration_title">Pag-calibrate ng fingerprint</string>
     <string name="fingerprint_calibration_summary">Muling i-calibrate ang fingerprint sensor</string>
     <string name="fingerprint_calibration_not_found">Hindi available ang pagkakalibrate ng fingerprint</string>

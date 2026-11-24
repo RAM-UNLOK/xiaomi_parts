@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">การเล่นเกม (การแข่งขัน)</string>
     <string name="thermal_yuanshen">หยวนเสิน</string>
     <string name="thermal_charge">กำลังชาร์จ</string>
-    <string name="touch_boost_title">เพิ่มการสัมผัส</string>
-    <string name="touch_boost_summary">การตอบสนองการสัมผัสเร็วขึ้น</string>
-    <string name="touch_boost_description">เพิ่มอัตราการโพลคอนโทรลเลอร์ระบบสัมผัส ช่วยลดเวลาแฝงในการแตะเพื่อตอบกลับ อาจเพิ่มการดึงพลังเล็กน้อยระหว่างการใช้งาน</string>
-    <string name="touch_boost_failed">ไม่สามารถใช้การเพิ่มการสัมผัสได้</string>
     <string name="fingerprint_calibration_title">การปรับเทียบลายนิ้วมือ</string>
     <string name="fingerprint_calibration_summary">ปรับเทียบเซ็นเซอร์ลายนิ้วมือใหม่</string>
     <string name="fingerprint_calibration_not_found">ไม่มีการปรับเทียบลายนิ้วมือ</string>

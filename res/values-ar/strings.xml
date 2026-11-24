@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">الألعاب (تنافسية)</string>
     <string name="thermal_yuanshen">يوانشن</string>
     <string name="thermal_charge">الشحن</string>
-    <string name="touch_boost_title">تعزيز اللمس</string>
-    <string name="touch_boost_summary">استجابة لمس أسرع</string>
-    <string name="touch_boost_description">يرفع معدل استقصاء وحدة التحكم باللمس، مما يقلل زمن استجابة النقر للاستجابة. قد يزيد قليلاً من استهلاك الطاقة أثناء الاستخدام النشط.</string>
-    <string name="touch_boost_failed">فشل تطبيق تعزيز اللمس</string>
     <string name="fingerprint_calibration_title">معايرة بصمة الإصبع</string>
     <string name="fingerprint_calibration_summary">إعادة معايرة مستشعر بصمة الإصبع</string>
     <string name="fingerprint_calibration_not_found">معايرة بصمة الإصبع غير متوفرة</string>

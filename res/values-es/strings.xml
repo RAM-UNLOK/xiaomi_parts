@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">Juegos (competitivos)</string>
     <string name="thermal_yuanshen">Yuanshen</string>
     <string name="thermal_charge">Cargando</string>
-    <string name="touch_boost_title">Aumento de toque</string>
-    <string name="touch_boost_summary">Respuesta táctil más rápida</string>
-    <string name="touch_boost_description">Aumenta la tasa de sondeo del controlador táctil, lo que reduce la latencia de toque para responder. Puede aumentar ligeramente el consumo de energía durante el uso activo.</string>
-    <string name="touch_boost_failed">No se pudo aplicar el impulso táctil</string>
     <string name="fingerprint_calibration_title">Calibración de huellas dactilares</string>
     <string name="fingerprint_calibration_summary">Recalibrar el sensor de huellas dactilares</string>
     <string name="fingerprint_calibration_not_found">Calibración de huellas dactilares no disponible</string>

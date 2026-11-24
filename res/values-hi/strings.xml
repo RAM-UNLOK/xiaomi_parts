@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">गेमिंग (प्रतिस्पर्धी)</string>
     <string name="thermal_yuanshen">युआनशेन</string>
     <string name="thermal_charge">चार्जिंग</string>
-    <string name="touch_boost_title">टच बूस्ट</string>
-    <string name="touch_boost_summary">तेज़ स्पर्श प्रतिक्रिया</string>
-    <string name="touch_boost_description">स्पर्श नियंत्रक मतदान दर को बढ़ाता है, टैप-टू-रिस्पॉन्स विलंबता को कम करता है। सक्रिय उपयोग के दौरान पावर ड्रॉ थोड़ा बढ़ सकता है।</string>
-    <string name="touch_boost_failed">टच बूस्ट लागू करने में विफल रहा</string>
     <string name="fingerprint_calibration_title">फ़िंगरप्रिंट अंशांकन</string>
     <string name="fingerprint_calibration_summary">फ़िंगरप्रिंट सेंसर को पुन: कैलिब्रेट करें</string>
     <string name="fingerprint_calibration_not_found">फ़िंगरप्रिंट अंशांकन उपलब्ध नहीं है</string>

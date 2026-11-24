@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">Gaming (konkurransedyktig)</string>
     <string name="thermal_yuanshen">Yuanshen</string>
     <string name="thermal_charge">Lader</string>
-    <string name="touch_boost_title">Touch boost</string>
-    <string name="touch_boost_summary">Raskere berøringsrespons</string>
-    <string name="touch_boost_description">Øker pollingfrekvensen for berøringskontrolleren, og reduserer trykk-til-svar-forsinkelse. Kan øke strømforbruket noe under aktiv bruk.</string>
-    <string name="touch_boost_failed">Touch boost ble ikke brukt</string>
     <string name="fingerprint_calibration_title">Fingeravtrykkkalibrering</string>
     <string name="fingerprint_calibration_summary">Kalibrer fingeravtrykksensoren på nytt</string>
     <string name="fingerprint_calibration_not_found">Fingeravtrykkkalibrering er ikke tilgjengelig</string>

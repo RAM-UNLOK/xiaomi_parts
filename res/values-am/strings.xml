@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">ጨዋታ (ተፎካካሪ)</string>
     <string name="thermal_yuanshen">ዩዋንሽን</string>
     <string name="thermal_charge">በመሙላት ላይ</string>
-    <string name="touch_boost_title">የንክኪ መጨመር</string>
-    <string name="touch_boost_summary">ፈጣን የንክኪ ምላሽ</string>
-    <string name="touch_boost_description">የንክኪ ተቆጣጣሪውን የድምጽ መስጫ መጠን ከፍ ያደርገዋል፣ ምላሽን የመንካት ጊዜን ይቀንሳል። በንቃት ጥቅም ላይ በሚውልበት ጊዜ የኃይል መሳብን በትንሹ ሊጨምር ይችላል።</string>
-    <string name="touch_boost_failed">የንክኪ ማበረታቻ መተግበር አልቻለም</string>
     <string name="fingerprint_calibration_title">የጣት አሻራ ማስተካከል</string>
     <string name="fingerprint_calibration_summary">የጣት አሻራ ዳሳሹን እንደገና ማስተካከል</string>
     <string name="fingerprint_calibration_not_found">የጣት አሻራ ማስተካከል የለም።</string>

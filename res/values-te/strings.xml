@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">గేమింగ్ (పోటీ)</string>
     <string name="thermal_yuanshen">యువాన్షెన్</string>
     <string name="thermal_charge">ఛార్జింగ్</string>
-    <string name="touch_boost_title">టచ్ బూస్ట్</string>
-    <string name="touch_boost_summary">వేగవంతమైన స్పర్శ ప్రతిస్పందన</string>
-    <string name="touch_boost_description">టచ్ కంట్రోలర్ పోలింగ్ రేటును పెంచుతుంది, ట్యాప్-టు-రెస్పాన్స్ లేటెన్సీని తగ్గిస్తుంది. క్రియాశీల ఉపయోగం సమయంలో పవర్ డ్రాను కొద్దిగా పెంచవచ్చు.</string>
-    <string name="touch_boost_failed">టచ్ బూస్ట్ దరఖాస్తు చేయడంలో విఫలమైంది</string>
     <string name="fingerprint_calibration_title">వేలిముద్ర క్రమాంకనం</string>
     <string name="fingerprint_calibration_summary">వేలిముద్ర సెన్సార్‌ను రీకాలిబ్రేట్ చేయండి</string>
     <string name="fingerprint_calibration_not_found">వేలిముద్ర అమరిక అందుబాటులో లేదు</string>

@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">गेमिङ (प्रतिस्पर्धी)</string>
     <string name="thermal_yuanshen">युआनसेन</string>
     <string name="thermal_charge">चार्ज गर्दै</string>
-    <string name="touch_boost_title">टच बूस्ट</string>
-    <string name="touch_boost_summary">छिटो स्पर्श प्रतिक्रिया</string>
-    <string name="touch_boost_description">ट्याप-टु-प्रतिक्रिया विलम्बता घटाउँदै, टच कन्ट्रोलर मतदान दर बढाउँछ। सक्रिय प्रयोगको क्रममा पावर ड्रलाई थोरै बढाउन सक्छ।</string>
-    <string name="touch_boost_failed">टच बूस्ट लागू गर्न असफल भयो</string>
     <string name="fingerprint_calibration_title">फिंगरप्रिन्ट क्यालिब्रेसन</string>
     <string name="fingerprint_calibration_summary">फिंगरप्रिन्ट सेन्सर पुन: क्यालिब्रेट गर्नुहोस्</string>
     <string name="fingerprint_calibration_not_found">फिंगरप्रिन्ट क्यालिब्रेसन उपलब्ध छैन</string>

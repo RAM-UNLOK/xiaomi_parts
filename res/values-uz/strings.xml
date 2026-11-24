@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">Oʻyin (raqobatbardosh)</string>
     <string name="thermal_yuanshen">Yuanshen</string>
     <string name="thermal_charge">Zaryadlanmoqda</string>
-    <string name="touch_boost_title">Sensorni kuchaytirish</string>
-    <string name="touch_boost_summary">Tezroq teginish javobi</string>
-    <string name="touch_boost_description">Sensorli kontrollerning ovoz berish tezligini oshiradi, teginish uchun javob kutish vaqtini kamaytiradi. Faol foydalanish paytida quvvat sarfini biroz oshirishi mumkin.</string>
-    <string name="touch_boost_failed">Sensorni kuchaytirish qo‘llanilmadi</string>
     <string name="fingerprint_calibration_title">Barmoq izini kalibrlash</string>
     <string name="fingerprint_calibration_summary">Barmoq izi sensorini qayta sozlang</string>
     <string name="fingerprint_calibration_not_found">Barmoq izini kalibrlash mavjud emas</string>

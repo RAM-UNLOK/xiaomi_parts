@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">ഗെയിമിംഗ് (മത്സരം)</string>
     <string name="thermal_yuanshen">യുവാൻഷെൻ</string>
     <string name="thermal_charge">ചാർജിംഗ്</string>
-    <string name="touch_boost_title">ടച്ച് ബൂസ്റ്റ്</string>
-    <string name="touch_boost_summary">വേഗതയേറിയ സ്പർശന പ്രതികരണം</string>
-    <string name="touch_boost_description">ടച്ച് കൺട്രോളർ പോളിംഗ് നിരക്ക് ഉയർത്തുന്നു, ടാപ്പ്-ടു-റെസ്‌പോൺസ് ലേറ്റൻസി കുറയ്ക്കുന്നു. സജീവമായ ഉപയോഗ സമയത്ത് പവർ ഡ്രോ ചെറുതായി വർദ്ധിപ്പിക്കാം.</string>
-    <string name="touch_boost_failed">ടച്ച് ബൂസ്റ്റ് പ്രയോഗിക്കുന്നതിൽ പരാജയപ്പെട്ടു</string>
     <string name="fingerprint_calibration_title">ഫിംഗർപ്രിൻ്റ് കാലിബ്രേഷൻ</string>
     <string name="fingerprint_calibration_summary">ഫിംഗർപ്രിൻ്റ് സെൻസർ വീണ്ടും കാലിബ്രേറ്റ് ചെയ്യുക</string>
     <string name="fingerprint_calibration_not_found">ഫിംഗർപ്രിൻ്റ് കാലിബ്രേഷൻ ലഭ്യമല്ല</string>

@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">Permainan (kompetitif)</string>
     <string name="thermal_yuanshen">Yuanshen</string>
     <string name="thermal_charge">Mengisi daya</string>
-    <string name="touch_boost_title">Peningkatan sentuhan</string>
-    <string name="touch_boost_summary">Respon sentuhan lebih cepat</string>
-    <string name="touch_boost_description">Meningkatkan tingkat polling pengontrol sentuh, mengurangi latensi ketuk untuk merespons. Mungkin sedikit meningkatkan penggunaan daya selama penggunaan aktif.</string>
-    <string name="touch_boost_failed">Peningkatan sentuhan gagal diterapkan</string>
     <string name="fingerprint_calibration_title">Kalibrasi sidik jari</string>
     <string name="fingerprint_calibration_summary">Kalibrasi ulang sensor sidik jari</string>
     <string name="fingerprint_calibration_not_found">Kalibrasi sidik jari tidak tersedia</string>

@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">گیمنگ (مسابقتی)</string>
     <string name="thermal_yuanshen">یوانشین</string>
     <string name="thermal_charge">چارج ہو رہا ہے۔</string>
-    <string name="touch_boost_title">ٹچ بوسٹ</string>
-    <string name="touch_boost_summary">تیز تر ٹچ رسپانس</string>
-    <string name="touch_boost_description">ٹچ کنٹرولر پولنگ کی شرح کو بڑھاتا ہے، تھپتھپانے سے جواب میں تاخیر کو کم کرتا ہے۔ فعال استعمال کے دوران پاور ڈرا میں قدرے اضافہ ہو سکتا ہے۔</string>
-    <string name="touch_boost_failed">ٹچ بوسٹ لاگو کرنے میں ناکام</string>
     <string name="fingerprint_calibration_title">فنگر پرنٹ کیلیبریشن</string>
     <string name="fingerprint_calibration_summary">فنگر پرنٹ سینسر کو دوبارہ کیلیبریٹ کریں۔</string>
     <string name="fingerprint_calibration_not_found">فنگر پرنٹ کیلیبریشن دستیاب نہیں ہے۔</string>

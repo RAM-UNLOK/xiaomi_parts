@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">Оюндар (атаандаштык)</string>
     <string name="thermal_yuanshen">Юаньшен</string>
     <string name="thermal_charge">Заряддоо</string>
-    <string name="touch_boost_title">Тийүү күчөтүү</string>
-    <string name="touch_boost_summary">Тезирээк тийүү жооп</string>
-    <string name="touch_boost_description">Сенсордук контроллердин добуш берүү ылдамдыгын жогорулатып, тийүү үчүн жооп күтүү убактысын азайтат. Активдүү колдонуу учурунда кубаттуулукту бир аз көбөйтүүсү мүмкүн.</string>
-    <string name="touch_boost_failed">Тийүү күчөтүү колдонулбай калды</string>
     <string name="fingerprint_calibration_title">Манжа изин калибрлөө</string>
     <string name="fingerprint_calibration_summary">Манжа изинин сенсорун кайра калибрлөө</string>
     <string name="fingerprint_calibration_not_found">Манжа изин калибрлөө жеткиликтүү эмес</string>

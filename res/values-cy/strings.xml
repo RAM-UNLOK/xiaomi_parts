@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">Hapchwarae (cystadleuol)</string>
     <string name="thermal_yuanshen">Yuanshen</string>
     <string name="thermal_charge">Codi Tâl</string>
-    <string name="touch_boost_title">Hwb cyffwrdd</string>
-    <string name="touch_boost_summary">Ymateb cyffwrdd cyflymach</string>
-    <string name="touch_boost_description">Yn codi cyfradd pleidleisio\'r rheolydd cyffwrdd, gan leihau hwyrni tap-i-ymateb. Gall gynyddu tynnu pŵer ychydig yn ystod defnydd gweithredol.</string>
-    <string name="touch_boost_failed">Methodd hwb cyffwrdd â gwneud cais</string>
     <string name="fingerprint_calibration_title">Graddnodi olion bysedd</string>
     <string name="fingerprint_calibration_summary">Ail-raddnodi\'r synhwyrydd olion bysedd</string>
     <string name="fingerprint_calibration_not_found">Nid yw graddnodi olion bysedd ar gael</string>

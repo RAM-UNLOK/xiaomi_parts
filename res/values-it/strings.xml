@@ -181,10 +181,6 @@
     <string name="thermal_charge">Ricarica</string>
 
     <!-- Tocco -->
-    <string name="touch_boost_title">Boost del tocco</string>
-    <string name="touch_boost_summary">Risposta al tocco più rapida</string>
-    <string name="touch_boost_description">Aumenta la frequenza di campionamento del controller touch, riducendo la latenza di risposta. Può aumentare leggermente il consumo durante l’uso.</string>
-    <string name="touch_boost_failed">Impossibile applicare il boost del tocco</string>
 
     <!-- Diagnostica -->
     <string name="fingerprint_calibration_title">Calibrazione impronta digitale</string>

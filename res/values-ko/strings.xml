@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">게임(경쟁)</string>
     <string name="thermal_yuanshen">위안셴</string>
     <string name="thermal_charge">충전 중</string>
-    <string name="touch_boost_title">터치 부스트</string>
-    <string name="touch_boost_summary">더 빠른 터치 반응</string>
-    <string name="touch_boost_description">터치 컨트롤러 폴링 속도를 높여 탭하여 응답하는 지연 시간을 줄입니다. 활성 사용 중에 전력 소모량이 약간 증가할 수 있습니다.</string>
-    <string name="touch_boost_failed">터치 부스트를 적용하지 못했습니다.</string>
     <string name="fingerprint_calibration_title">지문 보정</string>
     <string name="fingerprint_calibration_summary">지문 센서 재보정</string>
     <string name="fingerprint_calibration_not_found">지문 보정을 사용할 수 없습니다.</string>

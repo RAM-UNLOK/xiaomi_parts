@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">Gaming (farpaiseach)</string>
     <string name="thermal_yuanshen">Yuanshen</string>
     <string name="thermal_charge">A’ cur cosgais</string>
-    <string name="touch_boost_title">Brosnachadh suathaidh</string>
-    <string name="touch_boost_summary">Freagairt suathaidh nas luaithe</string>
-    <string name="touch_boost_description">Ag àrdachadh ìre bhòtaidh rianadair suathaidh, a’ lughdachadh latency tap-to-freagairt. Dh’ fhaodadh e tarraing cumhachd àrdachadh beagan rè cleachdadh gnìomhach.</string>
-    <string name="touch_boost_failed">Cha do chuir àrdachadh suathaidh an sàs</string>
     <string name="fingerprint_calibration_title">Calibration lorgan-meòir</string>
     <string name="fingerprint_calibration_summary">Ath-shuidhich an sensor meòir-meòir</string>
     <string name="fingerprint_calibration_not_found">Chan eil calibration lorgan-meòir ri fhaighinn</string>

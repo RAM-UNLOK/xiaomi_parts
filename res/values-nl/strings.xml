@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">Gamen (competitief)</string>
     <string name="thermal_yuanshen">Yuanshen</string>
     <string name="thermal_charge">Opladen</string>
-    <string name="touch_boost_title">Aanslagversterking</string>
-    <string name="touch_boost_summary">Snellere aanrakingsreactie</string>
-    <string name="touch_boost_description">Verhoogt de pollingsnelheid van de touchcontroller, waardoor de latentie tussen tikken en reageren wordt verminderd. Kan het stroomverbruik licht verhogen tijdens actief gebruik.</string>
-    <string name="touch_boost_failed">Aanraakboost kan niet worden toegepast</string>
     <string name="fingerprint_calibration_title">Vingerafdrukkalibratie</string>
     <string name="fingerprint_calibration_summary">Kalibreer de vingerafdruksensor opnieuw</string>
     <string name="fingerprint_calibration_not_found">Vingerafdrukkalibratie niet beschikbaar</string>

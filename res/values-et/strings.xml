@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">Mängimine (konkurentsipõhine)</string>
     <string name="thermal_yuanshen">Yuanshen</string>
     <string name="thermal_charge">Laadimine</string>
-    <string name="touch_boost_title">Puutevõimendus</string>
-    <string name="touch_boost_summary">Kiirem puutele reageerimine</string>
-    <string name="touch_boost_description">Suurendab puutekontrolleri küsitlussagedust, vähendades vastamise puudutuse latentsust. Aktiivse kasutamise ajal võib see veidi suurendada võimsust.</string>
-    <string name="touch_boost_failed">Puutevõimenduse rakendamine ebaõnnestus</string>
     <string name="fingerprint_calibration_title">Sõrmejälje kalibreerimine</string>
     <string name="fingerprint_calibration_summary">Kalibreerige sõrmejäljeandur uuesti</string>
     <string name="fingerprint_calibration_not_found">Sõrmejälje kalibreerimine pole saadaval</string>

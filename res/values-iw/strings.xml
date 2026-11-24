@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">משחקים (תחרותיים)</string>
     <string name="thermal_yuanshen">יואנשן</string>
     <string name="thermal_charge">טעינה</string>
-    <string name="touch_boost_title">הגברת מגע</string>
-    <string name="touch_boost_summary">תגובה מהירה יותר למגע</string>
-    <string name="touch_boost_description">מעלה את קצב התשאול של בקר המגע, ומפחית את זמן האחזור של הקשה לתגובה. עשוי להגביר מעט את צריכת החשמל במהלך שימוש פעיל.</string>
-    <string name="touch_boost_failed">הגברת מגע נכשלה ביישום</string>
     <string name="fingerprint_calibration_title">כיול טביעות אצבע</string>
     <string name="fingerprint_calibration_summary">כייל מחדש את חיישן טביעת האצבע</string>
     <string name="fingerprint_calibration_not_found">כיול טביעות אצבע אינו זמין</string>

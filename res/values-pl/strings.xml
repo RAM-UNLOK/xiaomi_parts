@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">Gry (konkurencyjne)</string>
     <string name="thermal_yuanshen">Yuanshen</string>
     <string name="thermal_charge">Ładowanie</string>
-    <string name="touch_boost_title">Zwiększenie dotyku</string>
-    <string name="touch_boost_summary">Szybsza reakcja na dotyk</string>
-    <string name="touch_boost_description">Zwiększa częstotliwość odpytywania kontrolera dotykowego, zmniejszając opóźnienia w odpowiedzi na dotknięcie. Może nieznacznie zwiększyć pobór mocy podczas aktywnego użytkowania.</string>
-    <string name="touch_boost_failed">Nie udało się zastosować wzmocnienia dotyku</string>
     <string name="fingerprint_calibration_title">Kalibracja linii papilarnych</string>
     <string name="fingerprint_calibration_summary">Ponownie skalibruj czujnik odcisków palców</string>
     <string name="fingerprint_calibration_not_found">Kalibracja linii papilarnych nie jest dostępna</string>

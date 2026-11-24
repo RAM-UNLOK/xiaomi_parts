@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">Игри на среќа (конкурентни)</string>
     <string name="thermal_yuanshen">Јуаншен</string>
     <string name="thermal_charge">Полнење</string>
-    <string name="touch_boost_title">Засилување на допир</string>
-    <string name="touch_boost_summary">Побрз одговор на допир</string>
-    <string name="touch_boost_description">Ја зголемува стапката на анкетирање на контролорот на допир, намалувајќи ја доцнењето од допир до одговор. Може малку да го зголеми искористувањето на енергијата при активно користење.</string>
-    <string name="touch_boost_failed">Зголемувањето на допирот не успеа да се примени</string>
     <string name="fingerprint_calibration_title">Калибрација на отпечаток од прст</string>
     <string name="fingerprint_calibration_summary">Рекалибрирајте го сензорот за отпечатоци</string>
     <string name="fingerprint_calibration_not_found">Калибрацијата на отпечаток од прст не е достапна</string>

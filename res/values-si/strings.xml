@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">ක්‍රීඩා (තරඟකාරී)</string>
     <string name="thermal_yuanshen">යුවාන්ෂෙන්</string>
     <string name="thermal_charge">අයකිරීම</string>
-    <string name="touch_boost_title">ස්පර්ශ වැඩි කිරීම</string>
-    <string name="touch_boost_summary">වේගවත් ස්පර්ශ ප්‍රතිචාරය</string>
-    <string name="touch_boost_description">ස්පර්ශ පාලක ඡන්ද අනුපාතය ඉහළ නංවයි, ටැප්-ටු-ප්‍රතිචාර ප්‍රමාදය අඩු කරයි. සක්‍රිය භාවිතයේදී බලය ලබා ගැනීම තරමක් වැඩි කළ හැක.</string>
-    <string name="touch_boost_failed">ස්පර්ශ වැඩි කිරීම යෙදීමට අසමත් විය</string>
     <string name="fingerprint_calibration_title">ඇඟිලි සලකුණු ක්රමාංකනය</string>
     <string name="fingerprint_calibration_summary">ඇඟිලි සලකුණු සංවේදකය නැවත ක්‍රමාංකනය කරන්න</string>
     <string name="fingerprint_calibration_not_found">ඇඟිලි සලකුණු ක්‍රමාංකනය නොමැත</string>

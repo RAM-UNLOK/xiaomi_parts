@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">Amageyimu (ukuncintisana)</string>
     <string name="thermal_yuanshen">Yuanshen</string>
     <string name="thermal_charge">Iyashaja</string>
-    <string name="touch_boost_title">I-Touch boost</string>
-    <string name="touch_boost_summary">Impendulo yokuthinta esheshayo</string>
-    <string name="touch_boost_description">Ikhuphula izinga lokuvota kwesilawuli sokuthinta, inciphisa ukubambezeleka kokuthepha ukuze kuphendule. Ingase inyuse kancane ukudonsa kwamandla ngesikhathi sokusebenza.</string>
-    <string name="touch_boost_failed">I-Touch boost ihlulekile ukusebenza</string>
     <string name="fingerprint_calibration_title">Ukulinganisa izigxivizo zeminwe</string>
     <string name="fingerprint_calibration_summary">Linganisa kabusha inzwa yezigxivizo zeminwe</string>
     <string name="fingerprint_calibration_not_found">Ukulinganisa izigxivizo zeminwe akutholakali</string>

@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">Pelaaminen (kilpaileva)</string>
     <string name="thermal_yuanshen">Yuanshen</string>
     <string name="thermal_charge">Lataus</string>
-    <string name="touch_boost_title">Kosketustehostin</string>
-    <string name="touch_boost_summary">Nopeampi kosketusvaste</string>
-    <string name="touch_boost_description">Nostaa kosketusohjaimen kyselytaajuutta, mikä vähentää napauttamalla vastausviivettä. Voi hieman lisätä virrankulutusta aktiivisen käytön aikana.</string>
-    <string name="touch_boost_failed">Kosketustehostuksen käyttöönotto epäonnistui</string>
     <string name="fingerprint_calibration_title">Sormenjälkien kalibrointi</string>
     <string name="fingerprint_calibration_summary">Kalibroi sormenjälkitunnistin uudelleen</string>
     <string name="fingerprint_calibration_not_found">Sormenjälkien kalibrointi ei ole käytettävissä</string>

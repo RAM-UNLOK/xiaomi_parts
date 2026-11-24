@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">গেমিং (প্ৰতিযোগিতামূলক)</string>
     <string name="thermal_yuanshen">ইউয়ানশ্বেন</string>
     <string name="thermal_charge">চাৰ্জিং</string>
-    <string name="touch_boost_title">টাচ বুষ্ট</string>
-    <string name="touch_boost_summary">দ্ৰুত স্পৰ্শ সঁহাৰি</string>
-    <string name="touch_boost_description">টাচ কন্ট্ৰ\'লাৰ পলিং হাৰ বৃদ্ধি কৰে, টেপ-টু-ৰেচপন্স লেটেন্সি হ্ৰাস কৰে। সক্ৰিয় ব্যৱহাৰৰ সময়ত শক্তি আহৰণ সামান্য বৃদ্ধি কৰিব পাৰে।</string>
-    <string name="touch_boost_failed">টাচ বুষ্ট প্ৰয়োগ কৰাত ব্যৰ্থ</string>
     <string name="fingerprint_calibration_title">আঙুলিৰ ছাপ মানাংকন</string>
     <string name="fingerprint_calibration_summary">আঙুলিৰ ছাপ চেন্সৰ পুনৰ মানাংকন কৰক</string>
     <string name="fingerprint_calibration_not_found">আঙুলিৰ ছাপ মানাংকন উপলব্ধ নহয়</string>

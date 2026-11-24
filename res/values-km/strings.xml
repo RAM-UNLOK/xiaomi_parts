@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">ហ្គេម (ប្រកួតប្រជែង)</string>
     <string name="thermal_yuanshen">Yuanshen</string>
     <string name="thermal_charge">សាកថ្ម</string>
-    <string name="touch_boost_title">ប៉ះជំរុញ</string>
-    <string name="touch_boost_summary">ការឆ្លើយតបការប៉ះលឿនជាងមុន</string>
-    <string name="touch_boost_description">បង្កើនអត្រាស្ទង់មតិរបស់ឧបករណ៍បញ្ជាប៉ះ កាត់បន្ថយភាពយឺតយ៉ាវក្នុងការប៉ះ។ អាចបង្កើនការទាញថាមពលបន្តិច កំឡុងពេលប្រើប្រាស់សកម្ម។</string>
-    <string name="touch_boost_failed">ការជំរុញការប៉ះបានបរាជ័យក្នុងការអនុវត្ត</string>
     <string name="fingerprint_calibration_title">ការក្រិតស្នាមម្រាមដៃ</string>
     <string name="fingerprint_calibration_summary">កែសំរួលឧបករណ៍ចាប់ស្នាមម្រាមដៃឡើងវិញ</string>
     <string name="fingerprint_calibration_not_found">ការក្រិតស្នាមម្រាមដៃមិនមានទេ។</string>

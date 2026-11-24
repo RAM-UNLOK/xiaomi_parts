@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">Spel (konkurrenskraftigt)</string>
     <string name="thermal_yuanshen">Yuanshen</string>
     <string name="thermal_charge">Laddning</string>
-    <string name="touch_boost_title">Touch boost</string>
-    <string name="touch_boost_summary">Snabbare pekrespons</string>
-    <string name="touch_boost_description">Höjer pekkontrollens avfrågningshastighet, vilket minskar fördröjningen av tryck-till-svar. Kan öka strömförbrukningen något under aktiv användning.</string>
-    <string name="touch_boost_failed">Touch boost kunde inte tillämpas</string>
     <string name="fingerprint_calibration_title">Fingeravtryckskalibrering</string>
     <string name="fingerprint_calibration_summary">Kalibrera om fingeravtryckssensorn</string>
     <string name="fingerprint_calibration_not_found">Fingeravtryckskalibrering är inte tillgänglig</string>

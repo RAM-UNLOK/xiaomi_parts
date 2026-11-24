@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">Lojëra (konkurruese)</string>
     <string name="thermal_yuanshen">Juanshen</string>
     <string name="thermal_charge">Ngarkimi</string>
-    <string name="touch_boost_title">Nxitja e prekjes</string>
-    <string name="touch_boost_summary">Përgjigje më e shpejtë me prekje</string>
-    <string name="touch_boost_description">Rrit shkallën e sondazhit të kontrolluesit me prekje, duke reduktuar vonesën nga prekja në përgjigje. Mund të rrisë pak fuqinë gjatë përdorimit aktiv.</string>
-    <string name="touch_boost_failed">Nxitja me prekje nuk u zbatua</string>
     <string name="fingerprint_calibration_title">Kalibrimi i gjurmëve të gishtave</string>
     <string name="fingerprint_calibration_summary">Rikalibroni sensorin e gjurmës së gishtit</string>
     <string name="fingerprint_calibration_not_found">Kalibrimi i gjurmëve të gishtave nuk ofrohet</string>

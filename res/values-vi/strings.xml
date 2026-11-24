@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">Chơi game (cạnh tranh)</string>
     <string name="thermal_yuanshen">Nguyên Thần</string>
     <string name="thermal_charge">Đang sạc</string>
-    <string name="touch_boost_title">Tăng cường cảm ứng</string>
-    <string name="touch_boost_summary">Phản hồi cảm ứng nhanh hơn</string>
-    <string name="touch_boost_description">Tăng tốc độ thăm dò của bộ điều khiển cảm ứng, giảm độ trễ khi chạm để phản hồi. Có thể tăng nhẹ mức tiêu thụ điện năng trong quá trình sử dụng tích cực.</string>
-    <string name="touch_boost_failed">Không áp dụng được tính năng tăng cường cảm ứng</string>
     <string name="fingerprint_calibration_title">Hiệu chuẩn vân tay</string>
     <string name="fingerprint_calibration_summary">Hiệu chỉnh lại cảm biến vân tay</string>
     <string name="fingerprint_calibration_not_found">Không có hiệu chuẩn vân tay</string>

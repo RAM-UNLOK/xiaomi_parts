@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">Herní (soutěžní)</string>
     <string name="thermal_yuanshen">Yuanshen</string>
     <string name="thermal_charge">Nabíjení</string>
-    <string name="touch_boost_title">Zesílení dotyku</string>
-    <string name="touch_boost_summary">Rychlejší odezva na dotyk</string>
-    <string name="touch_boost_description">Zvyšuje rychlost dotazování dotykového ovladače a snižuje latenci odezvy po klepnutí. Při aktivním používání může mírně zvýšit spotřebu energie.</string>
-    <string name="touch_boost_failed">Zesílení dotyku se nepodařilo použít</string>
     <string name="fingerprint_calibration_title">Kalibrace otisku prstu</string>
     <string name="fingerprint_calibration_summary">Znovu zkalibrujte snímač otisků prstů</string>
     <string name="fingerprint_calibration_not_found">Kalibrace otisku prstu není k dispozici</string>

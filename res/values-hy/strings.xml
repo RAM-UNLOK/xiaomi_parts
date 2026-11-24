@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">Մոլեխաղեր (մրցակցային)</string>
     <string name="thermal_yuanshen">Յուանշեն</string>
     <string name="thermal_charge">Լիցքավորում</string>
-    <string name="touch_boost_title">Հպման ուժեղացում</string>
-    <string name="touch_boost_summary">Ավելի արագ հպման արձագանք</string>
-    <string name="touch_boost_description">Բարձրացնում է սենսորային կարգավորիչի քվեարկության արագությունը՝ նվազեցնելով հպում-արձագանքման հետաձգումը: Ակտիվ օգտագործման ժամանակ կարող է մի փոքր մեծացնել էներգիայի սպառումը:</string>
-    <string name="touch_boost_failed">Հպման ուժեղացումը չհաջողվեց կիրառել</string>
     <string name="fingerprint_calibration_title">Մատնահետքի չափորոշում</string>
     <string name="fingerprint_calibration_summary">Վերստուգեք մատնահետքի սենսորը</string>
     <string name="fingerprint_calibration_not_found">Մատնահետքի չափաբերումը հասանելի չէ</string>

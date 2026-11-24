@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">Spil (konkurrencedygtig)</string>
     <string name="thermal_yuanshen">Yuanshen</string>
     <string name="thermal_charge">Opladning</string>
-    <string name="touch_boost_title">Touch boost</string>
-    <string name="touch_boost_summary">Hurtigere berøringsrespons</string>
-    <string name="touch_boost_description">Hæver berøringscontrollerens pollinghastighed, hvilket reducerer ventetiden for tryk-til-svar. Kan øge strømforbruget en smule under aktiv brug.</string>
-    <string name="touch_boost_failed">Touch boost kunne ikke anvendes</string>
     <string name="fingerprint_calibration_title">Fingeraftrykskalibrering</string>
     <string name="fingerprint_calibration_summary">Genkalibrer fingeraftrykssensoren</string>
     <string name="fingerprint_calibration_not_found">Fingeraftrykskalibrering er ikke tilgængelig</string>

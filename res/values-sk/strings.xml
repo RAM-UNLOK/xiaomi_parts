@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">Hry (súťažné)</string>
     <string name="thermal_yuanshen">Yuanshen</string>
     <string name="thermal_charge">Nabíjanie</string>
-    <string name="touch_boost_title">Zosilnenie dotyku</string>
-    <string name="touch_boost_summary">Rýchlejšia odozva na dotyk</string>
-    <string name="touch_boost_description">Zvyšuje frekvenciu dopytovania dotykového ovládača, čím znižuje latenciu odozvy po klepnutí. Pri aktívnom používaní môže mierne zvýšiť spotrebu energie.</string>
-    <string name="touch_boost_failed">Nepodarilo sa použiť zosilnenie dotyku</string>
     <string name="fingerprint_calibration_title">Kalibrácia odtlačkov prstov</string>
     <string name="fingerprint_calibration_summary">Prekalibrujte snímač odtlačkov prstov</string>
     <string name="fingerprint_calibration_not_found">Kalibrácia odtlačku prsta nie je k dispozícii</string>

@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">Játék (versenyképes)</string>
     <string name="thermal_yuanshen">Yuanshen</string>
     <string name="thermal_charge">Töltés</string>
-    <string name="touch_boost_title">Touch boost</string>
-    <string name="touch_boost_summary">Gyorsabb érintésre adott válasz</string>
-    <string name="touch_boost_description">Növeli az érintésvezérlő lekérdezési gyakoriságát, csökkentve az érintéssel történő válaszadás késését. Aktív használat során kismértékben növelheti az áramfelvételt.</string>
-    <string name="touch_boost_failed">Az érintésnövelés alkalmazása nem sikerült</string>
     <string name="fingerprint_calibration_title">Ujjlenyomat-kalibrálás</string>
     <string name="fingerprint_calibration_summary">Kalibrálja újra az ujjlenyomat-érzékelőt</string>
     <string name="fingerprint_calibration_not_found">Az ujjlenyomat-kalibráció nem elérhető</string>

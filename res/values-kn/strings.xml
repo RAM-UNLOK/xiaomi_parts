@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">ಗೇಮಿಂಗ್ (ಸ್ಪರ್ಧಾತ್ಮಕ)</string>
     <string name="thermal_yuanshen">ಯುವಾನ್ಶೆನ್</string>
     <string name="thermal_charge">ಚಾರ್ಜಿಂಗ್</string>
-    <string name="touch_boost_title">ಟಚ್ ಬೂಸ್ಟ್</string>
-    <string name="touch_boost_summary">ವೇಗವಾದ ಸ್ಪರ್ಶ ಪ್ರತಿಕ್ರಿಯೆ</string>
-    <string name="touch_boost_description">ಟಚ್ ಕಂಟ್ರೋಲರ್ ಪೋಲಿಂಗ್ ದರವನ್ನು ಹೆಚ್ಚಿಸುತ್ತದೆ, ಟ್ಯಾಪ್-ಟು-ರೆಸ್ಪಾನ್ಸ್ ಲೇಟೆನ್ಸಿಯನ್ನು ಕಡಿಮೆ ಮಾಡುತ್ತದೆ. ಸಕ್ರಿಯ ಬಳಕೆಯ ಸಮಯದಲ್ಲಿ ವಿದ್ಯುತ್ ಡ್ರಾವನ್ನು ಸ್ವಲ್ಪ ಹೆಚ್ಚಿಸಬಹುದು.</string>
-    <string name="touch_boost_failed">ಟಚ್ ಬೂಸ್ಟ್ ಅನ್ವಯಿಸಲು ವಿಫಲವಾಗಿದೆ</string>
     <string name="fingerprint_calibration_title">ಫಿಂಗರ್‌ಪ್ರಿಂಟ್ ಮಾಪನಾಂಕ ನಿರ್ಣಯ</string>
     <string name="fingerprint_calibration_summary">ಫಿಂಗರ್‌ಪ್ರಿಂಟ್ ಸಂವೇದಕವನ್ನು ಮರುಮಾಪನ ಮಾಡಿ</string>
     <string name="fingerprint_calibration_not_found">ಫಿಂಗರ್‌ಪ್ರಿಂಟ್ ಮಾಪನಾಂಕ ನಿರ್ಣಯ ಲಭ್ಯವಿಲ್ಲ</string>

@@ -175,10 +175,6 @@
     <string name="thermal_gaming_competitive">Permainan (berdaya saing)</string>
     <string name="thermal_yuanshen">Yuanshen</string>
     <string name="thermal_charge">Mengecas</string>
-    <string name="touch_boost_title">Rangsangan sentuhan</string>
-    <string name="touch_boost_summary">Respons sentuhan yang lebih pantas</string>
-    <string name="touch_boost_description">Menaikkan kadar undian pengawal sentuh, mengurangkan kependaman ketik-untuk-tindak balas. Boleh meningkatkan sedikit tarikan kuasa semasa penggunaan aktif.</string>
-    <string name="touch_boost_failed">Rangsangan sentuhan gagal digunakan</string>
     <string name="fingerprint_calibration_title">Penentukuran cap jari</string>
     <string name="fingerprint_calibration_summary">Ukur semula penderia cap jari</string>
     <string name="fingerprint_calibration_not_found">Penentukuran cap jari tidak tersedia</string>

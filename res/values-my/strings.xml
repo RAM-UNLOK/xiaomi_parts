@@ -161,10 +161,6 @@
     <string name="thermal_gaming_competitive">ဂိမ်းကစားခြင်း (အပြိုင်အဆိုင်)</string>
     <string name="thermal_yuanshen">Yuanshen</string>
     <string name="thermal_charge">အားသွင်းခြင်း။</string>
-    <string name="touch_boost_title">တို့ထိပါ။</string>
-    <string name="touch_boost_summary">ထိတွေ့တုံ့ပြန်မှု ပိုမြန်တယ်။</string>
-    <string name="touch_boost_description">ထိတွေ့ထိန်းချုပ်သူ၏ မဲရုံနှုန်းကို မြှင့်တင်ပြီး နှိပ်ရန်-တုံ့ပြန်မှု latency ကို လျှော့ချပါ။ လက်ရှိအသုံးပြုနေစဉ်အတွင်း ပါဝါဆွဲအား အနည်းငယ်တိုးနိုင်သည်။</string>
-    <string name="touch_boost_failed">Touch boost ကို အသုံးပြု၍မရပါ။</string>
     <string name="fingerprint_calibration_title">လက်ဗွေ ချိန်ညှိခြင်း။</string>
     <string name="fingerprint_calibration_summary">လက်ဗွေအာရုံခံကိရိယာကို ပြန်လည်ချိန်ညှိပါ။</string>
     <string name="fingerprint_calibration_not_found">လက်ဗွေ ချိန်ညှိခြင်း မရရှိနိုင်ပါ။</string>
