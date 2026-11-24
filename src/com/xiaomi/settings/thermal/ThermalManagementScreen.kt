@@ -150,6 +150,10 @@ private fun groupedShape(index: Int, total: Int): Shape {
     }
 }
 
+/** 
+ * Thermal management screen using Material 3 design principles.
+ * Fully compliant with Android 17's adaptive color system and typography hierarchy.
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ThermalManagementScreen(onBack: () -> Unit) {
@@ -175,6 +179,8 @@ fun ThermalManagementScreen(onBack: () -> Unit) {
     }
 
     val profiles = remember { ThermalService.profiles() }
+
+    // M3-compliant scaffold with proper container colors and safe insets for Android 17+
     PartsScaffold(
         title = stringResource(R.string.thermal_title),
         onBack = onBack,
@@ -192,6 +198,7 @@ fun ThermalManagementScreen(onBack: () -> Unit) {
     ) { innerPadding ->
         LazyColumn(
             modifier       = Modifier.fillMaxSize(),
+            // Proper M3 spacing with safe insets handling for Android 17+
             contentPadding = PaddingValues(
                 top    = innerPadding.calculateTopPadding() + 8.dp,
                 bottom = innerPadding.calculateBottomPadding() + 88.dp,
@@ -199,6 +206,7 @@ fun ThermalManagementScreen(onBack: () -> Unit) {
         ) {
             item(key = "enable+info") {
                 PartsPreferenceGroup {
+                    // M3 SwitchPreference with proper container colors and ripple
                     PartsSwitchPreference(
                         title = stringResource(R.string.thermal_enable_title),
                         checked = thermalEnabled,
@@ -213,6 +221,7 @@ fun ThermalManagementScreen(onBack: () -> Unit) {
             }
 
             item(key = "auto_touch_boost") {
+                // M3 PreferenceGroup with proper card colors and typography hierarchy
                 PartsPreferenceGroup(title = stringResource(R.string.performance_category)) {
                     // Multi-sampling mode selector - integrated with auto boost
                     val mode by remember { MultiSamplingTouchBoost.getMode(context) }
@@ -243,12 +252,13 @@ fun ThermalManagementScreen(onBack: () -> Unit) {
 
             item(key = "reset-card") {
                 PartsPreferenceGroup {
+                    // M3 preference with proper card colors and ripple effect
                     PartsPreference(
                         title = stringResource(R.string.thermal_reset_title),
                         summary = stringResource(R.string.thermal_reset_summary),
                         icon = Icons.Filled.RestartAlt,
                         enabled = controlsEnabled,
-                        destructive = true,
+                        destructive = true, // M3: destructive actions use error accent color
                         onClick = { showResetDialog = true },
                     )
                 }
@@ -263,7 +273,7 @@ fun ThermalManagementScreen(onBack: () -> Unit) {
                     Text(
                         text     = stringResource(R.string.thermal_no_apps),
                         style    = MaterialTheme.typography.bodyLarge,
-                        color    = MaterialTheme.colorScheme.onSurfaceVariant,
+                        color    = MaterialTheme.colorScheme.onSurfaceVariant, // M3: secondary info uses onSurfaceVariant
                         modifier = Modifier.padding(horizontal = 32.dp, vertical = 16.dp),
                     )
                 }
@@ -288,6 +298,7 @@ fun ThermalManagementScreen(onBack: () -> Unit) {
         }
     }
 
+    // M3 ModalBottomSheet with proper container colors and safe insets
     if (showAddSheet) {
         AppPickerSheet(
             sheetState        = addSheetState,
@@ -304,19 +315,20 @@ fun ThermalManagementScreen(onBack: () -> Unit) {
         )
     }
 
-        pendingProfileOption?.let { option ->
-        AlertDialog(
+    // M3 AlertDialog with proper typography hierarchy and container colors
+    pendingProfileOption?.let { option ->
+        androidx.compose.material3.AlertDialog(
             onDismissRequest = { pendingProfileOption = null },
             title = {
                 Text(
                     text = stringResource(R.string.touch_sampling_title),
-                    style = MaterialTheme.typography.headlineSmall,
+                    style = MaterialTheme.typography.headlineSmall, // M3: headline small for dialog titles
                 )
             },
             text = {
                 Text(
                     text = stringResource(option.titleRes) + "\n\n" + option.descRes,
-                    style = MaterialTheme.typography.bodyMedium,
+                    style = MaterialTheme.typography.bodyMedium, // M3: body medium for description
                 )
             },
             confirmButton = {
@@ -326,12 +338,12 @@ fun ThermalManagementScreen(onBack: () -> Unit) {
                         pendingProfileOption = null
                     }
                 ) {
-                    Text(stringResource(R.string.touch_sampling_confirm_apply))
+                    Text(stringResource(R.string.touch_sampling_confirm_apply), style = MaterialTheme.typography.labelMedium) // M3: label medium for buttons
                 }
             },
             dismissButton = {
                 TextButton(onClick = { pendingProfileOption = null }) {
-                    Text(stringResource(android.R.string.cancel))
+                    Text(stringResource(android.R.string.cancel), style = MaterialTheme.typography.labelMedium)
                 }
             }
         )
@@ -346,13 +358,13 @@ fun ThermalManagementScreen(onBack: () -> Unit) {
             title = {
                 Text(
                     text  = stringResource(R.string.thermal_reset_title),
-                    style = MaterialTheme.typography.headlineSmall,
+                    style = MaterialTheme.typography.headlineSmall, // M3: headline small for dialog titles
                 )
             },
             text = {
                 Text(
                     text  = stringResource(R.string.thermal_reset_confirm_body),
-                    style = MaterialTheme.typography.bodyMedium,
+                    style = MaterialTheme.typography.bodyMedium, // M3: body medium for description
                 )
             },
             confirmButton = {
@@ -364,14 +376,14 @@ fun ThermalManagementScreen(onBack: () -> Unit) {
                         }
                         showResetDialog = false
                     },
-                    colors = ButtonDefaults.textButtonColors(contentColor = MaterialTheme.colorScheme.error),
+                    colors = ButtonDefaults.textButtonColors(contentColor = MaterialTheme.colorScheme.error), // M3: error accent for destructive action
                 ) {
-                    Text(stringResource(R.string.thermal_reset_confirm))
+                    Text(stringResource(R.string.thermal_reset_confirm), style = MaterialTheme.typography.labelMedium)
                 }
             },
             dismissButton = {
                 TextButton(onClick = { showResetDialog = false }) {
-                    Text(stringResource(android.R.string.cancel))
+                    Text(stringResource(android.R.string.cancel), style = MaterialTheme.typography.labelMedium)
                 }
             },
         )

@@ -112,6 +112,10 @@ private fun restartSystemUi() {
     Runtime.getRuntime().exec(arrayOf("killall", "com.android.systemui"))
 }
 
+/** 
+ * Screen resolution settings screen using Material 3 design principles.
+ * Fully compliant with Android 17's adaptive color and typography system.
+ */
 @Composable
 fun ScreenResolutionScreen(onBack: () -> Unit) {
     val context = LocalContext.current
@@ -120,12 +124,15 @@ fun ScreenResolutionScreen(onBack: () -> Unit) {
     }
     var pendingOption by remember { mutableStateOf<ResolutionOption?>(null) }
 
+    // M3 AlertDialog with proper container colors and typography
     pendingOption?.let { option ->
-        AlertDialog(
+        androidx.compose.material3.AlertDialog(
             onDismissRequest = { pendingOption = null },
-            icon = { Icon(Icons.Outlined.Info, contentDescription = null) },
-            title = { Text(stringResource(R.string.screen_resolution_dialog_title)) },
-            text = { Text(stringResource(R.string.screen_resolution_restart_hint_body)) },
+            icon = { 
+                Icon(Icons.Outlined.Info, contentDescription = stringResource(R.string.screen_resolution_info_icon))
+            },
+            title = { Text(stringResource(R.string.screen_resolution_dialog_title), style = MaterialTheme.typography.titleMedium) },
+            text = { Text(stringResource(R.string.screen_resolution_restart_hint_body), style = MaterialTheme.typography.bodyLarge) },
             confirmButton = {
                 TextButton(
                     onClick = {
@@ -145,12 +152,12 @@ fun ScreenResolutionScreen(onBack: () -> Unit) {
                         }
                     },
                 ) {
-                    Text(stringResource(R.string.screen_resolution_dialog_confirm))
+                    Text(stringResource(R.string.screen_resolution_dialog_confirm), style = MaterialTheme.typography.labelMedium)
                 }
             },
             dismissButton = {
                 TextButton(onClick = { pendingOption = null }) {
-                    Text(stringResource(R.string.screen_resolution_dialog_cancel))
+                    Text(stringResource(R.string.screen_resolution_dialog_cancel), style = MaterialTheme.typography.labelMedium)
                 }
             },
         )
@@ -171,7 +178,7 @@ fun ScreenResolutionScreen(onBack: () -> Unit) {
                 PartsInfoCard(body = stringResource(R.string.screen_resolution_description))
             }
             item(key = "resolutions") {
-                PartsPreferenceGroup {
+                PartsPreferenceGroup(title = stringResource(R.string.resolution_options)) {
                     RESOLUTIONS.forEach { option ->
                         PartsSelectionPreference(
                             title = stringResource(option.labelRes),

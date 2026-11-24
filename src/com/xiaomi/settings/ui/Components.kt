@@ -46,8 +46,14 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
-/** Default horizontal gutter matching the home-screen card grid. */
+/** 
+ * Default horizontal gutter matching Material 3's card grid spacing (Android 17).
+ * Provides consistent whitespace between content areas.
+ */
 val PageGutter: Dp = 20.dp
+
+/** Vertical spacing for preference groups - matches M3 guideline of 8dp base rhythm */
+val PreferenceGroupVerticalSpacing: Dp = 8.dp
 
 // ──────────────────────────────────────────────────────────────────────────
 // Pressable card — scales down slightly while pressed (expressive touch).

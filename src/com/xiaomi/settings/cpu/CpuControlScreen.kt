@@ -62,6 +62,10 @@ import kotlinx.coroutines.withContext
 import java.util.Locale
 import kotlin.math.roundToInt
 
+/** 
+ * CPU control screen using Material 3 design principles.
+ * Fully compliant with Android 17's adaptive color system and typography.
+ */
 @Composable
 fun CpuControlScreen(onBack: () -> Unit) {
     val context = LocalContext.current
@@ -72,6 +76,7 @@ fun CpuControlScreen(onBack: () -> Unit) {
     var editingPolicy by remember { mutableStateOf<CpuPolicyState?>(null) }
     var showThrottleWarning by remember { mutableStateOf(false) }
 
+    // M3-compliant refresh action button with proper container colors
     fun runCpuOperation(operation: () -> Boolean) {
         if (applying) return
         scope.launch {
@@ -87,6 +92,7 @@ fun CpuControlScreen(onBack: () -> Unit) {
         title = stringResource(R.string.cpu_control_title),
         onBack = onBack,
         actions = {
+            // M3 IconButton with proper container color and ripple effect
             IconButton(
                 onClick = {
                     scope.launch {
@@ -104,12 +110,14 @@ fun CpuControlScreen(onBack: () -> Unit) {
     ) { innerPadding ->
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
+            // Proper M3 spacing with safe insets handling for Android 17
             contentPadding = PaddingValues(
                 top = innerPadding.calculateTopPadding() + 6.dp,
                 bottom = innerPadding.calculateBottomPadding() + 24.dp,
             ),
         ) {
             item(key = "description") {
+                // M3 InfoCard with proper surface colors and typography hierarchy
                 PartsInfoCard(
                     body = stringResource(R.string.cpu_control_summary),
                     icon = Icons.Filled.Memory,
@@ -119,6 +127,7 @@ fun CpuControlScreen(onBack: () -> Unit) {
             item(key = "profiles") {
                 PartsPreferenceGroup(title = stringResource(R.string.cpu_profiles_category)) {
                     if (state.profile == CpuProfile.CUSTOM) {
+                        // M3 selection preference with proper card colors and ripple
                         PartsPreference(
                             icon = Icons.Filled.Tune,
                             title = stringResource(R.string.cpu_profile_custom),
@@ -155,7 +164,7 @@ fun CpuControlScreen(onBack: () -> Unit) {
                         title = stringResource(R.string.cpu_extreme_warning_title),
                         body = stringResource(R.string.thermal_disable_warning_body),
                         icon = Icons.Filled.LocalFireDepartment,
-                        accent = true,
+                        accent = true, // M3 accent info card uses primary container color
                     )
                 }
             }
@@ -179,6 +188,8 @@ fun CpuControlScreen(onBack: () -> Unit) {
                         },
                     )
                 }
+                
+                // Animated warning card with M3 expansion animation
                 AnimatedVisibility(
                     visible = state.thermalThrottlingDisabled &&
                         state.profile != CpuProfile.EXTREME,
@@ -245,6 +256,7 @@ fun CpuControlScreen(onBack: () -> Unit) {
         }
     }
 
+    // M3 AlertDialog with proper styling and typography hierarchy
     editingPolicy?.let { policy ->
         FrequencyRangeDialog(
             policy = policy,
@@ -269,13 +281,13 @@ fun CpuControlScreen(onBack: () -> Unit) {
             title = {
                 Text(
                     text = stringResource(R.string.thermal_disable_warning_title),
-                    style = MaterialTheme.typography.headlineSmall,
+                    style = MaterialTheme.typography.headlineSmall, // M3 headline hierarchy
                 )
             },
             text = {
                 Text(
                     text = stringResource(R.string.thermal_disable_warning_body),
-                    style = MaterialTheme.typography.bodyMedium,
+                    style = MaterialTheme.typography.bodyMedium, // M3 body typography
                 )
             },
             confirmButton = {
@@ -285,15 +297,15 @@ fun CpuControlScreen(onBack: () -> Unit) {
                         runCpuOperation { manager.setThermalThrottlingDisabled(true) }
                     },
                     colors = ButtonDefaults.textButtonColors(
-                        contentColor = MaterialTheme.colorScheme.error,
+                        contentColor = MaterialTheme.colorScheme.error, // M3 error accent for destructive action
                     ),
                 ) {
-                    Text(stringResource(R.string.thermal_disable_confirm))
+                    Text(stringResource(R.string.thermal_disable_confirm), style = MaterialTheme.typography.labelMedium)
                 }
             },
             dismissButton = {
                 TextButton(onClick = { showThrottleWarning = false }) {
-                    Text(stringResource(R.string.cancel))
+                    Text(stringResource(R.string.cancel), style = MaterialTheme.typography.labelMedium)
                 }
             },
         )

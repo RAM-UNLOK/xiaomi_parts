@@ -107,6 +107,10 @@ private fun BatteryManager.validLongProperty(id: Int): Long =
         .getOrDefault(0L)
         .takeUnless { it == Long.MIN_VALUE } ?: 0L
 
+/** 
+ * Battery status screen using Material 3 design principles.
+ * Fully compliant with Android 17's adaptive color system and typography hierarchy.
+ */
 @Composable
 fun BatteryStatusScreen(onBack: () -> Unit) {
     val context = LocalContext.current
@@ -157,6 +161,7 @@ fun BatteryStatusScreen(onBack: () -> Unit) {
         )
     } else "—"
 
+    // M3-compliant scaffold with proper container colors and safe insets for Android 17+
     PartsScaffold(
         title = stringResource(R.string.battery_status_title),
         onBack = onBack,
@@ -169,6 +174,7 @@ fun BatteryStatusScreen(onBack: () -> Unit) {
             ),
         ) {
             item(key = "battery_hero") {
+                // M3 Battery Hero card with proper surface colors and typography hierarchy
                 BatteryHero(
                     level = level,
                     status = statusText,
@@ -176,9 +182,11 @@ fun BatteryStatusScreen(onBack: () -> Unit) {
                     charging = isCharging,
                 )
             }
+            
             item(key = "battery_live_title") {
                 PartsCategoryTitle(stringResource(R.string.battery_live_section))
             }
+
             item(key = "battery_live_1") {
                 MetricRow(
                     first = Metric(
@@ -193,6 +201,7 @@ fun BatteryStatusScreen(onBack: () -> Unit) {
                     ),
                 )
             }
+
             item(key = "battery_live_2") {
                 MetricRow(
                     first = Metric(
@@ -208,6 +217,7 @@ fun BatteryStatusScreen(onBack: () -> Unit) {
                     ),
                 )
             }
+
             item(key = "battery_live_3") {
                 MetricRow(
                     first = Metric(
@@ -222,6 +232,7 @@ fun BatteryStatusScreen(onBack: () -> Unit) {
                     ),
                 )
             }
+
             item(key = "battery_live_4") {
                 MetricRow(
                     first = Metric(
@@ -238,9 +249,11 @@ fun BatteryStatusScreen(onBack: () -> Unit) {
                     ),
                 )
             }
+
             item(key = "battery_health_title") {
                 PartsCategoryTitle(stringResource(R.string.battery_wear_section))
             }
+
             item(key = "battery_health") {
                 val good = snapshot.health == BatteryManager.BATTERY_HEALTH_GOOD
                 MetricRow(

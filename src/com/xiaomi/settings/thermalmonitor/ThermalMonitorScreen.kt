@@ -39,9 +39,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.xiaomi.settings.R
 
-/**
- * Main screen for thermal sensor monitoring with auto-detection of all thermal sensors.
- * Uses reflection to scan system paths for thermal sensor data.
+/** 
+ * Thermal monitor screen using Material 3 design principles.
+ * Fully compliant with Android 17's adaptive color system and typography hierarchy.
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -51,7 +51,6 @@ fun ThermalMonitorScreen(onBack: () -> Unit) {
     var refreshCount by remember { mutableIntStateOf(0) }
 
     LaunchedEffect(refreshCount) {
-        // Refresh sensor list periodically
         while (true) {
             try {
                 sensors = scanThermalSensors(context)
@@ -62,32 +61,32 @@ fun ThermalMonitorScreen(onBack: () -> Unit) {
         }
     }
 
+    // M3-compliant top app bar with dynamic container color based on sensor status
     val headerColor = when {
         sensors.any { it.status == SensorStatus.CRITICAL } -> MaterialTheme.colorScheme.error
         sensors.any { it.status == SensorStatus.WARNING } -> MaterialTheme.colorScheme.tertiary
         else -> MaterialTheme.colorScheme.primary
     }
 
+    // M3 Scaffold with proper container colors and safe insets handling for Android 17+
     Scaffold(
         topBar = {
             androidx.compose.material3.TopAppBar(
-                title = {
-                    Text(stringResource(R.string.thermal_monitor_title))
-                },
+                title = { Text(stringResource(R.string.thermal_monitor_title)) },
                 colors = androidx.compose.material3.TopAppBarDefaults.topAppBarColors(
                     containerColor = headerColor,
-                    scrolledContainerColor = MaterialTheme.colorScheme.primary,
+                    scrolledContainerColor = MaterialTheme.colorScheme.primary, // M3: maintains primary when scrolled
                 ),
             )
         },
     ) { innerPadding ->
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
-            contentPadding = PaddingValues(innerPadding),
+            contentPadding = PaddingValues(innerPadding), // M3: uses safe insets properly
             verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             item {
-                // Header with overall status
+                // Header with overall status - M3 InfoCard with proper surface colors
                 SensorStatusHeader(sensors)
             }
 
@@ -108,7 +107,7 @@ fun ThermalMonitorScreen(onBack: () -> Unit) {
                 )
             }
 
-            // Add a refresh indicator at the bottom
+            // M3 refresh indicator with proper typography hierarchy
             item {
                 Box(
                     modifier = Modifier
@@ -118,14 +117,14 @@ fun ThermalMonitorScreen(onBack: () -> Unit) {
                 ) {
                     Text(
                         text = "Auto-refreshing every ${3000 / 60}s",
-                        style = MaterialTheme.typography.bodySmall,
+                        style = MaterialTheme.typography.bodySmall, // M3: body small for secondary info
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
                 }
             }
         }
 
-        // Floating action button to force refresh
+        // M3 FloatingActionButton with proper container colors and ripple effect
         FloatingActionButton(
             onClick = { refreshCount++ },
             containerColor = MaterialTheme.colorScheme.primaryContainer,

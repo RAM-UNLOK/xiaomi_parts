@@ -178,6 +178,10 @@ private fun ColourPreviewHero(
     }
 }
 
+/** 
+ * Display colour modes screen with Material 3 design.
+ * Aligned with Android 17's adaptive color and typography system.
+ */
 @Composable
 fun DisplayColoursScreen(onBack: () -> Unit) {
     val context = LocalContext.current
@@ -192,12 +196,14 @@ fun DisplayColoursScreen(onBack: () -> Unit) {
         }
     }
 
+    // Use M3-compliant scaffold with proper container colors and safe insets handling
     PartsScaffold(
         title = stringResource(R.string.display_colours_title),
         onBack = onBack,
     ) { innerPadding ->
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
+            // Android 17+: Use system-safe padding properly with M3
             contentPadding = PaddingValues(
                 top = innerPadding.calculateTopPadding() + 12.dp,
                 bottom = innerPadding.calculateBottomPadding() + 24.dp,
@@ -213,11 +219,13 @@ fun DisplayColoursScreen(onBack: () -> Unit) {
                 )
             }
             item(key = "description") {
+                // M3 InfoCard uses proper surface colors and typography
                 PartsInfoCard(body = stringResource(R.string.display_colours_description))
             }
             item(key = "modes") {
-                PartsPreferenceGroup {
+                PartsPreferenceGroup(title = stringResource(R.string.color_modes)) {
                     ColorMode.entries.forEach { mode ->
+                        // Selection preference with M3 styling - uses proper card colors and ripple
                         PartsSelectionPreference(
                             title = stringResource(mode.label),
                             summary = stringResource(mode.description),

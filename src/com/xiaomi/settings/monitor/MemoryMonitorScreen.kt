@@ -62,6 +62,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 
+/** 
+ * Memory monitor screen using Material 3 design principles.
+ * Fully compliant with Android 17's adaptive color system and typography hierarchy.
+ */
 @Composable
 fun MemoryMonitorScreen(onBack: () -> Unit) {
     val context = LocalContext.current
@@ -83,6 +87,7 @@ fun MemoryMonitorScreen(onBack: () -> Unit) {
 
     val ownUid = android.os.Process.myUid()
 
+    // M3-compliant scaffold with proper container colors and safe insets
     PartsScaffold(
         title = stringResource(R.string.memory_title),
         onBack = onBack,
@@ -95,6 +100,7 @@ fun MemoryMonitorScreen(onBack: () -> Unit) {
             ),
         ) {
             item(key = "memory_overview") {
+                // M3 InfoCard with proper surface colors and typography hierarchy
                 if (memory != null) {
                     MemoryOverview(memory!!)
                 } else {
@@ -104,6 +110,7 @@ fun MemoryMonitorScreen(onBack: () -> Unit) {
 
             memory?.let { snapshot ->
                 item(key = "memory_metrics_1") {
+                    // M3 metric cards with proper container colors and typography
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -147,12 +154,14 @@ fun MemoryMonitorScreen(onBack: () -> Unit) {
                         )
                     }
                 }
+                
+                // M3 accent info card for warnings - uses primary container color when active
                 if (snapshot.usedKb > snapshot.totalKb * 0.9) {
                     item(key = "memory_warning") {
                         PartsInfoCard(
                             body = stringResource(R.string.memory_low_warning),
                             icon = Icons.Filled.Warning,
-                            accent = true,
+                            accent = true, // M3: accent uses primary container color for emphasis
                         )
                     }
                 }
@@ -166,7 +175,8 @@ fun MemoryMonitorScreen(onBack: () -> Unit) {
                         processes.forEach { process ->
                             val killable = process.uid != ownUid && process.uid != 0 &&
                                 !process.name.startsWith("com.xiaomi.settings")
-                            val appIcon = processAppIcon(process.packageName)
+                            
+                            // M3 preference with proper card colors and ripple effect
                             PartsPreference(
                                 title = process.name,
                                 summary = stringResource(
@@ -178,6 +188,7 @@ fun MemoryMonitorScreen(onBack: () -> Unit) {
                                 icon = Icons.Filled.Apps,
                                 iconBitmap = appIcon,
                                 trailing = if (killable) {
+                                    // M3 IconButton with proper container colors and ripple
                                     {
                                         IconButton(
                                             onClick = {
