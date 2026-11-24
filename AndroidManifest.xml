@@ -51,6 +51,7 @@
 
         <activity
             android:name=".XiaomiPartsActivity"
+            android:windowSoftInputMode="adjustResize"
             android:label="@string/xiaomi_parts_title"
             android:exported="true">
             <intent-filter>

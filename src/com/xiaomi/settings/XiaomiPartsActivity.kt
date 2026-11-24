@@ -77,6 +77,6 @@ private fun PartsNavHost() {
         composable("batteryStatus")     { BatteryStatusScreen { nav.popBackStack() } }
 
         composable("thermal")           { ThermalManagementScreen { nav.popBackStack() } }
-        composable("touchBoost")        { TouchBoostScreen { nav.popBackStack() } }
+        composable("touchBoost")        { TouchSamplingScreen { nav.popBackStack() } }
     }
 }
