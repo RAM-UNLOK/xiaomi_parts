@@ -73,10 +73,10 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
 
-            <!-- Moves tile into Settings -> System -->
+            <!-- Moves tile into Main Settings Homepage -->
             <meta-data
                 android:name="com.android.settings.category"
-                android:value="com.android.settings.category.ia.system" />
+                android:value="android.settings.CATEGORY_SETTINGS" />
 
             <meta-data
                 android:name="com.android.settings.order"
