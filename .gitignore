@@ -1,0 +1,7 @@
+# Translation tool cache
+.translation-cache.json
+.translation-cache.json.tmp
+
+# Python bytecode
+__pycache__/
+*.pyc
