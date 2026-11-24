@@ -1,22 +1,14 @@
 /*
  * SPDX-FileCopyrightText: 2025 Paranoid Android
+ * SPDX-FileCopyrightText: 2026 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
 package com.xiaomi.settings.thermal
 
-import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.content.IntentFilter
-import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
-import android.os.BatteryManager
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.expandVertically
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -39,11 +31,8 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Apps
-import androidx.compose.material.icons.filled.BatteryChargingFull
-import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.RestartAlt
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.AlertDialog
@@ -53,24 +42,19 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.MediumTopAppBar
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.RadioButton
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.VerticalDivider
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -85,7 +69,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.asImageBitmap
-import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
@@ -93,10 +76,14 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.core.graphics.drawable.toBitmap
-import com.xiaomi.settings.PartsCategory
 import com.xiaomi.settings.R
-import com.xiaomi.settings.ui.Motion
-import com.xiaomi.settings.ui.SettingsTheme
+import com.xiaomi.settings.ui.PartsCategoryTitle
+import com.xiaomi.settings.ui.PartsInfoCard
+import com.xiaomi.settings.ui.PartsPageGutter
+import com.xiaomi.settings.ui.PartsPreference
+import com.xiaomi.settings.ui.PartsPreferenceGroup
+import com.xiaomi.settings.ui.PartsScaffold
+import com.xiaomi.settings.ui.PartsSwitchPreference
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -117,17 +104,17 @@ private fun appIcon(packageName: String): ImageBitmap? {
     return bitmap
 }
 
-private fun readIsCharging(context: Context): Boolean {
-    val sticky = context.registerReceiver(null, IntentFilter(Intent.ACTION_BATTERY_CHANGED))
-    return (sticky?.getIntExtra(BatteryManager.EXTRA_PLUGGED, 0) ?: 0) != 0
-}
-
 @Composable
-private fun getGroupedShape(index: Int, total: Int): Shape = when {
-    total == 1         -> RoundedCornerShape(28.dp)
-    index == 0         -> RoundedCornerShape(topStart = 28.dp, topEnd = 28.dp, bottomStart = 4.dp, bottomEnd = 4.dp)
-    index == total - 1 -> RoundedCornerShape(topStart = 4.dp, topEnd = 4.dp, bottomStart = 28.dp, bottomEnd = 28.dp)
-    else               -> RoundedCornerShape(4.dp)
+@ReadOnlyComposable
+private fun groupedShape(index: Int, total: Int): Shape {
+    val outer = RoundedCornerShape(20.dp)
+    val inner = RoundedCornerShape(4.dp)
+    return when {
+        total == 1         -> outer
+        index == 0         -> outer.copy(bottomStart = inner.bottomStart, bottomEnd = inner.bottomEnd)
+        index == total - 1 -> outer.copy(topStart = inner.topStart, topEnd = inner.topEnd)
+        else               -> inner
+    }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -137,27 +124,16 @@ fun ThermalManagementScreen(onBack: () -> Unit) {
     val thermalUtils = remember { ThermalUtils.getInstance(context) }
     val scope        = rememberCoroutineScope()
 
-    var thermalEnabled   by remember { mutableStateOf(thermalUtils.enabled) }
-    var appList          by remember { mutableStateOf<List<AppThermalEntry>>(emptyList()) }
-    var isCharging       by remember { mutableStateOf(readIsCharging(context)) }
-    var showResetDialog  by remember { mutableStateOf(false) }
-    var pendingApp       by remember { mutableStateOf<AppThermalEntry?>(null) }
-    var showAddSheet     by remember { mutableStateOf(false) }
-    var pendingNewApp    by remember { mutableStateOf<InstalledAppEntry?>(null) }
+    var thermalEnabled     by remember { mutableStateOf(thermalUtils.enabled) }
+    var throttlingDisabled by remember { mutableStateOf(thermalUtils.throttlingDisabled) }
+    var appList            by remember { mutableStateOf<List<AppThermalEntry>>(emptyList()) }
+    var showResetDialog    by remember { mutableStateOf(false) }
+    var pendingApp         by remember { mutableStateOf<AppThermalEntry?>(null) }
+    var showAddSheet       by remember { mutableStateOf(false) }
+    var pendingNewApp      by remember { mutableStateOf<InstalledAppEntry?>(null) }
 
-    val controlsEnabled = thermalEnabled && !isCharging
+    val controlsEnabled = thermalEnabled && !throttlingDisabled
     val addSheetState   = rememberModalBottomSheetState(skipPartiallyExpanded = true)
-
-    DisposableEffect(Unit) {
-        val receiver = object : BroadcastReceiver() {
-            override fun onReceive(ctx: Context, intent: Intent) {
-                isCharging = (intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, 0)) != 0
-            }
-        }
-        @Suppress("UnspecifiedRegisterReceiverFlag")
-        context.registerReceiver(receiver, IntentFilter(Intent.ACTION_BATTERY_CHANGED))
-        onDispose { context.unregisterReceiver(receiver) }
-    }
 
     LaunchedEffect(Unit) {
         appList = withContext(Dispatchers.IO) {
@@ -165,39 +141,16 @@ fun ThermalManagementScreen(onBack: () -> Unit) {
         }
     }
 
-    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
-    val profiles       = remember { ThermalService.profiles() }
-
-    Scaffold(
-        modifier       = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
-        containerColor = SettingsTheme.colorScheme.screenBackground,
-        topBar = {
-            MediumTopAppBar(
-                title = {
-                    Text(
-                        text     = stringResource(R.string.thermal_title),
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis,
-                    )
-                },
-                navigationIcon = {
-                    IconButton(onClick = onBack) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, stringResource(R.string.navigate_up))
-                    }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor         = SettingsTheme.colorScheme.screenBackground,
-                    scrolledContainerColor = SettingsTheme.colorScheme.cardBackground,
-                ),
-                scrollBehavior = scrollBehavior,
-            )
-        },
+    val profiles = remember { ThermalService.profiles() }
+    PartsScaffold(
+        title = stringResource(R.string.thermal_title),
+        onBack = onBack,
         floatingActionButton = {
             if (controlsEnabled) {
                 FloatingActionButton(
-                    onClick            = { showAddSheet = true },
-                    containerColor     = MaterialTheme.colorScheme.primaryContainer,
-                    contentColor       = MaterialTheme.colorScheme.onPrimaryContainer,
+                    onClick        = { showAddSheet = true },
+                    containerColor = MaterialTheme.colorScheme.primaryContainer,
+                    contentColor   = MaterialTheme.colorScheme.onPrimaryContainer,
                 ) {
                     Icon(Icons.Filled.Add, contentDescription = stringResource(R.string.thermal_add_app))
                 }
@@ -207,118 +160,40 @@ fun ThermalManagementScreen(onBack: () -> Unit) {
         LazyColumn(
             modifier       = Modifier.fillMaxSize(),
             contentPadding = PaddingValues(
-                top    = innerPadding.calculateTopPadding(),
+                top    = innerPadding.calculateTopPadding() + 8.dp,
                 bottom = innerPadding.calculateBottomPadding() + 88.dp,
             ),
         ) {
-            item(key = "charging-banner") {
-                AnimatedVisibility(
-                    visible = isCharging,
-                    enter   = expandVertically(animationSpec = Motion.defaultEffectsSpec()) + fadeIn(),
-                    exit    = shrinkVertically(animationSpec = Motion.defaultEffectsSpec()) + fadeOut(),
-                ) { ChargingBanner() }
-            }
-
-            item(key = "enable-card") {
-                Card(
-                    onClick  = {
-                        if (!isCharging) {
-                            thermalEnabled = !thermalEnabled
-                            thermalUtils.enabled = thermalEnabled
-                        }
-                    },
-                    modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp).padding(top = 12.dp, bottom = 2.dp),
-                    shape    = RoundedCornerShape(topStart = 28.dp, topEnd = 28.dp, bottomStart = 4.dp, bottomEnd = 4.dp),
-                    colors   = CardDefaults.cardColors(containerColor = SettingsTheme.colorScheme.cardBackground),
-                ) {
-                    ListItem(
-                        modifier = Modifier.alpha(if (isCharging) 0.38f else 1f),
-                        headlineContent = {
-                            Text(
-                                text  = stringResource(R.string.thermal_enable_title),
-                                style = MaterialTheme.typography.titleMedium,
-                                color = SettingsTheme.colorScheme.titleText,
-                            )
+            item(key = "enable+info") {
+                PartsPreferenceGroup {
+                    PartsSwitchPreference(
+                        title = stringResource(R.string.thermal_enable_title),
+                        checked = thermalEnabled,
+                        enabled = !throttlingDisabled,
+                        onCheckedChange = { checked ->
+                            thermalEnabled = checked
+                            thermalUtils.enabled = checked
                         },
-                        trailingContent = {
-                            Switch(
-                                checked         = thermalEnabled,
-                                enabled         = !isCharging,
-                                onCheckedChange = { checked ->
-                                    thermalEnabled = checked
-                                    thermalUtils.enabled = checked
-                                },
-                            )
-                        },
-                        colors = ListItemDefaults.colors(containerColor = Color.Transparent),
                     )
                 }
-            }
-
-            item(key = "info-card") {
-                Card(
-                    modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp).padding(bottom = 2.dp),
-                    shape    = RoundedCornerShape(4.dp),
-                    colors   = CardDefaults.cardColors(containerColor = SettingsTheme.colorScheme.cardBackground),
-                ) {
-                    Row(
-                        modifier          = Modifier.padding(16.dp),
-                        verticalAlignment = Alignment.Top,
-                    ) {
-                        Icon(
-                            imageVector        = Icons.Filled.Info,
-                            contentDescription = null,
-                            tint               = SettingsTheme.colorScheme.secondaryIcon,
-                            modifier           = Modifier.padding(end = 16.dp, top = 2.dp),
-                        )
-                        Text(
-                            text       = stringResource(R.string.thermal_enable_summary),
-                            style      = MaterialTheme.typography.bodyMedium,
-                            color      = SettingsTheme.colorScheme.summaryText,
-                            lineHeight = MaterialTheme.typography.bodyMedium.lineHeight * 1.2f,
-                        )
-                    }
-                }
+                PartsInfoCard(body = stringResource(R.string.thermal_enable_summary))
             }
 
             item(key = "reset-card") {
-                Card(
-                    onClick  = { if (controlsEnabled) showResetDialog = true },
-                    modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp).padding(bottom = 8.dp),
-                    shape    = RoundedCornerShape(topStart = 4.dp, topEnd = 4.dp, bottomStart = 28.dp, bottomEnd = 28.dp),
-                    colors   = CardDefaults.cardColors(containerColor = SettingsTheme.colorScheme.cardBackground),
-                ) {
-                    ListItem(
-                        modifier = Modifier.alpha(if (controlsEnabled) 1f else 0.38f),
-                        headlineContent = {
-                            Text(
-                                text  = stringResource(R.string.thermal_reset_title),
-                                style = MaterialTheme.typography.titleMedium,
-                                color = SettingsTheme.colorScheme.errorIcon,
-                            )
-                        },
-                        supportingContent = {
-                            Text(
-                                text  = stringResource(R.string.thermal_reset_summary),
-                                style = MaterialTheme.typography.bodyMedium,
-                                color = SettingsTheme.colorScheme.summaryText,
-                            )
-                        },
-                        leadingContent = {
-                            Icon(
-                                imageVector        = Icons.Filled.RestartAlt,
-                                contentDescription = null,
-                                tint               = SettingsTheme.colorScheme.errorIcon,
-                                modifier           = Modifier.padding(start = 8.dp).size(24.dp),
-                            )
-                        },
-                        colors = ListItemDefaults.colors(containerColor = Color.Transparent),
+                PartsPreferenceGroup {
+                    PartsPreference(
+                        title = stringResource(R.string.thermal_reset_title),
+                        summary = stringResource(R.string.thermal_reset_summary),
+                        icon = Icons.Filled.RestartAlt,
+                        enabled = controlsEnabled,
+                        destructive = true,
+                        onClick = { showResetDialog = true },
                     )
                 }
             }
 
             item(key = "per-app-label") {
-                PartsCategory(stringResource(R.string.thermal_per_app_label))
+                PartsCategoryTitle(stringResource(R.string.thermal_per_app_label))
             }
 
             if (appList.isEmpty()) {
@@ -326,7 +201,7 @@ fun ThermalManagementScreen(onBack: () -> Unit) {
                     Text(
                         text     = stringResource(R.string.thermal_no_apps),
                         style    = MaterialTheme.typography.bodyLarge,
-                        color    = SettingsTheme.colorScheme.summaryText,
+                        color    = MaterialTheme.colorScheme.onSurfaceVariant,
                         modifier = Modifier.padding(horizontal = 32.dp, vertical = 16.dp),
                     )
                 }
@@ -335,13 +210,15 @@ fun ThermalManagementScreen(onBack: () -> Unit) {
                     items = appList,
                     key   = { _, app -> app.packageName },
                 ) { index, app ->
-                    val shape     = getGroupedShape(index, appList.size)
+                    val shape     = groupedShape(index, appList.size)
                     val bottomPad = if (index == appList.lastIndex) 0.dp else 2.dp
                     AppThermalCard(
                         entry    = app,
                         enabled  = controlsEnabled,
                         shape    = shape,
-                        modifier = Modifier.padding(horizontal = 16.dp).padding(bottom = bottomPad),
+                        modifier = Modifier
+                            .padding(horizontal = PartsPageGutter)
+                            .padding(bottom = bottomPad),
                         onClick  = { if (controlsEnabled) pendingApp = app },
                     )
                 }
@@ -351,12 +228,12 @@ fun ThermalManagementScreen(onBack: () -> Unit) {
 
     if (showAddSheet) {
         AppPickerSheet(
-            sheetState      = addSheetState,
+            sheetState        = addSheetState,
             alreadyOverridden = appList.map { it.packageName }.toSet(),
-            onDismiss       = {
+            onDismiss         = {
                 scope.launch { addSheetState.hide() }.invokeOnCompletion { showAddSheet = false }
             },
-            onAppSelected   = { picked ->
+            onAppSelected     = { picked ->
                 scope.launch { addSheetState.hide() }.invokeOnCompletion {
                     showAddSheet  = false
                     pendingNewApp = picked
@@ -441,7 +318,7 @@ fun ThermalManagementScreen(onBack: () -> Unit) {
                         }
                         showResetDialog = false
                     },
-                    colors = ButtonDefaults.textButtonColors(contentColor = SettingsTheme.colorScheme.errorIcon),
+                    colors = ButtonDefaults.textButtonColors(contentColor = MaterialTheme.colorScheme.error),
                 ) {
                     Text(stringResource(R.string.thermal_reset_confirm))
                 }
@@ -451,10 +328,6 @@ fun ThermalManagementScreen(onBack: () -> Unit) {
                     Text(stringResource(android.R.string.cancel))
                 }
             },
-            containerColor    = SettingsTheme.colorScheme.dialogBackground,
-            iconContentColor  = SettingsTheme.colorScheme.errorIcon,
-            titleContentColor = SettingsTheme.colorScheme.titleText,
-            textContentColor  = SettingsTheme.colorScheme.summaryText,
         )
     }
 }
@@ -462,10 +335,10 @@ fun ThermalManagementScreen(onBack: () -> Unit) {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun AppPickerSheet(
-    sheetState:         androidx.compose.material3.SheetState,
-    alreadyOverridden:  Set<String>,
-    onDismiss:          () -> Unit,
-    onAppSelected:      (InstalledAppEntry) -> Unit,
+    sheetState:        androidx.compose.material3.SheetState,
+    alreadyOverridden: Set<String>,
+    onDismiss:         () -> Unit,
+    onAppSelected:     (InstalledAppEntry) -> Unit,
 ) {
     val context       = LocalContext.current
     var query         by remember { mutableStateOf("") }
@@ -499,16 +372,14 @@ private fun AppPickerSheet(
     }
 
     ModalBottomSheet(
-        onDismissRequest  = onDismiss,
-        sheetState        = sheetState,
-        containerColor    = SettingsTheme.colorScheme.cardBackground,
-        dragHandle        = null,
+        onDismissRequest = onDismiss,
+        sheetState       = sheetState,
+        dragHandle       = null,
     ) {
         Column(modifier = Modifier.fillMaxWidth()) {
             Text(
                 text     = stringResource(R.string.thermal_add_app),
                 style    = MaterialTheme.typography.titleLarge,
-                color    = SettingsTheme.colorScheme.titleText,
                 modifier = Modifier.padding(horizontal = 20.dp, vertical = 16.dp),
             )
             OutlinedTextField(
@@ -517,7 +388,7 @@ private fun AppPickerSheet(
                 placeholder   = { Text(stringResource(R.string.thermal_search_apps)) },
                 leadingIcon   = { Icon(Icons.Filled.Search, contentDescription = null) },
                 singleLine    = true,
-                shape         = RoundedCornerShape(28.dp),
+                shape         = MaterialTheme.shapes.extraLarge,
                 modifier      = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp)
@@ -543,13 +414,12 @@ private fun AppPickerSheet(
                                     modifier = Modifier
                                         .size(40.dp)
                                         .clip(CircleShape)
-                                        .background(SettingsTheme.colorScheme.screenBackground),
+                                        .background(MaterialTheme.colorScheme.surfaceContainerHighest),
                                     contentAlignment = Alignment.Center,
                                 ) {
                                     Icon(
                                         imageVector        = Icons.Filled.Apps,
                                         contentDescription = null,
-                                        tint               = SettingsTheme.colorScheme.secondaryIcon,
                                         modifier           = Modifier.size(24.dp),
                                     )
                                 }
@@ -559,7 +429,6 @@ private fun AppPickerSheet(
                             Text(
                                 text     = app.label,
                                 style    = MaterialTheme.typography.titleMedium,
-                                color    = SettingsTheme.colorScheme.titleText,
                                 maxLines = 1,
                                 overflow = TextOverflow.Ellipsis,
                             )
@@ -568,7 +437,6 @@ private fun AppPickerSheet(
                             Text(
                                 text     = app.packageName,
                                 style    = MaterialTheme.typography.bodySmall,
-                                color    = SettingsTheme.colorScheme.summaryText,
                                 maxLines = 1,
                                 overflow = TextOverflow.Ellipsis,
                             )
@@ -599,7 +467,7 @@ private fun AppThermalCard(
             .fillMaxWidth()
             .alpha(if (enabled) 1f else 0.38f),
         shape    = shape,
-        colors   = CardDefaults.cardColors(containerColor = SettingsTheme.colorScheme.cardBackground),
+        colors   = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceBright),
         enabled  = enabled,
     ) {
         Row(
@@ -622,13 +490,12 @@ private fun AppThermalCard(
                         modifier = Modifier
                             .size(40.dp)
                             .clip(CircleShape)
-                            .background(SettingsTheme.colorScheme.screenBackground),
+                            .background(MaterialTheme.colorScheme.surfaceContainerHighest),
                         contentAlignment = Alignment.Center,
                     ) {
                         Icon(
                             imageVector        = Icons.Filled.Apps,
                             contentDescription = null,
-                            tint               = SettingsTheme.colorScheme.secondaryIcon,
                             modifier           = Modifier.size(24.dp),
                         )
                     }
@@ -637,14 +504,13 @@ private fun AppThermalCard(
                     Text(
                         text     = entry.label,
                         style    = MaterialTheme.typography.titleMedium,
-                        color    = SettingsTheme.colorScheme.titleText,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
                     )
                     Text(
                         text     = entry.packageName,
                         style    = MaterialTheme.typography.bodySmall,
-                        color    = SettingsTheme.colorScheme.summaryText,
+                        color    = MaterialTheme.colorScheme.onSurfaceVariant,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
                     )
@@ -652,7 +518,7 @@ private fun AppThermalCard(
             }
             VerticalDivider(
                 modifier = Modifier.height(32.dp),
-                color    = SettingsTheme.colorScheme.divider,
+                color    = MaterialTheme.colorScheme.outlineVariant,
             )
             Box(
                 modifier         = Modifier.width(100.dp).padding(horizontal = 8.dp),
@@ -661,8 +527,8 @@ private fun AppThermalCard(
                 Text(
                     text     = ThermalService.profileLabel(context, entry.profileId),
                     style    = MaterialTheme.typography.labelLarge,
-                    color    = if (isDefault) SettingsTheme.colorScheme.summaryText
-                               else          SettingsTheme.colorScheme.categoryText,
+                    color    = if (isDefault) MaterialTheme.colorScheme.onSurfaceVariant
+                               else          MaterialTheme.colorScheme.primary,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                 )
@@ -684,13 +550,12 @@ private fun ProfilePickerDialog(
     Dialog(onDismissRequest = onDismiss) {
         Card(
             shape  = MaterialTheme.shapes.extraLarge,
-            colors = CardDefaults.cardColors(containerColor = SettingsTheme.colorScheme.dialogBackground),
+            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainerHighest),
         ) {
             Column(modifier = Modifier.fillMaxWidth().padding(vertical = 24.dp)) {
                 Text(
                     text     = title,
                     style    = MaterialTheme.typography.headlineSmall,
-                    color    = SettingsTheme.colorScheme.titleText,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                     modifier = Modifier.padding(horizontal = 24.dp),
@@ -716,7 +581,6 @@ private fun ProfilePickerDialog(
                             Text(
                                 text  = context.getString(profile.label),
                                 style = MaterialTheme.typography.bodyLarge,
-                                color = SettingsTheme.colorScheme.titleText,
                             )
                         }
                     }
@@ -730,40 +594,6 @@ private fun ProfilePickerDialog(
                     Spacer(Modifier.width(8.dp))
                     TextButton(onClick = onConfirm) { Text(stringResource(R.string.thermal_apply)) }
                 }
-            }
-        }
-    }
-}
-
-@Composable
-private fun ChargingBanner() {
-    Card(
-        modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp).padding(top = 8.dp, bottom = 4.dp),
-        shape    = MaterialTheme.shapes.large,
-        colors   = CardDefaults.cardColors(containerColor = SettingsTheme.colorScheme.cardBackground),
-    ) {
-        Row(
-            modifier              = Modifier.fillMaxWidth().padding(16.dp),
-            verticalAlignment     = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(16.dp),
-        ) {
-            Icon(
-                imageVector        = Icons.Filled.BatteryChargingFull,
-                contentDescription = null,
-                tint               = SettingsTheme.colorScheme.primaryIcon,
-                modifier           = Modifier.size(24.dp),
-            )
-            Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                Text(
-                    text  = stringResource(R.string.thermal_charging_toast_connected),
-                    style = MaterialTheme.typography.titleMedium,
-                    color = SettingsTheme.colorScheme.titleText,
-                )
-                Text(
-                    text  = stringResource(R.string.thermal_charging_banner_body),
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = SettingsTheme.colorScheme.summaryText,
-                )
             }
         }
     }

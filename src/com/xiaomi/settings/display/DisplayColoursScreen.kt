@@ -1,51 +1,29 @@
 /*
  * SPDX-FileCopyrightText: 2025 Paranoid Android
+ * SPDX-FileCopyrightText: 2026 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
 package com.xiaomi.settings.display
 
-import androidx.compose.animation.AnimatedContent
-import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.Animatable
-import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.gestures.detectTapGestures
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.Check
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.ListItem
-import androidx.compose.material3.ListItemDefaults
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.MediumTopAppBar
-import androidx.compose.material3.RadioButton
-import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -59,333 +37,196 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.nestedscroll.nestedScroll
-import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.Role
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.xiaomi.settings.R
 import com.xiaomi.settings.ui.Motion
+import com.xiaomi.settings.ui.PartsGroupShape
+import com.xiaomi.settings.ui.PartsInfoCard
+import com.xiaomi.settings.ui.PartsPageGutter
+import com.xiaomi.settings.ui.PartsPreferenceGroup
+import com.xiaomi.settings.ui.PartsScaffold
+import com.xiaomi.settings.ui.PartsSelectionPreference
 import com.xiaomi.settings.ui.shimmerAlpha
 import com.xiaomi.settings.utils.PartsToast
 import kotlinx.coroutines.launch
-import kotlin.math.sqrt
 
 private typealias ColorMode = ColorService.ColorMode
 
 private val ColorMode.previewHue: Color
     get() = when (this) {
-        ColorMode.VIVID     -> Color(0xFFFF3B5C)
+        ColorMode.VIVID -> Color(0xFFFF3B5C)
         ColorMode.SATURATED -> Color(0xFFFF8800)
-        ColorMode.STANDARD  -> Color(0xFF00C2FF)
-        ColorMode.ORIGINAL  -> Color(0xFFBBBBBB)
-        ColorMode.P3        -> Color(0xFF00E676)
-        ColorMode.SRGB      -> Color(0xFF7C4DFF)
+        ColorMode.STANDARD -> Color(0xFF00C2FF)
+        ColorMode.ORIGINAL -> Color(0xFFBBBBBB)
+        ColorMode.P3 -> Color(0xFF00E676)
+        ColorMode.SRGB -> Color(0xFF7C4DFF)
     }
 
 private val blobPositions = listOf(
-    Pair(0.18f, 0.30f), Pair(0.50f, 0.20f), Pair(0.82f, 0.30f),
-    Pair(0.18f, 0.72f), Pair(0.50f, 0.80f), Pair(0.82f, 0.72f),
+    0.18f to 0.30f,
+    0.50f to 0.20f,
+    0.82f to 0.30f,
+    0.18f to 0.72f,
+    0.50f to 0.80f,
+    0.82f to 0.72f,
 )
 
 @Composable
 private fun ColourPreviewHero(
-    selectedId:   Int,
-    onSelect:     (Int) -> Unit,
-    shimmerColor: Color,
-    modifier:     Modifier = Modifier,
+    selectedId: Int,
+    modifier: Modifier = Modifier,
 ) {
-    val allModes = ColorMode.entries
-    val scope    = rememberCoroutineScope()
-
-    val radiusScales = allModes.map { mode ->
+    val modes = ColorMode.entries
+    val scope = rememberCoroutineScope()
+    val radiusScales = modes.map { mode ->
         remember(mode) { Animatable(if (mode.id == selectedId) 1.35f else 0.85f) }
     }
 
     LaunchedEffect(selectedId) {
-        allModes.forEachIndexed { i, mode ->
+        modes.forEachIndexed { index, mode ->
             scope.launch {
-                radiusScales[i].animateTo(
-                    if (mode.id == selectedId) 1.35f else 0.85f,
+                radiusScales[index].animateTo(
+                    targetValue = if (mode.id == selectedId) 1.35f else 0.85f,
                     animationSpec = Motion.defaultEffectsSpec(),
                 )
             }
         }
     }
 
-    val alphas = allModes.map { mode ->
+    val alphas = modes.map { mode ->
         animateFloatAsState(
-            targetValue   = if (mode.id == selectedId) 0.90f else 0.28f,
+            targetValue = if (mode.id == selectedId) 0.90f else 0.26f,
             animationSpec = Motion.defaultEffectsSpec(),
-            label         = "alpha_${mode.name}",
+            label = "colourPreviewAlpha_${mode.name}",
         )
     }
-
-    val shimmerOffset by rememberInfiniteTransition(label = "shimmer").animateFloat(
-        initialValue  = -1f,
-        targetValue   = 2f,
-        animationSpec = infiniteRepeatable(
-            animation  = Motion.shimmerSpec(),
-            repeatMode = androidx.compose.animation.core.RepeatMode.Restart,
-        ),
-        label = "shimmerOffset",
-    )
+    val shimmerOffset by rememberInfiniteTransition(label = "colourPreviewShimmer")
+        .animateFloat(
+            initialValue = -1f,
+            targetValue = 2f,
+            animationSpec = infiniteRepeatable(
+                animation = Motion.shimmerSpec(),
+                repeatMode = RepeatMode.Restart,
+            ),
+            label = "colourPreviewShimmerOffset",
+        )
 
     BoxWithConstraints(
         modifier = modifier
             .fillMaxWidth()
-            .height(200.dp)
-            .clip(MaterialTheme.shapes.extraLarge)
-            .background(MaterialTheme.colorScheme.surfaceContainerHighest)
-            .pointerInput(selectedId) {
-                detectTapGestures { tapOffset ->
-                    val w = size.width.toFloat()
-                    val h = size.height.toFloat()
-                    var best = -1
-                    var bestDist = Float.MAX_VALUE
-                    blobPositions.forEachIndexed { i, (fx, fy) ->
-                        val cx = fx * w
-                        val cy = fy * h
-                        val dx = tapOffset.x - cx
-                        val dy = tapOffset.y - cy
-                        val dist = sqrt(dx * dx + dy * dy)
-                        if (dist < bestDist) {
-                            bestDist = dist
-                            best = i
-                        }
-                    }
-                    if (best >= 0) onSelect(allModes[best].id)
-                }
-            },
+            .height(216.dp)
+            .clip(PartsGroupShape)
+            .background(MaterialTheme.colorScheme.surfaceBright),
     ) {
-        val widthPx  = with(LocalDensity.current) { maxWidth.toPx() }
-        val heightPx = with(LocalDensity.current) { maxHeight.toPx() }
+        val widthPx = with(LocalDensity.current) { maxWidth.toPx() }
         val baseRadius = widthPx * 0.26f
 
         Canvas(modifier = Modifier.matchParentSize()) {
-            val shimmerStartX = shimmerOffset * size.width
-
-            allModes.forEachIndexed { i, mode ->
-                val (fx, fy) = blobPositions[i]
-                val cx     = fx * size.width
-                val cy     = fy * size.height
-                val radius = baseRadius * radiusScales[i].value
-                val hue    = mode.previewHue
-
+            modes.forEachIndexed { index, mode ->
+                val (xFraction, yFraction) = blobPositions[index]
+                val center = Offset(xFraction * size.width, yFraction * size.height)
+                val radius = baseRadius * radiusScales[index].value
+                val hue = mode.previewHue
                 drawCircle(
                     brush = Brush.radialGradient(
                         colorStops = arrayOf(
-                            0.0f to hue.copy(alpha = alphas[i].value),
-                            0.5f to hue.copy(alpha = alphas[i].value * 0.55f),
-                            1.0f to Color.Transparent,
+                            0f to hue.copy(alpha = alphas[index].value),
+                            0.5f to hue.copy(alpha = alphas[index].value * 0.55f),
+                            1f to Color.Transparent,
                         ),
-                        center = Offset(cx, cy),
+                        center = center,
                         radius = radius,
                     ),
                     radius = radius,
-                    center = Offset(cx, cy),
+                    center = center,
                 )
             }
 
-            val shimmerW = size.width * 0.20f
+            val shimmerStart = shimmerOffset * size.width
             drawRect(
                 brush = Brush.linearGradient(
                     colors = listOf(
-                        shimmerColor.copy(alpha = 0f),
-                        shimmerColor.copy(alpha = shimmerAlpha),
-                        shimmerColor.copy(alpha = 0f),
+                        Color.White.copy(alpha = 0f),
+                        Color.White.copy(alpha = shimmerAlpha),
+                        Color.White.copy(alpha = 0f),
                     ),
-                    start = Offset(shimmerStartX, 0f),
-                    end   = Offset(shimmerStartX + shimmerW, size.height),
+                    start = Offset(shimmerStart, 0f),
+                    end = Offset(shimmerStart + size.width * 0.2f, size.height),
                 ),
             )
         }
 
-        val activeMode = allModes.firstOrNull { it.id == selectedId }
-        if (activeMode != null) {
-            Text(
-                text     = stringResource(activeMode.label),
-                style    = MaterialTheme.typography.labelMedium,
-                color    = Color.White,
+        modes.firstOrNull { it.id == selectedId }?.let { activeMode ->
+            Surface(
                 modifier = Modifier
                     .align(Alignment.BottomStart)
-                    .padding(start = 16.dp, bottom = 12.dp),
-            )
+                    .padding(16.dp),
+                shape = MaterialTheme.shapes.extraLarge,
+                color = MaterialTheme.colorScheme.primaryContainer,
+                contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+            ) {
+                Text(
+                    text = stringResource(activeMode.label),
+                    style = MaterialTheme.typography.labelLarge,
+                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
+                )
+            }
         }
     }
 }
 
-@Composable
-private fun SelectionRow(
-    mode:       ColorMode,
-    isSelected: Boolean,
-    onClick:    () -> Unit,
-) {
-    val bgColor by animateColorAsState(
-        targetValue   = if (isSelected)
-            MaterialTheme.colorScheme.secondaryContainer
-        else
-            Color.Transparent,
-        animationSpec = Motion.defaultEffectsSpec(),
-        label         = "selectionBg",
-    )
-    val titleColor by animateColorAsState(
-        targetValue   = if (isSelected)
-            MaterialTheme.colorScheme.onSecondaryContainer
-        else
-            MaterialTheme.colorScheme.onSurface,
-        animationSpec = Motion.defaultEffectsSpec(),
-        label         = "titleColor",
-    )
-
-    ListItem(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 12.dp, vertical = 4.dp)
-            .clip(MaterialTheme.shapes.large)
-            .background(bgColor)
-            .clickable(role = Role.RadioButton, onClick = onClick),
-        headlineContent = {
-            Text(
-                text  = stringResource(mode.label),
-                style = MaterialTheme.typography.bodyLarge,
-                color = titleColor,
-            )
-        },
-        supportingContent = {
-            Text(
-                text  = stringResource(mode.description),
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
-        },
-        leadingContent = {
-            RadioButton(
-                selected = isSelected,
-                onClick  = null,
-            )
-        },
-        trailingContent = {
-            AnimatedContent(
-                targetState = isSelected,
-                transitionSpec = {
-                    fadeIn(Motion.checkFadeInSpec()) togetherWith fadeOut(Motion.checkFadeOutSpec())
-                },
-                label = "checkIcon",
-            ) { selected ->
-                if (selected) {
-                    Icon(
-                        imageVector        = Icons.Filled.Check,
-                        contentDescription = null,
-                        tint               = MaterialTheme.colorScheme.onSecondaryContainer,
-                        modifier           = Modifier.size(24.dp),
-                    )
-                } else {
-                    Box(Modifier.size(24.dp))
-                }
-            }
-        },
-        colors = ListItemDefaults.colors(containerColor = Color.Unspecified),
-    )
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DisplayColoursScreen(onBack: () -> Unit) {
     val context = LocalContext.current
+    var selectedId by remember { mutableIntStateOf(ColorService.getColorMode(context)) }
 
-    var selectedId by remember {
-        mutableIntStateOf(ColorService.getColorMode(context))
+    fun selectMode(mode: ColorMode) {
+        runCatching {
+            ColorService.setColorMode(context, mode.id)
+            selectedId = mode.id
+        }.onFailure {
+            PartsToast.show(context, R.string.display_colours_failed)
+        }
     }
 
-    // exitUntilCollapsed matches the rest of the app and avoids the jumpy
-    // show/hide on a short finite list that enterAlways causes.
-    val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
-
-    // Monet-derived shimmer: onSurface adapts to the wallpaper tonal palette
-    // and never bleaches out blobs in light dynamic themes the way White does.
-    val shimmerColor = MaterialTheme.colorScheme.onSurface
-
-    Scaffold(
-        modifier       = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
-        containerColor = MaterialTheme.colorScheme.background,
-        topBar = {
-            MediumTopAppBar(
-                title = {
-                    Text(
-                        text     = stringResource(R.string.display_colours_title),
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis,
-                    )
-                },
-                navigationIcon = {
-                    IconButton(onClick = onBack) {
-                        Icon(
-                            imageVector        = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = stringResource(R.string.navigate_up),
-                        )
-                    }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor         = MaterialTheme.colorScheme.background,
-                    scrolledContainerColor = MaterialTheme.colorScheme.surfaceContainerHigh,
-                ),
-                scrollBehavior = scrollBehavior,
-            )
-        },
+    PartsScaffold(
+        title = stringResource(R.string.display_colours_title),
+        onBack = onBack,
     ) { innerPadding ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding)
-                .verticalScroll(rememberScrollState()),
+        LazyColumn(
+            modifier = Modifier.fillMaxSize(),
+            contentPadding = PaddingValues(
+                top = innerPadding.calculateTopPadding() + 12.dp,
+                bottom = innerPadding.calculateBottomPadding() + 24.dp,
+            ),
         ) {
-            Spacer(Modifier.height(16.dp))
-
-            ColourPreviewHero(
-                selectedId   = selectedId,
-                shimmerColor = shimmerColor,
-                onSelect     = { id ->
-                    runCatching {
-                        ColorService.setColorMode(context, id)
-                        selectedId = id
-                    }.onFailure {
-                        PartsToast.show(context, R.string.display_colours_failed)
-                    }
-                },
-                modifier = Modifier.padding(horizontal = 16.dp)
-            )
-
-            Spacer(Modifier.height(16.dp))
-
-            Card(
-                modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
-                shape    = MaterialTheme.shapes.extraLarge,
-                colors   = CardDefaults.cardColors(
-                    containerColor = MaterialTheme.colorScheme.surfaceContainerHigh,
-                ),
-            ) {
-                Column(modifier = Modifier.padding(vertical = 8.dp)) {
+            item(key = "preview") {
+                ColourPreviewHero(
+                    selectedId = selectedId,
+                    modifier = Modifier.padding(
+                        horizontal = PartsPageGutter,
+                        vertical = 6.dp,
+                    ),
+                )
+            }
+            item(key = "description") {
+                PartsInfoCard(body = stringResource(R.string.display_colours_description))
+            }
+            item(key = "modes") {
+                PartsPreferenceGroup {
                     ColorMode.entries.forEach { mode ->
-                        SelectionRow(
-                            mode       = mode,
-                            isSelected = selectedId == mode.id,
-                            onClick    = {
-                                runCatching {
-                                    ColorService.setColorMode(context, mode.id)
-                                    selectedId = mode.id
-                                }.onFailure {
-                                    PartsToast.show(context, R.string.display_colours_failed)
-                                }
-                            },
+                        PartsSelectionPreference(
+                            title = stringResource(mode.label),
+                            summary = stringResource(mode.description),
+                            selected = selectedId == mode.id,
+                            onClick = { selectMode(mode) },
                         )
                     }
                 }
             }
-            Spacer(Modifier.height(32.dp))
         }
     }
 }

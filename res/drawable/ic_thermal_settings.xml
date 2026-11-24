@@ -2,34 +2,14 @@
 <!--
     Copyright (C) 2025 Paranoid Android
     SPDX-License-Identifier: Apache-2.0
-
-    Thermal Management icon.
-    Concept: bold flame silhouette with an inner teardrop cutout
-    (evenOdd fill). Universally recognised as heat/temperature.
-    Thick filled shape — no thin strokes — holds at 24dp.
-    fillColor white — Compose Icon tint is the sole colour source.
 -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="24dp"
     android:height="24dp"
     android:viewportWidth="24"
     android:viewportHeight="24">
-
-    <!--
-        Outer flame + inner cutout as single evenOdd compound path.
-
-        Flame outer silhouette:
-          - Base centred at (12, 21)
-          - Rises to a pointed tip at (12, 2)
-          - Curves outward to the sides creating the classic flame shape
-          - Secondary lick curves inward on left side
-
-        Inner teardrop cutout:
-          - Smaller teardrop centred ~(12,13) punched through via evenOdd
-    -->
     <path
         android:fillColor="@android:color/white"
-        android:fillType="evenOdd"
         android:pathData="
             M12,2
             C12,2 18,8 18,14

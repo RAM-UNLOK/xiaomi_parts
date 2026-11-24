@@ -71,13 +71,18 @@ class ThermalUtils private constructor(private val context: Context) {
         dlog(TAG, "Default profile applied (sconfig=${ThermalState.DEFAULT.sconfig})")
     }
 
+    fun setNoLimitsProfile() {
+        writeSconfig(ThermalState.NOLIMITS.sconfig)
+        dlog(TAG, "NoLimits profile applied (sconfig=${ThermalState.NOLIMITS.sconfig})")
+    }
+
     private fun setThermalProfileInternal(packageName: String) {
         val state = getStateForPackage(packageName)
         writeSconfig(state.sconfig)
         dlog(TAG, "setThermalProfileInternal: $packageName -> $state (sconfig=${state.sconfig})")
     }
 
-    private fun writeSconfig(sconfig: String) {
+    fun writeSconfig(sconfig: String) {
         runCatching { writeLine(THERMAL_SCONFIG, sconfig) }
             .onFailure { dlog(TAG, "writeSconfig($sconfig) failed: ${it.message}") }
     }
@@ -107,8 +112,8 @@ class ThermalUtils private constructor(private val context: Context) {
                 isVideoCallApp(packageName)       -> ThermalState.VIDEO_CALL
                 is4KVideoApp(packageName)         -> ThermalState.VIDEO_4K
                 isVideoApp(packageName)           -> ThermalState.VIDEO
-                isMusicApp(appInfo, pm)           -> ThermalState.VIDEO
-                isSocialApp(appInfo)              -> ThermalState.VIDEO
+                isMusicApp(appInfo, pm)          -> ThermalState.DEFAULT
+                isSocialApp(appInfo)             -> ThermalState.DEFAULT
                 isNavigationApp(packageName, pm)  -> ThermalState.NAVIGATION
                 else                              -> ThermalState.DEFAULT
             }
@@ -145,25 +150,59 @@ class ThermalUtils private constructor(private val context: Context) {
         }.getOrDefault(false)
 
     private fun isVideoCallApp(packageName: String): Boolean =
-        VIDEO_CALL_PKGS.any { packageName.startsWith(it) }
+        // Use exact match for known apps, prefix match for others.
+        // Only Telegram (org.telegram.messenger) uses video calls; the other apps
+        // are always video-call apps.
+        VIDEO_CALL_PKGS.any { pkg ->
+            when {
+                pkg == "org.telegram.messenger" -> packageName == pkg  // exact match only
+                else -> packageName.startsWith(pkg)
+            }
+        }
 
     private fun is4KVideoApp(packageName: String): Boolean =
         VIDEO_4K_PKGS.any { packageName.startsWith(it) }
 
     private fun isVideoApp(packageName: String): Boolean =
-        VIDEO_PKGS.any { packageName.startsWith(it) }
+        // Use exact match or strict prefix matching to avoid false positives.
+        // Exclude messaging apps and video-call apps that are handled separately.
+        VIDEO_PKGS.any { pkg ->
+            when {
+                pkg == "com.google.android.youtube" -> packageName == pkg  // exact match only
+                pkg.startsWith("com.google.android") -> packageName.startsWith(pkg)
+                else -> packageName.startsWith(pkg)
+            }
+        }
 
     private fun isMusicApp(appInfo: ApplicationInfo, pm: PackageManager): Boolean =
+        // Only match known music apps by exact package name or known prefixes.
+        // Explicitly exclude YouTube Music and other video-heavy apps.
         appInfo.category == ApplicationInfo.CATEGORY_AUDIO ||
-            MUSIC_PKGS.any { appInfo.packageName.startsWith(it) } ||
+            MUSIC_PKGS.any { appInfo.packageName.startsWith(it) } &&
+            !appInfo.packageName.contains("youtube", ignoreCase = true) &&
+            !appInfo.packageName.contains("video", ignoreCase = true) ||
             pm.queryIntentActivities(
                 Intent(Intent.ACTION_VIEW).setType("audio/*"),
                 PackageManager.MATCH_DEFAULT_ONLY,
             ).any { it.activityInfo.packageName == appInfo.packageName }
 
     private fun isSocialApp(appInfo: ApplicationInfo): Boolean =
+        // Only match known social apps by exact package name or known prefixes.
+        // Exclude messaging apps and video-heavy social apps from being classified as video apps.
         appInfo.category == ApplicationInfo.CATEGORY_SOCIAL ||
-            SOCIAL_PKGS.any { appInfo.packageName.startsWith(it) }
+            SOCIAL_PKGS.any { appInfo.packageName.startsWith(it) } &&
+            !appInfo.packageName.contains("messaging", ignoreCase = true) &&
+            !appInfo.packageName.contains("chat", ignoreCase = true) &&
+            !appInfo.packageName.contains("telegram", ignoreCase = true) &&
+            !appInfo.packageName.contains("whatsapp", ignoreCase = true) &&
+            !appInfo.packageName.contains("signal", ignoreCase = true) &&
+            !appInfo.packageName.contains("viber", ignoreCase = true) &&
+            !appInfo.packageName.contains("skype", ignoreCase = true) &&
+            !appInfo.packageName.contains("discord", ignoreCase = true) &&
+            !appInfo.packageName.contains("line", ignoreCase = true) &&
+            !appInfo.packageName.contains("wechat", ignoreCase = true) &&
+            !appInfo.packageName.contains("messenger", ignoreCase = true) &&
+            !appInfo.packageName.contains("snapchat", ignoreCase = true)
 
     private fun isNavigationApp(packageName: String, pm: PackageManager): Boolean =
         pm.queryIntentActivities(
@@ -199,8 +238,8 @@ class ThermalUtils private constructor(private val context: Context) {
      *   5   thermal-phone.conf         DIALER
      *   6   thermal-nolimits.conf      NOLIMITS (benchmarks)
      *   10  thermal-navigation.conf    NAVIGATION
-     *   11  thermal-video.conf         VIDEO (video, music, social)
-     *   14  thermal-videochat.conf     VIDEO_CALL
+     *   11  thermal-video.conf         VIDEO (video playback apps)
+     *   14  thermal-videochat.conf     VIDEO_CALL (video call apps)
      *   15  thermal-camera.conf        CAMERA
      *   16  thermal-4k.conf            VIDEO_4K
      *   18  thermal-tgame.conf         GAMING_HEAVY
@@ -247,11 +286,10 @@ class ThermalUtils private constructor(private val context: Context) {
         )
         private val BENCHMARK_PKGS = listOf(
             "com.antutu",
+            "com.texts.throttlebench",
             "com.futuremark",
             "com.primatelabs",
-            "com.ludashi",
-            "net.kishonti",
-            "com.tencent.wetest"
+            "com.passmark"
         )
         private val COMPETITIVE_GAME_PKGS = listOf(
             "com.tencent.ig",
@@ -273,11 +311,15 @@ class ThermalUtils private constructor(private val context: Context) {
             "com.LevelInfinite.Hotta.tof"
         )
         private val VIDEO_CALL_PKGS = listOf(
-            "com.google.android.apps.meetings",
+            "com.google.android.apps.tachyon",
+            "com.whatsapp",
+            "us.zoom.videomeetings",
             "com.microsoft.teams",
             "us.zoom.videomeetings",
             "com.discord",
-            "com.skype.raider"
+            "com.viber.voip",
+            "com.skype.raider",
+            "com.streamlabs"
         )
         private val VIDEO_4K_PKGS = listOf(
             "com.netflix.mediaclient"
@@ -285,17 +327,29 @@ class ThermalUtils private constructor(private val context: Context) {
         private val VIDEO_PKGS = listOf(
             "com.netflix",
             "com.amazon.avod",
+            "com.amazon.amazonvideo.livingroom",
             "com.disney.disneyplus",
             "com.hotstar",
-            "com.jio.jiocinema",
+            "com.jio.media.jiotvplus",
+            "com.jio.jioplay.tv",
+            "in.startv.hotstar",
+            "com.sonyliv",
             "com.hbo.hbonow",
             "com.hulu.plus",
-            "com.apple.atve.android.app",
+            "com.apple.atve",
             "com.plexapp.android",
             "com.google.android.youtube",
+            "com.google.android.apps.youtube.kids",
             "tv.twitch.android.app",
             "com.google.android.youtube.creator",
-            "com.bilibili.app.in"
+            "com.bilibili.app.in",
+            "com.dailymotion.dailymotion",
+            "com.viki.android",
+            "com.ryzmedia.tatasky",
+            "tv.accedo.airtel.wynk",
+            "com.graymatrix.did",
+            "com.crunchyroll.crunchyroid",
+            "com.google.android.videos"
         )
         private val MUSIC_PKGS = listOf(
             "com.spotify.music",
@@ -303,12 +357,9 @@ class ThermalUtils private constructor(private val context: Context) {
             "com.soundcloud.android",
             "com.pandora.android",
             "com.amazon.mp3",
-            "com.google.android.apps.youtube.music",
             "deezer.android.app"
         )
         private val SOCIAL_PKGS = listOf(
-            "com.whatsapp",
-            "com.whatsapp.w4b",
             "org.telegram.messenger",
             "com.twitter.android",
             "com.snapchat.android",
@@ -317,7 +368,6 @@ class ThermalUtils private constructor(private val context: Context) {
             "com.facebook.orca",
             "com.facebook.katana",
             "com.instagram.android",
-            "com.viber.voip",
             "com.vkontakte.android",
             "com.reddit.frontpage",
             "com.pinterest"

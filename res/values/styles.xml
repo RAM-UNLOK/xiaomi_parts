@@ -21,10 +21,7 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowActivityTransitions">true</item>
         <item name="android:windowContentTransitions">true</item>
-        <!-- Required: lets Settings inflate the M3 MaterialCardView wrapper
-             around this tile row on the homepage. Without this attr,
-             TopLevelPreferenceFragment has no card style to apply. -->
-        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v2.Material</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
     </style>
 
 </resources>
