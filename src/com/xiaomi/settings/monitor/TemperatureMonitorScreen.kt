@@ -73,18 +73,14 @@ fun TemperatureMonitorScreen(onBack: () -> Unit) {
     val repository = remember(context) { TemperatureMonitorRepository(context) }
     var snapshot by remember { mutableStateOf(TemperatureSnapshot()) }
     var history by remember { mutableStateOf(emptyList<HistorySample>()) }
-    var batteryC by remember { mutableFloatStateOf(0f) }
-    var cpuC by remember { mutableFloatStateOf(0f) }
-    var isThrottling by remember { mutableStateOf(false) }
+    var lastUpdated by remember { mutableStateOf(0L) }
 
     // Periodically refresh data on IO dispatcher
     LaunchedEffect(repository) {
         while (isActive) {
             val reading = withContext(Dispatchers.IO) { repository.read() }
             snapshot = reading
-            batteryC = reading.batteryC ?: 0f
-            cpuC = reading.cpuMaximumC ?: 0f
-            isThrottling = reading.thermalStatus != null && reading.thermalStatus >= Temperature.THROTTLING_LIGHT
+            lastUpdated = reading.sampledAtElapsed
             history = (history + HistorySample(reading.sampledAtElapsed, reading.cpuMaximumC, reading.batteryC))
                 .filter { it.time >= reading.sampledAtElapsed - 120_000 }
                 .takeLast(60)
@@ -92,6 +88,8 @@ fun TemperatureMonitorScreen(onBack: () -> Unit) {
         }
     }
 
+    // Detect throttling state
+    val isThrottling = snapshot.thermalStatus != null && snapshot.thermalStatus >= Temperature.THROTTLING_LIGHT
     val thermalColor = if (isThrottling) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.tertiary
 
     PartsScaffold(
@@ -170,7 +168,7 @@ fun TemperatureMonitorScreen(onBack: () -> Unit) {
                             )
                             Spacer(Modifier.height(4.dp))
                             Text(
-                                text = temperatureText(cpuC),
+                                text = temperatureText(snapshot.cpuMaximumC ?: 0f),
                                 style = MaterialTheme.typography.headlineMedium,
                                 fontWeight = FontWeight.Bold,
                                 color = MaterialTheme.colorScheme.primary,
@@ -225,7 +223,7 @@ fun TemperatureMonitorScreen(onBack: () -> Unit) {
                             )
                             Spacer(Modifier.height(4.dp))
                             Text(
-                                text = temperatureText(batteryC),
+                                text = temperatureText(snapshot.batteryC ?: 0f),
                                 style = MaterialTheme.typography.headlineMedium,
                                 fontWeight = FontWeight.Bold,
                                 color = MaterialTheme.colorScheme.tertiary,
@@ -280,7 +278,7 @@ fun TemperatureMonitorScreen(onBack: () -> Unit) {
             // History chart
             item("history") {
                 PartsCategoryTitle(stringResource(R.string.temperature_monitor_history))
-                TemperatureHistory(history, batteryC, cpuC)
+                TemperatureHistory(history)
             }
         }
     }
@@ -364,11 +362,7 @@ private fun SensorRow(sensor: TemperatureReading) {
 }
 
 @Composable
-private fun TemperatureHistory(
-    history: List<HistorySample>,
-    batteryC: Float,
-    cpuC: Float,
-) {
+private fun TemperatureHistory(history: List<HistorySample>) {
     val cpuColor = MaterialTheme.colorScheme.primary
     val batteryColor = MaterialTheme.colorScheme.tertiary
     val gridColor = MaterialTheme.colorScheme.surfaceContainerHighest
