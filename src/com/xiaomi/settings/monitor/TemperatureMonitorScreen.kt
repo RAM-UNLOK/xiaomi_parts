@@ -72,7 +72,7 @@ fun TemperatureMonitorScreen(onBack: () -> Unit) {
     val context = LocalContext.current.applicationContext
     val repository = remember(context) { TemperatureMonitorRepository(context) }
     var snapshot by remember { mutableStateOf(TemperatureSnapshot()) }
-    var history by remember { mutableStateOf(emptyList<HistorySample>()) }
+    var history by remember { mutableStateOf(mutableStateListOf<HistorySample>()) }
     var lastUpdated by remember { mutableStateOf(0L) }
 
     // Periodically refresh data on IO dispatcher

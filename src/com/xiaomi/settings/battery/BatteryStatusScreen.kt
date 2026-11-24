@@ -344,12 +344,8 @@ private fun BatteryHero(
                     label = "batteryIcon",
                 ) {
                     Icon(
-                        imageVector = Icons.Filled.BatteryChargingFull,
+                        ImageVector = Icons.Filled.BatteryChargingFull,
                         contentDescription = null,
-                        modifier = Modifier.size(38.dp),
-                        tint = color,
-                    )
-                }
                         modifier = Modifier.size(38.dp),
                         tint = color,
                     )

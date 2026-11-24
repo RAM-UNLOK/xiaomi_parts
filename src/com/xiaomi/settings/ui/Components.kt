@@ -47,7 +47,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 /** Default horizontal gutter matching the home-screen card grid. */
-val PageGutter: Dp = 20.dp
+val PartsPageGutter = 16.dp
 
 // ──────────────────────────────────────────────────────────────────────────
 // Pressable card — scales down slightly while pressed (expressive touch).
