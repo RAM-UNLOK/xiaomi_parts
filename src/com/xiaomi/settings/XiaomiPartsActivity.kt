@@ -20,7 +20,7 @@ import androidx.navigation.compose.rememberNavController
 import com.xiaomi.settings.battery.BatteryStatusScreen
 import com.xiaomi.settings.display.DisplayColoursScreen
 import com.xiaomi.settings.display.ScreenResolutionScreen
-
+import com.xiaomi.settings.monitor.TemperatureMonitorScreen
 import com.xiaomi.settings.thermal.ThermalManagementScreen
 import com.xiaomi.settings.touchsampling.TouchBoostScreen
 import com.xiaomi.settings.ui.Motion
@@ -69,6 +69,7 @@ private fun PartsNavHost() {
                 onNavigateToBattery     = { nav.navigate("batteryStatus") },
                 onNavigateToThermal     = { nav.navigate("thermal") },
                 onNavigateToTouch       = { nav.navigate("touchBoost") },
+                onNavigateToMonitor     = { nav.navigate("temperatureMonitor") },
             )
         }
         composable("displayColours")    { DisplayColoursScreen { nav.popBackStack() } }
@@ -76,5 +77,6 @@ private fun PartsNavHost() {
         composable("batteryStatus")     { BatteryStatusScreen { nav.popBackStack() } }
         composable("thermal")           { ThermalManagementScreen { nav.popBackStack() } }
         composable("touchBoost")        { TouchSamplingScreen { nav.popBackStack() } }
+        composable("temperatureMonitor") { TemperatureMonitorScreen { nav.popBackStack() } }
     }
 }

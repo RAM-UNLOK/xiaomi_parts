@@ -40,6 +40,7 @@ fun XiaomiPartsHomeScreen(
     onNavigateToBattery: () -> Unit,
     onNavigateToThermal: () -> Unit,
     onNavigateToTouch: () -> Unit,
+    onNavigateToMonitor: () -> Unit,
 ) {
     val context = LocalContext.current
 
@@ -98,6 +99,12 @@ fun XiaomiPartsHomeScreen(
                         title = stringResource(R.string.battery_status_title),
                         summary = stringResource(R.string.battery_status_summary),
                         onClick = onNavigateToBattery,
+                    )
+                    PartsPreference(
+                        icon = Icons.Filled.Sensors,
+                        title = stringResource(R.string.temperature_monitor_title),
+                        summary = stringResource(R.string.temperature_monitor_summary),
+                        onClick = onNavigateToMonitor,
                     )
                 }
             }

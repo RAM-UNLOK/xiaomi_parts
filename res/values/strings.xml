@@ -138,4 +138,27 @@
     <string name="speaker_calibration_title">Speaker calibration</string>
     <string name="speaker_calibration_summary">CIT speaker self-calibration test</string>
     <string name="speaker_calibration_not_found">Speaker calibration not available</string>
+
+    <!-- ── Temperature Monitor ──────────────────────────────── -->
+    <string name="temperature_monitor_title">Temperature monitor</string>
+    <string name="temperature_monitor_summary">Real-time thermal and battery monitoring</string>
+    <string name="temperature_monitor_status">Thermal status</string>
+    <string name="temperature_monitor_sampled">Sampled %1$s ms ago</string>
+    <string name="temperature_monitor_live">Live</string>
+    <string name="temperature_monitor_cpu_max">CPU max</string>
+    <string name="temperature_monitor_gpu_max">GPU max</string>
+    <string name="temperature_monitor_battery">Battery</string>
+    <string name="temperature_monitor_skin_max">Skin max</string>
+    <string name="temperature_monitor_sensors">Sensors</string>
+    <string name="temperature_monitor_no_sensors">No sensors available</string>
+    <string name="temperature_monitor_history">History</string>
+    <string name="temperature_monitor_unavailable">Unavailable</string>
+    <string name="temperature_monitor_history_summary">Temperature trend over the last 2 minutes. Dotted lines are grid references.</string>
+    <string name="temperature_monitor_severity_none">Normal</string>
+    <string name="temperature_monitor_severity_light">Light throttling</string>
+    <string name="temperature_monitor_severity_moderate">Moderate throttling</string>
+    <string name="temperature_monitor_severity_severe">Severe throttling</string>
+    <string name="temperature_monitor_severity_critical">Critical</string>
+    <string name="temperature_monitor_severity_emergency">Emergency</string>
+    <string name="temperature_monitor_severity_shutdown">Shutdown</string>
 </resources>
