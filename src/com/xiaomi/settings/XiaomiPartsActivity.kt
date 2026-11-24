@@ -23,6 +23,7 @@ import com.xiaomi.settings.display.DisplayColoursScreen
 import com.xiaomi.settings.display.ScreenResolutionScreen
 import com.xiaomi.settings.monitor.MemoryMonitorScreen
 import com.xiaomi.settings.thermal.ThermalManagementScreen
+import com.xiaomi.settings.thermalmonitor.ThermalMonitorScreen
 import com.xiaomi.settings.touchsampling.TouchBoostScreen
 import com.xiaomi.settings.ui.Motion
 import com.xiaomi.settings.ui.XiaomiPartsTheme
@@ -68,7 +69,6 @@ private fun PartsNavHost() {
                 onNavigateToDisplay     = { nav.navigate("displayColours") },
                 onNavigateToResolution  = { nav.navigate("screenResolution") },
                 onNavigateToCpu         = { nav.navigate("cpuControl") },
-                onNavigateToBattery     = { nav.navigate("batteryStatus") },
                 onNavigateToMemory      = { nav.navigate("memory") },
                 onNavigateToThermal     = { nav.navigate("thermal") },
                 onNavigateToTouch       = { nav.navigate("touchBoost") },
@@ -77,9 +77,9 @@ private fun PartsNavHost() {
         composable("displayColours")    { DisplayColoursScreen { nav.popBackStack() } }
         composable("screenResolution")  { ScreenResolutionScreen { nav.popBackStack() } }
         composable("cpuControl")        { CpuControlScreen { nav.popBackStack() } }
-        composable("batteryStatus")     { BatteryStatusScreen { nav.popBackStack() } }
         composable("memory")            { MemoryMonitorScreen { nav.popBackStack() } }
         composable("thermal")           { ThermalManagementScreen { nav.popBackStack() } }
         composable("touchBoost")        { TouchBoostScreen { nav.popBackStack() } }
+        composable("thermalMonitor")    { ThermalMonitorScreen { nav.popBackStack() } }
     }
 }

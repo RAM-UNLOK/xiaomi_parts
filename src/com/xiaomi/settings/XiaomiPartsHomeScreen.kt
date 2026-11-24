@@ -31,7 +31,7 @@ fun XiaomiPartsHomeScreen(
     onNavigateToDisplay: () -> Unit,
     onNavigateToResolution: () -> Unit,
     onNavigateToCpu: () -> Unit,
-    onNavigateToBattery: () -> Unit,
+    onNavigateToBattery: () -> Unit = {},
     onNavigateToMemory: () -> Unit,
     onNavigateToThermal: () -> Unit,
     onNavigateToTouch: () -> Unit,
@@ -73,7 +73,7 @@ fun XiaomiPartsHomeScreen(
                     )
                     PartsPreference(
                         icon = ImageVector.vectorResource(R.drawable.ic_thermal_settings),
-                        title = stringResource(R.string.thermal_title),
+                        title = stringResource(R.string.thermal_monitor_sensors),
                         summary = stringResource(R.string.thermal_summary),
                         onClick = onNavigateToThermal,
                     )
@@ -82,6 +82,30 @@ fun XiaomiPartsHomeScreen(
                         title = stringResource(R.string.touch_boost_title),
                         summary = stringResource(R.string.touch_boost_summary),
                         onClick = onNavigateToTouch,
+                    )
+                }
+            }
+
+            item(key = "system") {
+                PartsPreferenceGroup(title = stringResource(R.string.system_category)) {
+                    PartsPreference(
+                        icon = Icons.Filled.Memory,
+                        title = stringResource(R.string.memory_title),
+                        summary = stringResource(R.string.memory_summary),
+                        onClick = onNavigateToMemory,
+                    )
+                }
+            }
+
+            item(key = "diagnostics") {
+                PartsPreferenceGroup(
+                    title = stringResource(R.string.xiaomi_parts_category_diagnostics),
+                ) {
+                    PartsPreference(
+                        icon = Icons.Filled.BatteryChargingFull,
+                        title = stringResource(R.string.battery_status_title),
+                        summary = stringResource(R.string.battery_status_summary),
+                        onClick = onNavigateToBattery,
                     )
                 }
             }

@@ -158,10 +158,32 @@
     <string name="screen_resolution_dialog_confirm">Apply</string>
     <string name="screen_resolution_dialog_cancel">Cancel</string>
 
-    <!-- ── Thermal Management ───────────────────────────────── -->
-    <string name="thermal_title">Thermal management</string>
-    <string name="thermal_summary">Per-app performance and temperature</string>
-    <string name="thermal_enable_title">Thermal profiles</string>
+    <!-- ── Thermal Monitor (auto sensor detection) ─────────────── -->
+    <string name="thermal_monitor_title">Thermal monitor</string>
+    <string name="thermal_monitor_sensors">Auto-detected thermal sensors</string>
+    <string name="thermal_summary">Per-app performance, temperature monitoring and auto sensor detection</string>
+
+    <!-- ── Touch Sampling modes ───────────────────────────────── -->
+    <string name="touch_sampling_dynamic">Dynamic (auto)</string>
+    <string name="touch_sampling_low_latency">240 Hz — low latency</string>
+    <string name="touch_sampling_high_rate">380 Hz — high rate</string>
+    <string name="touch_sampling_ultra_low">480 Hz — ultra-low</string>
+    <string name="touch_sampling_max_rate">1000 Hz — maximum</string>
+
+    <!-- ── Touch Sampling descriptions ─────────────────────────── -->
+    <string name="touch_sampling_dynamic_desc">Auto-selects optimal rate based on foreground app</string>
+    <string name="touch_sampling_low_latency_desc">Balanced responsiveness for general use</string>
+    <string name="touch_sampling_high_rate_desc">Enhanced touch feedback for gaming</string>
+    <string name="touch_sampling_ultra_low_desc">Extreme latency reduction for competitive play</string>
+    <string name="touch_sampling_max_rate_desc">Maximum responsiveness, highest power usage</string>
+
+    <!-- ── Auto Touch Boost ─────────────────────────────────────── -->
+    <string name="auto_touch_boost_title">Auto touch boost for gaming</string>
+    <string name="auto_touch_boost_summary">Automatically enable high-touch sampling rate when gaming profiles are active</string>
+
+    <!-- ── Thermal Monitor (auto sensor detection) ─────────────── -->
+    <string name="thermal_monitor_title">Thermal monitor</string>
+    <string name="thermal_monitor_sensors">Auto-detected thermal sensors</string>
     <string name="thermal_enable_summary">Apply thermal profiles per app and while charging</string>
     <string name="thermal_safety_label">Safety override</string>
     <string name="thermal_disable_throttling_title">Disable thermal throttling</string>

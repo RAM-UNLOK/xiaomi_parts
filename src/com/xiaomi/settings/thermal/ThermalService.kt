@@ -28,6 +28,10 @@ import com.xiaomi.settings.utils.dlog
 /** Background service — monitors foreground app + screen state to apply thermal profiles. */
 class ThermalService : Service() {
 
+    companion object {
+        const val ACTION_THERMAL_PROFILE_CHANGED = "com.xiaomi.settings.THERMAL_PROFILE_CHANGED"
+    }
+
     private lateinit var thermalUtils: ThermalUtils
 
     private var currentApp = ""
@@ -117,12 +121,24 @@ class ThermalService : Service() {
         runCatching {
             when {
                 !screenOn               -> thermalUtils.setDefaultThermalProfile()
-                currentApp.isNotEmpty() -> thermalUtils.setThermalProfile(currentApp)
+                currentApp.isNotEmpty() -> {
+                    val result = thermalUtils.setThermalProfile(currentApp)
+                    // Notify AutoTouchBoostService of profile change
+                    sendBroadcast(Intent(ACTION_THERMAL_PROFILE_CHANGED).apply {
+                        putExtra("package_name", currentApp)
+                    })
+                }
                 else -> dlog(TAG, "applyProfile: skipped — no foreground app yet")
             }
         }.onFailure { e ->
             dlog(TAG, "applyProfile failed: ${e.message}")
         }
+    }
+
+    private fun sendBroadcast(intent: Intent?) {
+        runCatching {
+            if (intent != null) broadcast(intent)
+        }.onFailure { /* ignore */ }
     }
 
     companion object {

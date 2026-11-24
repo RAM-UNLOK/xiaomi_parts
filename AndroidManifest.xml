@@ -50,6 +50,10 @@
             android:exported="false" />
 
         <service
+            android:name=".touchsampling.AutoTouchBoostService"
+            android:exported="false" />
+
+        <service
             android:name=".cpu.CpuControlService"
             android:exported="false" />
 

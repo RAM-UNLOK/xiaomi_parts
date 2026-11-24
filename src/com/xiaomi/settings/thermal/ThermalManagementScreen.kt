@@ -84,11 +84,44 @@ import com.xiaomi.settings.ui.PartsPreference
 import com.xiaomi.settings.ui.PartsPreferenceGroup
 import com.xiaomi.settings.ui.PartsScaffold
 import com.xiaomi.settings.ui.PartsSwitchPreference
+import com.xiaomi.settings.touchsampling.AutoTouchBoostService
+import com.xiaomi.settings.touchsampling.MultiSamplingTouchBoost
+import com.xiaomi.settings.touchsampling.TouchSamplingPerApp
+import com.xiaomi.settings.utils.PartsToast
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 data class InstalledAppEntry(val packageName: String, val label: String)
+
+private fun appDesc(profile: MultiSamplingTouchBoost.MultiSamplingMode): String {
+    return when (profile) {
+        MultiSamplingTouchBoost.MultiSamplingMode.DYNAMIC -> "Auto-selects optimal rate based on foreground app"
+        MultiSamplingTouchBoost.MultiSamplingMode.LOW_LATENCY_240 -> "Balanced responsiveness for general use"
+        MultiSamplingTouchBoost.MultiSamplingMode.HIGH_RATE_380 -> "Enhanced touch feedback for gaming"
+        MultiSamplingTouchBoost.MultiSamplingMode.ULTRA_LOW_480 -> "Extreme latency reduction for competitive play"
+        MultiSamplingTouchBoost.MultiSamplingMode.MAX_RATE_1000 -> "Maximum responsiveness, highest power usage"
+    }
+}
+
+data class TouchMultiRateOption(
+    val profile: Int,
+    val titleRes: Int,
+    val descRes: Int,
+    val label: String,
+)
+
+private fun MultiSamplingTouchBoost.MultiSamplingMode.profileToMulti(): TouchMultiRateOption {
+    return when (this) {
+        MultiSamplingTouchBoost.MultiSamplingMode.DYNAMIC -> TouchMultiRateOption(0, R.string.touch_sampling_dynamic, R.string.touch_sampling_dynamic_desc, "Dynamic")
+        MultiSamplingTouchBoost.MultiSamplingMode.LOW_LATENCY_240 -> TouchMultiRateOption(1, R.string.touch_sampling_low_latency, R.string.touch_sampling_low_latency_desc, "240 Hz — low latency")
+        MultiSamplingTouchBoost.MultiSamplingMode.HIGH_RATE_380 -> TouchMultiRateOption(2, R.string.touch_sampling_high_rate, R.string.touch_sampling_high_rate_desc, "380 Hz — high rate")
+        MultiSamplingTouchBoost.MultiSamplingMode.ULTRA_LOW_480 -> TouchMultiRateOption(3, R.string.touch_sampling_ultra_low, R.string.touch_sampling_ultra_low_desc, "480 Hz — ultra-low")
+        MultiSamplingTouchBoost.MultiSamplingMode.MAX_RATE_1000 -> TouchMultiRateOption(4, R.string.touch_sampling_max_rate, R.string.touch_sampling_max_rate_desc, "1000 Hz — maximum")
+    }
+}
+
+
 
 @Composable
 private fun appIcon(packageName: String): ImageBitmap? {
@@ -179,6 +212,38 @@ fun ThermalManagementScreen(onBack: () -> Unit) {
                 PartsInfoCard(body = stringResource(R.string.thermal_enable_summary))
             }
 
+            item(key = "auto_touch_boost") {
+                PartsPreferenceGroup(title = stringResource(R.string.performance_category)) {
+                    PartsSwitchPreference(
+                        title = stringResource(R.string.auto_touch_boost_title),
+                        checked = AutoTouchBoostService.isEnabled(context),
+                        enabled = controlsEnabled,
+                        onCheckedChange = { checked ->
+                            runCatching {
+                                AutoTouchBoostService.setEnabled(context, checked)
+                            }.onFailure { /* log error */ }
+                        },
+                    )
+                }
+            }
+
+            item(key = "touch_sampling") {
+                PartsPreferenceGroup(title = stringResource(R.string.performance_category)) {
+                    val mode by remember { MultiSamplingTouchBoost.getMode(context) }
+                    val label by remember(mode) { 
+                        MultiSamplingTouchBoost.getLabel(context, mode)
+                    }
+                    
+                    PartsPreference(
+                        title = stringResource(R.string.touch_sampling_title),
+                        summary = if (mode != MultiSamplingTouchBoost.MODE_DEFAULT) label else "Select touch sampling mode",
+                        icon = Icons.Filled.Memory,
+                        enabled = controlsEnabled,
+                        onClick = { showSamplingModeDialog() },
+                    )
+                }
+            }
+
             item(key = "reset-card") {
                 PartsPreferenceGroup {
                     PartsPreference(
@@ -242,52 +307,36 @@ fun ThermalManagementScreen(onBack: () -> Unit) {
         )
     }
 
-    pendingNewApp?.let { newApp ->
-        var tempProfile by remember(newApp.packageName) { mutableIntStateOf(ThermalUtils.ThermalState.DEFAULT.id) }
-        ProfilePickerDialog(
-            title      = newApp.label,
-            profiles   = profiles,
-            selectedId = tempProfile,
-            onSelect   = { tempProfile = it },
-            onDismiss  = { pendingNewApp = null },
-            onConfirm  = {
-                if (tempProfile != ThermalUtils.ThermalState.DEFAULT.id) {
-                    runCatching {
-                        ThermalService.setAppProfile(context, newApp.packageName, tempProfile)
-                        val newEntry = AppThermalEntry(
-                            packageName = newApp.packageName,
-                            label       = newApp.label,
-                            profileId   = tempProfile,
-                        )
-                        appList = (appList + newEntry).sortedBy { it.label.lowercase() }
-                    }
-                }
-                pendingNewApp = null
+        pendingProfileOption?.let { option ->
+        AlertDialog(
+            onDismissRequest = { pendingProfileOption = null },
+            title = {
+                Text(
+                    text = stringResource(R.string.touch_sampling_title),
+                    style = MaterialTheme.typography.headlineSmall,
+                )
             },
-        )
-    }
-
-    pendingApp?.let { app ->
-        var tempProfile by remember(app.packageName) { mutableIntStateOf(app.profileId) }
-        ProfilePickerDialog(
-            title      = app.label,
-            profiles   = profiles,
-            selectedId = tempProfile,
-            onSelect   = { tempProfile = it },
-            onDismiss  = { pendingApp = null },
-            onConfirm  = {
-                runCatching {
-                    ThermalService.setAppProfile(context, app.packageName, tempProfile)
-                    appList = if (tempProfile == ThermalUtils.ThermalState.DEFAULT.id) {
-                        appList.filter { it.packageName != app.packageName }
-                    } else {
-                        appList.map {
-                            if (it.packageName == app.packageName) it.copy(profileId = tempProfile) else it
-                        }
-                    }
-                }
-                pendingApp = null
+            text = {
+                Text(
+                    text = stringResource(option.titleRes) + "\n\n" + option.descRes,
+                    style = MaterialTheme.typography.bodyMedium,
+                )
             },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        MultiSamplingTouchBoost.setMode(context, option.profileToMulti())
+                        pendingProfileOption = null
+                    }
+                ) {
+                    Text(stringResource(R.string.touch_sampling_confirm_apply))
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { pendingProfileOption = null }) {
+                    Text(stringResource(android.R.string.cancel))
+                }
+            }
         )
     }
 
@@ -329,6 +378,22 @@ fun ThermalManagementScreen(onBack: () -> Unit) {
                 }
             },
         )
+    }
+
+    /**
+     * Touch sampling mode picker dialog.
+     */
+    private fun showSamplingModeDialog() {
+        val profiles = MultiSamplingTouchBoost.MultiSamplingMode.entries.map {
+            MultiSamplingTouchRateOption(
+                profile  = it.profile,
+                titleRes = it.labelRes,
+                descRes  = getDescFor(it),
+                label    = it.toString(),
+            )
+        }
+
+        pendingProfileOption = profiles.first() // Select default initially
     }
 }
 
