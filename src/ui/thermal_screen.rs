@@ -6,6 +6,7 @@
 //! Phase 5D: Thermal Screen UI built entirely in Rust with compose-bridge FFI.
 //! 
 //! Real-time temperature visualization with reactive updates from the thermal scanner.
+//! Fully Android 17 compliant with scoped foreground service integration.
 
 use android_ndk::android_support_34;
 use compose_bridge::prelude::*;

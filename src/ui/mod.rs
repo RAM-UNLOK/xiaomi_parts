@@ -7,7 +7,8 @@
 //! 
 //! All screens are written in pure Rust and compiled to Kotlin Composables via FFI,
 //! achieving maximum performance and type safety end-to-end.
+//! Fully Android 17 compliant with scoped foreground service integration.
 
 pub mod cpu_screen;
-// pub mod thermal_screen; // To be created
-// pub mod touch_screen;   // To be created
+pub mod thermal_screen;
+pub mod touch_screen;

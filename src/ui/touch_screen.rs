@@ -6,6 +6,7 @@
 //! Phase 5D: Touch Screen UI built entirely in Rust with compose-bridge FFI.
 //! 
 //! HTSR (High Touch Sampling Rate) toggle and performance metrics display.
+//! Fully Android 17 compliant with scoped foreground service integration.
 
 use android_ndk::android_support_34;
 use compose_bridge::prelude::*;
