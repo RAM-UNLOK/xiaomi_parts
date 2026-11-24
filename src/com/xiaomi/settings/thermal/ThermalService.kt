@@ -25,7 +25,7 @@ import android.os.IBinder
 import androidx.preference.PreferenceManager
 import com.xiaomi.settings.utils.dlog
 
-/** Background service — monitors foreground app + screen state to apply thermal profiles. */
+/** Thermal service that applies per-app thermal profiles based on the current foreground application. */
 class ThermalService : Service() {
 
     private lateinit var thermalUtils: ThermalUtils
@@ -38,33 +38,6 @@ class ThermalService : Service() {
             applyProfile()
         }
 
-    private var screenOn = true
-        set(value) {
-            if (field == value) return
-            field = value
-            dlog(TAG, "Screen: $value")
-            applyProfile()
-        }
-
-    private val taskListener = object : TaskStackListener() {
-        override fun onTaskStackChanged() {
-            runCatching {
-                val focusedTask = ActivityTaskManager.getService().focusedRootTaskInfo
-                focusedTask?.topActivity?.let { currentApp = it.packageName }
-            }
-        }
-    }
-
-    @Suppress("UnspecifiedRegisterReceiverFlag")
-    private val screenReceiver = object : BroadcastReceiver() {
-        override fun onReceive(ctx: Context, intent: Intent) {
-            when (intent.action) {
-                Intent.ACTION_SCREEN_OFF -> screenOn = false
-                Intent.ACTION_SCREEN_ON  -> screenOn = true
-            }
-        }
-    }
-
     override fun onCreate() {
         super.onCreate()
         dlog(TAG, "onCreate")
@@ -73,15 +46,6 @@ class ThermalService : Service() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         dlog(TAG, "onStartCommand")
-
-        @Suppress("UnspecifiedRegisterReceiverFlag")
-        registerReceiver(
-            screenReceiver,
-            IntentFilter().apply {
-                addAction(Intent.ACTION_SCREEN_OFF)
-                addAction(Intent.ACTION_SCREEN_ON)
-            },
-        )
 
         runCatching {
             ActivityTaskManager.getService().registerTaskStackListener(taskListener)
@@ -98,8 +62,7 @@ class ThermalService : Service() {
         } else {
             thermalUtils.setDefaultThermalProfile()
         }
-        unregisterReceiver(screenReceiver)
-        runCatching { ActivityTaskManager.getService().unregisterTaskStackListener(taskListener) }
+        runCatching { ActivityTaskManager.getService().unregisterTaskStackListener(object : TaskStackListener()) }
         super.onDestroy()
     }
 
@@ -109,19 +72,26 @@ class ThermalService : Service() {
      * Applies the correct thermal sconfig based on current state.
      *
      * Priority (highest wins):
-     *   1. Screen off    → sconfig=0
-     *   2. App known     → per-app sconfig via ThermalUtils
-     *   3. No app yet    → skip; TaskStackListener will fire shortly
+     *   1. No foreground app → DEFAULT profile
+     *   2. Foreground app known → per-app profile via ThermalUtils
      */
     private fun applyProfile() {
         runCatching {
             when {
-                !screenOn               -> thermalUtils.setDefaultThermalProfile()
                 currentApp.isNotEmpty() -> thermalUtils.setThermalProfile(currentApp)
-                else -> dlog(TAG, "applyProfile: skipped — no foreground app yet")
+                else -> thermalUtils.setDefaultThermalProfile() // No foreground app yet → DEFAULT
             }
         }.onFailure { e ->
             dlog(TAG, "applyProfile failed: ${e.message}")
+        }
+    }
+
+    private val taskListener = object : TaskStackListener() {
+        override fun onTaskStackChanged() {
+            runCatching {
+                val focusedTask = ActivityTaskManager.getService().focusedRootTaskInfo
+                focusedTask?.topActivity?.let { currentApp = it.packageName }
+            }
         }
     }
 

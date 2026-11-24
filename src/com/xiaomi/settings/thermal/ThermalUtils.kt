@@ -61,11 +61,6 @@ class ThermalUtils private constructor(private val context: Context) {
         setThermalProfileInternal(packageName)
     }
 
-    fun setChargingThermalProfile() {
-        writeSconfig(SCONFIG_CHARGE)
-        dlog(TAG, "Charging profile applied (sconfig=$SCONFIG_CHARGE)")
-    }
-
     fun setDefaultThermalProfile() {
         writeSconfig(ThermalState.DEFAULT.sconfig)
         dlog(TAG, "Default profile applied (sconfig=${ThermalState.DEFAULT.sconfig})")
@@ -266,7 +261,6 @@ class ThermalUtils private constructor(private val context: Context) {
         GAMING_HEAVY       (9,  "18",  R.string.thermal_gaming_heavy),
         GAMING_COMPETITIVE (10, "700", R.string.thermal_gaming_competitive),
         YUANSHEN           (11, "20",  R.string.thermal_yuanshen),
-        CHARGE             (12, "27",  R.string.thermal_charge, userSelectable = false),
     }
 
     companion object {
@@ -274,7 +268,6 @@ class ThermalUtils private constructor(private val context: Context) {
         const val THERMAL_ENABLED              = "thermal_enabled"
         const val THERMAL_PACKAGE_PREFIX       = "thermal_package_"
         const val THERMAL_SCONFIG              = "/sys/devices/virtual/thermal/thermal_message/sconfig"
-        const val SCONFIG_CHARGE               = "27"
 
         private val YUANSHEN_PKGS = listOf(
             "com.miHoYo.Yuanshen",
