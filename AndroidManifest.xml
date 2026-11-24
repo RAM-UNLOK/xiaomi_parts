@@ -53,9 +53,27 @@
             android:name=".touchsampling.AutoTouchBoostService"
             android:exported="false" />
 
+        <!-- Phase 2 Services with proper foreground service types -->
         <service
-            android:name=".cpu.CpuControlService"
-            android:exported="false" />
+            android:name=".CpuControlModernService"
+            android:exported="false"
+            android:foregroundServiceType="dataSync" />
+
+        <service
+            android:name=".TouchSamplingModernService"
+            android:exported="false"
+            android:foregroundServiceType="dataSync" />
+
+        <!-- Rust NDK Scanner Services (Phase 3) -->
+        <service
+            android:name=".RustScannerService"
+            android:exported="false"
+            android:foregroundServiceType="dataSync" />
+
+        <service
+            android:name=".RustThermalScannerService"
+            android:exported="false"
+            android:foregroundServiceType="dataSync" />
 
         <activity
             android:name=".XiaomiPartsActivity"
