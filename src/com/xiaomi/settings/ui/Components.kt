@@ -324,8 +324,8 @@ fun SectionHeader(
 ) {
     Text(
         text  = title,
-        style = MaterialTheme.typography.titleSmall,
-        color = MaterialTheme.colorScheme.primary,
+        style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.Bold),
+        color = MaterialTheme.colorScheme.tertiary, // M3 Expressive: tertiary for section headings
         modifier = modifier.padding(start = 36.dp, top = 24.dp, bottom = 8.dp),
     )
 }

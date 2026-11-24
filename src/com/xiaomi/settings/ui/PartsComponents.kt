@@ -128,8 +128,8 @@ fun PartsPreferenceGroup(
         if (title != null) {
             Text(
                 text = title,
-                style = MaterialTheme.typography.labelLarge,
-                color = MaterialTheme.colorScheme.primary,
+                style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.Bold),
+                color = MaterialTheme.colorScheme.tertiary, // M3 Expressive: tertiary for section headings
                 modifier = Modifier.padding(start = 8.dp, top = 12.dp, bottom = 8.dp),
             )
         }
@@ -150,8 +150,8 @@ fun PartsCategoryTitle(
 ) {
     Text(
         text = title,
-        style = MaterialTheme.typography.labelLarge,
-        color = MaterialTheme.colorScheme.primary,
+        style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.Bold),
+        color = MaterialTheme.colorScheme.tertiary, // M3 Expressive: tertiary for section headings
         modifier = modifier.padding(
             start = PartsPageGutter + 8.dp,
             top = 20.dp,
@@ -174,7 +174,7 @@ fun PartsPreference(
     trailing: (@Composable () -> Unit)? = null,
 ) {
     val normalColor = MaterialTheme.colorScheme.surfaceBright
-    val selectedColor = MaterialTheme.colorScheme.secondaryContainer
+    val selectedColor = MaterialTheme.colorScheme.primaryContainer // M3 Expressive: primary container for selected state
     val containerColor by animateColorAsState(
         targetValue = if (selected) selectedColor else normalColor,
         animationSpec = Motion.defaultEffectsSpec(),
@@ -192,7 +192,7 @@ fun PartsPreference(
             trailing = trailing ?: if (onClick != null) {
                 {
                     Icon(
-                        imageVector = Icons.AutoMirrored.Filled.ArrowForwardIos,
+                        imageVector = Icons.Filled.ChevronRight, // M3 Expressive: chevron for navigation
                         contentDescription = null,
                         modifier = Modifier.size(16.dp),
                         tint = MaterialTheme.colorScheme.onSurfaceVariant,
@@ -237,7 +237,7 @@ private fun PartsPreferenceContent(
             .heightIn(min = 72.dp)
             .alpha(if (enabled) 1f else 0.38f)
             .semantics(mergeDescendants = true) {}
-            .padding(horizontal = 16.dp, vertical = 10.dp),
+            .padding(horizontal = 16.dp, vertical = 12.dp), // Increased from 10dp to match M3 spacing
         verticalAlignment = Alignment.CenterVertically,
     ) {
         if (icon != null || iconBitmap != null) {
@@ -385,7 +385,7 @@ fun PartsInfoCard(
                 contentDescription = null,
                 modifier = Modifier.size(24.dp),
                 tint = if (accent) {
-                    MaterialTheme.colorScheme.onPrimaryContainer
+                    MaterialTheme.colorScheme.onPrimaryContainer // Semantic color for accent mode
                 } else {
                     MaterialTheme.colorScheme.primary
                 },
@@ -394,14 +394,14 @@ fun PartsInfoCard(
                 if (title != null) {
                     Text(
                         text = title,
-                        style = MaterialTheme.typography.labelLarge,
+                        style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.Bold),
                     )
                 }
                 Text(
                     text = body,
                     style = MaterialTheme.typography.bodyMedium,
                     color = if (accent) {
-                        MaterialTheme.colorScheme.onPrimaryContainer
+                        MaterialTheme.colorScheme.onPrimaryContainer // Semantic color for accent mode
                     } else {
                         MaterialTheme.colorScheme.onSurfaceVariant
                     },
