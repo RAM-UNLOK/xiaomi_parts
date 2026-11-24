@@ -5,9 +5,12 @@
 
 package com.xiaomi.settings
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.BatteryChargingFull
 import androidx.compose.material.icons.filled.Fingerprint
@@ -26,6 +29,10 @@ import com.xiaomi.settings.ui.PartsScaffold
 import com.xiaomi.settings.utils.CitLauncher
 import com.xiaomi.settings.utils.PartsToast
 
+/** 
+ * Home screen with proper M3 Expressive patterns.
+ * Uses semantic grouping, clear hierarchy, and consistent spacing.
+ */
 @Composable
 fun XiaomiPartsHomeScreen(
     onNavigateToDisplay: () -> Unit,
@@ -36,14 +43,18 @@ fun XiaomiPartsHomeScreen(
 ) {
     val context = LocalContext.current
 
-    PartsScaffold(title = stringResource(R.string.xiaomi_parts_title)) { innerPadding ->
+    PartsScaffold(
+        title = stringResource(R.string.xiaomi_parts_title),
+        onBack = onBack,
+    ) { innerPadding ->
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
             contentPadding = PaddingValues(
-                top = innerPadding.calculateTopPadding(),
+                top = innerPadding.calculateTopPadding() + 16.dp,
                 bottom = innerPadding.calculateBottomPadding() + 24.dp,
             ),
         ) {
+            // Display settings - primary task group
             item(key = "display") {
                 PartsPreferenceGroup(title = stringResource(R.string.display_category)) {
                     PartsPreference(
@@ -61,6 +72,7 @@ fun XiaomiPartsHomeScreen(
                 }
             }
 
+            // Performance settings - secondary task group
             item(key = "performance") {
                 PartsPreferenceGroup(title = stringResource(R.string.performance_category)) {
                     PartsPreference(
@@ -78,6 +90,7 @@ fun XiaomiPartsHomeScreen(
                 }
             }
 
+            // System monitoring - tertiary task group with clear hierarchy
             item(key = "system") {
                 PartsPreferenceGroup(title = stringResource(R.string.system_category)) {
                     PartsPreference(
@@ -89,6 +102,7 @@ fun XiaomiPartsHomeScreen(
                 }
             }
 
+            // Diagnostics - utility group with clear purpose
             item(key = "diagnostics") {
                 PartsPreferenceGroup(
                     title = stringResource(R.string.xiaomi_parts_category_diagnostics),

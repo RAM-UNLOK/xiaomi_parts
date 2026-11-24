@@ -43,6 +43,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
@@ -336,21 +337,19 @@ private fun BatteryHero(
                     strokeWidth = 12.dp,
                     strokeCap = StrokeCap.Round,
                 )
-                AnimatedContent(
-                    targetState = charging,
-                    transitionSpec = {
-                        fadeIn(Motion.defaultEffectsSpec()) togetherWith
-                            fadeOut(Motion.defaultEffectsSpec())
-                    },
+                AnimatedVisibility(
+                    visible = charging,
+                    enter = { fadeIn(Motion.defaultEffectsSpec()) },
+                    exit = { fadeOut(Motion.defaultEffectsSpec()) },
                     label = "batteryIcon",
-                ) { isCharging ->
+                ) {
                     Icon(
-                        imageVector = if (isCharging) {
-                            Icons.Filled.BatteryChargingFull
-                        } else {
-                            Icons.Filled.BatteryFull
-                        },
+                        imageVector = Icons.Filled.BatteryChargingFull,
                         contentDescription = null,
+                        modifier = Modifier.size(38.dp),
+                        tint = color,
+                    )
+                }
                         modifier = Modifier.size(38.dp),
                         tint = color,
                     )

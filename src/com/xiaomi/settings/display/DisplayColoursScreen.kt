@@ -12,6 +12,7 @@ import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -21,6 +22,14 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -175,6 +184,31 @@ private fun ColourPreviewHero(
                 )
             }
         }
+
+        // Show/hide the active mode label with smooth visibility transition for proper back gesture support
+        AnimatedVisibility(
+            visible = selectedId != -1,
+            enter = { fadeIn(Motion.defaultEffectsSpec()) },
+            exit = { fadeOut(Motion.defaultEffectsSpec()) },
+            label = "activeModeLabel",
+        ) {
+            modes.firstOrNull { it.id == selectedId }?.let { activeMode ->
+                Surface(
+                    modifier = Modifier
+                        .align(Alignment.BottomStart)
+                        .padding(16.dp),
+                    shape = MaterialTheme.shapes.extraLarge,
+                    color = MaterialTheme.colorScheme.primaryContainer,
+                    contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                ) {
+                    Text(
+                        text = stringResource(activeMode.label),
+                        style = MaterialTheme.typography.labelLarge,
+                        modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
+                    )
+                }
+            }
+        }
     }
 }
 
@@ -199,7 +233,7 @@ fun DisplayColoursScreen(onBack: () -> Unit) {
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
             contentPadding = PaddingValues(
-                top = innerPadding.calculateTopPadding() + 12.dp,
+                top = innerPadding.calculateTopPadding() + 16.dp,
                 bottom = innerPadding.calculateBottomPadding() + 24.dp,
             ),
         ) {
@@ -212,9 +246,11 @@ fun DisplayColoursScreen(onBack: () -> Unit) {
                     ),
                 )
             }
+
             item(key = "description") {
                 PartsInfoCard(body = stringResource(R.string.display_colours_description))
             }
+
             item(key = "modes") {
                 PartsPreferenceGroup {
                     ColorMode.entries.forEach { mode ->

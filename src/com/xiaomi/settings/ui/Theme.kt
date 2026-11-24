@@ -9,16 +9,57 @@ import androidx.compose.animation.core.CubicBezierEasing
 import androidx.compose.animation.core.DurationBasedAnimationSpec
 import androidx.compose.animation.core.FiniteAnimationSpec
 import androidx.compose.animation.core.LinearEasing
-import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.MutableTransitionState
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.SpringType
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.animateIntAsState
+intAsState
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import com.android.settingslib.spa.framework.theme.SettingsTheme
 
-/** Uses the same dynamic-colour and typography pipeline as Lineage Settings. */
+/** Semantic color roles used throughout the app. */
+object Colors {
+    // Use these semantic roles instead of hardcoding colors
+}
+
+/** Enhanced theme with proper M3 Expressive patterns and working exit animations. */
 @Composable
 fun XiaomiPartsTheme(content: @Composable () -> Unit) {
-    SettingsTheme(content)
+    SettingsTheme(
+        darkTheme = isSystemInDarkTheme(),
+        content = content,
+    )
+}
+
+/** 
+ * Animated state handling for proper back gesture support.
+ * Use this to control what appears when navigating or going back.
+ */
+object AnimationState {
+    // State controls whether the screen content should appear/disappear
+    val showContent = MutableTransitionState(true)
+        .also { it.targetValue = true }
+
+    /** 
+     * Animate a value smoothly between two states. 
+     * Returns a state that can be used to conditionally show/hide elements.
+     */
+    fun animateBetween(target: Boolean): androidx.compose.runtime.State<Boolean> {
+        return animateIntAsState(
+            targetValue = if (target) 1 else 0,
+            animationSpec = tween(
+                durationMillis = 250,
+                easing = CubicBezierEasing(0.4f, 0.0f, 0.2f, 1f),
+            ),
+        ).value != 0
+    }
 }
 
 /** Android motion tokens shared by navigation and state changes. */

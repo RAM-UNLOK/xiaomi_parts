@@ -120,6 +120,12 @@ fun ScreenResolutionScreen(onBack: () -> Unit) {
     }
     var pendingOption by remember { mutableStateOf<ResolutionOption?>(null) }
 
+    fun selectOption(option: ResolutionOption) {
+        if (selectedKey == option.key) return
+        pendingOption = option
+    }
+
+    // Show confirmation dialog when a new resolution is selected
     pendingOption?.let { option ->
         AlertDialog(
             onDismissRequest = { pendingOption = null },
@@ -163,13 +169,14 @@ fun ScreenResolutionScreen(onBack: () -> Unit) {
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
             contentPadding = PaddingValues(
-                top = innerPadding.calculateTopPadding() + 6.dp,
+                top = innerPadding.calculateTopPadding() + 16.dp,
                 bottom = innerPadding.calculateBottomPadding() + 24.dp,
             ),
         ) {
             item(key = "description") {
                 PartsInfoCard(body = stringResource(R.string.screen_resolution_description))
             }
+
             item(key = "resolutions") {
                 PartsPreferenceGroup {
                     RESOLUTIONS.forEach { option ->
@@ -177,9 +184,7 @@ fun ScreenResolutionScreen(onBack: () -> Unit) {
                             title = stringResource(option.labelRes),
                             summary = stringResource(option.summaryRes),
                             selected = selectedKey == option.key,
-                            onClick = {
-                                if (selectedKey != option.key) pendingOption = option
-                            },
+                            onClick = { selectOption(option) },
                         )
                     }
                 }

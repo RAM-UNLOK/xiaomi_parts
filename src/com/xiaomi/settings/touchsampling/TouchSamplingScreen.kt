@@ -115,17 +115,20 @@ fun TouchSamplingScreen(onBack: () -> Unit) {
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
             contentPadding = PaddingValues(
-                top = innerPadding.calculateTopPadding() + 6.dp,
+                top = innerPadding.calculateTopPadding() + 16.dp,
                 bottom = innerPadding.calculateBottomPadding() + 24.dp,
             ),
         ) {
             item(key = "profiles") {
-                PartsPreferenceGroup {
+                PartsPreferenceGroup(title = stringResource(R.string.touch_sampling_title)) {
                     TOUCH_OPTIONS.forEach { option ->
+                        val isSelected = selectedProfile == option.profile
+                        
+                        // Use PartsSelectionPreference with proper M3 patterns
                         PartsSelectionPreference(
                             title = stringResource(option.titleRes),
                             summary = stringResource(option.descRes),
-                            selected = selectedProfile == option.profile,
+                            selected = isSelected,
                             onClick = {
                                 if (selectedProfile != option.profile) {
                                     pendingOption = option
