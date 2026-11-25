@@ -77,6 +77,8 @@ class ThermalUtils private constructor(private val context: Context) {
         dlog(TAG, "NoLimits profile applied (sconfig=${ThermalState.NOLIMITS.sconfig})")
     }
 
+    fun throttlingDisabled: Boolean = sharedPrefs.getBoolean("throttling_disabled", false)
+
     private fun setThermalProfileInternal(packageName: String) {
         val state = getStateForPackage(packageName)
         writeSconfig(state.sconfig)

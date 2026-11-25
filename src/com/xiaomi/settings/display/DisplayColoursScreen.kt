@@ -1,12 +1,15 @@
 /*
  * SPDX-FileCopyrightText: 2025 Paranoid Android
- * SPDX-FileCopyrightText: 2026 The LineageOS Project
+ * SPDX-FileCopyrightText: 2026 Rodin Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
 package com.xiaomi.settings.display
 
 import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.FiniteAnimationSpec
+import androidx.compose.animation.core.EnterTransition
+import androidx.compose.animation.core.ExitTransition
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.animateFloatAsState
@@ -22,14 +25,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -170,8 +165,8 @@ private fun ColourPreviewHero(
         // Show/hide the active mode label with smooth visibility transition for proper back gesture support
         AnimatedVisibility(
             visible = selectedId != -1,
-            enter = { fadeIn(Motion.defaultEffectsSpec()) },
-            exit = { fadeOut(Motion.defaultEffectsSpec()) },
+            enter = { Motion.defaultEffectsSpec() as EnterTransition },
+            exit = { Motion.defaultEffectsSpec() as ExitTransition },
             label = "activeModeLabel",
         ) {
             modes.firstOrNull { it.id == selectedId }?.let { activeMode ->
@@ -216,8 +211,6 @@ private fun ActiveModeLabel(
                 )
             }
         }
-    }
-}
     }
 }
 

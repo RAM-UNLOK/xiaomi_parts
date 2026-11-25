@@ -46,7 +46,7 @@ fun XiaomiPartsHomeScreen(
 
     PartsScaffold(
         title = stringResource(R.string.xiaomi_parts_title),
-        onBack = onBack,
+        onBack = { navController?.popBackStack() },
     ) { innerPadding ->
         LazyColumn(
             modifier = Modifier.fillMaxSize(),

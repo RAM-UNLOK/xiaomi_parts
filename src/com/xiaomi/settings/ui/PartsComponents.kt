@@ -59,7 +59,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.xiaomi.settings.R
 
-val PartsPageGutter = 16.dp
+const val PartsPageGutter = 16.dp
 
 val PartsGroupShape: Shape
     @Composable @ReadOnlyComposable get() = RoundedCornerShape(20.dp)

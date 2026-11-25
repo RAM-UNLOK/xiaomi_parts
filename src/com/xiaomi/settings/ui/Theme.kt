@@ -75,13 +75,13 @@ object Motion {
         tween(durationMillis = 220, easing = EmphasizedDecelerate)
 
     fun <T> defaultEffectsSpec(): FiniteAnimationSpec<T> = spring(
-        dampingRatio = Spring.DampingRatioNoBouncy,
-        stiffness = Spring.StiffnessMediumLow,
+        dampingRatio = 0.86f,
+        stiffness = 420f,
     )
 
     fun <T> pressSpec(): FiniteAnimationSpec<T> = spring(
-        dampingRatio = Spring.DampingRatioNoBouncy,
-        stiffness = Spring.StiffnessMedium,
+        dampingRatio = 0.8f,
+        stiffness = 480f,
     )
 
     fun <T> liveValueSpec(): FiniteAnimationSpec<T> =

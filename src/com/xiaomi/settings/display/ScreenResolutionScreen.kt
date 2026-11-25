@@ -113,7 +113,7 @@ private fun restartSystemUi() {
     runCatching {
         val am = android.app.ActivityManager.getService() ?: return
         // Use killApplication to properly terminate SystemUI — this is the recommended approach in Android 17+
-        am.killApplication("com.android.systemui")
+        am.killApplication("com.android.systemui", 0)
     }.onFailure { e ->
         // Fallback: exec as last resort (still valid but less elegant)
         runCatching { Runtime.getRuntime().exec(arrayOf("killall", "com.android.systemui")) }
